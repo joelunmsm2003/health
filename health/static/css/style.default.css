@@ -1773,7 +1773,7 @@ section.forms .line {
 }
 
 .login-page .form-holder .info {
-  background: rgba(121, 106, 238, 0.9);
+  background: #009393;
   color: #fff;
 }
 
@@ -2006,8 +2006,8 @@ fieldset[disabled] a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #796AEE;
-  border-color: #796AEE;
+  background-color: #009393;
+  border-color: #009393;
 }
 
 .btn-primary:hover {
