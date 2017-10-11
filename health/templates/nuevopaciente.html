@@ -25,15 +25,18 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Nueva Cita</h2>
+              <h2 class="no-margin-bottom">Nueva Paciente</h2>
             </div>
           </header>
+
           <ul class="breadcrumb">
             <div class="container-fluid">
-              <li class="breadcrumb-item"><a href="/static/index.html">Citas</a></li>
-              <li class="breadcrumb-item active">Nueva Cita</li>
+              <li class="breadcrumb-item"><a href="/static/index.html">Pacientes</a></li>
+              <li class="breadcrumb-item active">Nuevo Paciente</li>
             </div>
           </ul>
+
+
           <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
@@ -51,9 +54,49 @@
                       </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Datos de Cita</h3>
+                      <h3 class="h4">Datos de Paciente</h3>
                     </div>
                     <div class="card-body">
+
+
+
+                        <form class="form-horizontal" action="/nuevacita/" method="post">
+
+
+                        {% csrf_token %}
+
+
+
+
+                        {% for field in form %}
+
+                        
+                          <div class="form-group row">
+                              {{ field.errors }}
+
+                              <div class="col-sm-3 form-control-label">{{ field.label_tag }}</div>
+
+                              <div class="col-sm-9">{{ field }}</div>
+                               
+                              
+                              {% if field.help_text %}
+                              <p class="help">{{ field.help_text|safe }}</p>
+                              {% endif %}
+                          </div>
+
+
+                       {% endfor %}
+
+
+                          <input type="submit" class="form-control" value="Submit" />
+
+
+                        </form>
+
+
+
+
+
                       <form class="form-horizontal">
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Normal</label>

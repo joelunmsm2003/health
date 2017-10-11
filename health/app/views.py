@@ -75,22 +75,21 @@ def login(request):
 
 def nuevacita(request):
 
-    if request.method == 'POST':
-    # create a form instance and populate it with data from the request:
-    form = ContactForm(request.POST)
-    # check whether it's valid:
-    if form.is_valid():
+	if request.method == 'POST':
+	# create a form instance and populate it with data from the request:
+		form = ContactForm(request.POST)
+	# check whether it's valid:
+		if form.is_valid():
+			print form
 
-    	print form
-    	
-        # process the data in form.cleaned_data as required
-        # ...
-        # redirect to a new URL:
-        return HttpResponseRedirect('/thanks/')
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/thanks/')
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = ContactForm()
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+		form = ConsultaForm()
 	
 	return render(request, 'nuevacita.html',{'form': form})
 
@@ -99,8 +98,10 @@ def nuevacita(request):
 def paciente(request):
 
 
-	
-	return render(request, 'paciente.html',{})
+	form = PacienteForm()
+
+
+	return render(request, 'paciente.html',{'form': form})
 
 
 def dashboard(request):
@@ -113,6 +114,6 @@ def dashboard(request):
 
 def nuevopaciente(request):
 
+	form = PacientesForm()
 
-	
-	return render(request, 'nuevopaciente.html',{})
+	return render(request, 'nuevopaciente.html',{'form': form})
