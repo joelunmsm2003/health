@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^home/', 'app.views.home'),
     url(r'^nuevacita/', 'app.views.nuevacita'),
     url(r'^paciente/', 'app.views.paciente'),
+    url(r'^dashboard/', 'app.views.dashboard'),
 ]

@@ -57,3 +57,9 @@ def paciente(request):
 	
 	return render(request, 'paciente.html',{})
 
+
+def dashboard(request):
+
+
+	
+	return render(request, 'dashboard.html',{})
