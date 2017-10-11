@@ -36,6 +36,29 @@ from django.contrib.auth import authenticate
 
 from django.contrib.sites.shortcuts import get_current_site
 
+from .forms import *
+
+def get_name(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NameForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
+
+    return render(request, 'dashboard.html', {'form': form})
+
+
+
+
 def home(request):
 
 
@@ -52,9 +75,24 @@ def login(request):
 
 def nuevacita(request):
 
+    if request.method == 'POST':
+    # create a form instance and populate it with data from the request:
+    form = ContactForm(request.POST)
+    # check whether it's valid:
+    if form.is_valid():
 
+    	print form
+    	
+        # process the data in form.cleaned_data as required
+        # ...
+        # redirect to a new URL:
+        return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ContactForm()
 	
-	return render(request, 'nuevacita.html',{})
+	return render(request, 'nuevacita.html',{'form': form})
 
 
 
@@ -67,6 +105,14 @@ def paciente(request):
 
 def dashboard(request):
 
-
+	
 	
 	return render(request, 'dashboard.html',{})
+
+
+
+def nuevopaciente(request):
+
+
+	
+	return render(request, 'nuevopaciente.html',{})
