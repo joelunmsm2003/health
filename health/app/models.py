@@ -31,18 +31,15 @@ class Consulta(models.Model):
         return self.nombre
 
 
-
-
-
 @python_2_unicode_compatible
 class Pacientes(models.Model):
 
     DNI = models.CharField(max_length=300,blank=True)
-    Domicilio = models.CharField(max_length=300,blank=True)
+    Domicilio = models.CharField(max_length=300)
     Ciudad = models.CharField(max_length=300,blank=True)
     Telefono = models.CharField(max_length=300,blank=True)
     Celular = models.CharField(max_length=300,blank=True)
-    Email = models.CharField(max_length=300,blank=True)
+    Email = models.CharField(max_length=300)
     Referenciado = models.CharField(max_length=300,blank=True)
 
     def __str__(self):

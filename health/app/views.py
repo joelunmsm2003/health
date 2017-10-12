@@ -114,6 +114,28 @@ def dashboard(request):
 
 def nuevopaciente(request):
 
-	form = PacientesForm()
+	if request.method == 'POST':
+	# create a form instance and populate it with data from the request:
+		form = PacientesForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
+	# check whether it's valid:
+		if form.is_valid():
+
+			a = Pacientes()
+
+			f = PacientesForm(request.POST, instance=a).save()
+
+
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/nuevopaciente/')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+		form = PacientesForm()
 
 	return render(request, 'nuevopaciente.html',{'form': form})

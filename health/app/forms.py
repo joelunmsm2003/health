@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, TextInput
 from app.models import *
-
+from django.utils.translation import ugettext_lazy as _
 
 class ContactForm(forms.Form):
 
@@ -23,6 +23,21 @@ class PacientesForm(ModelForm):
 			'Celular':TextInput(attrs={'class':'form-control'}),
 			'Email':TextInput(attrs={'class':'form-control'}),
 			'Referenciado':TextInput(attrs={'class':'form-control'})
+        }
+        error_messages = {
+            'Email': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("Este campo es obligatorio"),
+            },
+            'Domicilio': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("El domicilio es obligatorio"),
+            },
+
+        }
+        help_texts = {
+            'Email': _('Correo valido.'),
+            'Domicilio':_('Ingrese su direccion de casa'),
         }
 
 
