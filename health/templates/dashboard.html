@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="calendarDemoApp" id="top">
  {% include "head.html" %}
+
 
   <body>
     <div class="page home-page">
@@ -40,41 +41,11 @@
               <div class="row">
 
 
-           
-        
-                <!-- Statistics -->
-              <!--   <div class="statistics col-lg-3 col-12">
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-                    <div class="text"><strong>234</strong><br><small>Applications</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                    <div class="text"><strong>152</strong><br><small>Interviews</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                    <div class="text"><strong>147</strong><br><small>Forwards</small></div>
-                  </div>
-                </div> -->
-                <!-- Line Chart            -->
-               <!--  <div class="chart col-lg-6 col-12">
-                  <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
-                    <canvas id="lineCahrt"></canvas>
-                  </div>
-                </div> -->
-                <div class="chart col-lg-3 col-12">
-                  <!-- Bar Chart   -->
-                <!--   <div class="bar-chart has-shadow bg-white">
-                    <div class="title"><strong class="text-violet">95%</strong><br><small>Current Server Uptime</small></div>
-                    <canvas id="barChartHome"></canvas>
-                  </div> -->
-                  <!-- Numbers-->
-               <!--    <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-line-chart"></i></div>
-                    <div class="text"><strong>99.9%</strong><br><small>Success Rate</small></div>
-                  </div> -->
-                </div>
+
+                        
+
+          {% include "calendar.html" %}
+         
               </div>
             </div>
           </section>
@@ -544,10 +515,20 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/jquery.cookie.js"> </script>
     <script src="/static/js/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="/static/js/charts-home.js"></script>
-    <script src="/static/js/front.js"></script>
+   
+    <!-- <script src="/static/js/front.js"></script>-->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
+
+    <script src="/static/ui-calendar-master/bower_components/jquery/dist/jquery.js"></script>
+
+    <script src="/static/ui-calendar-master/bower_components/angular/angular.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="/static/ui-calendar-master/bower_components/moment/moment.js"></script>
+    <script src="/static/ui-calendar-master/bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="/static/ui-calendar-master/bower_components/fullcalendar/dist/gcal.js"></script>
+    <script src="/static/ui-calendar-master/src/calendar.js"></script>
+    <script src="/static/ui-calendar-master/demo/calendarDemo.js"></script>
+
     <!---->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

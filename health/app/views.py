@@ -59,6 +59,13 @@ def get_name(request):
 
 
 
+def calendar(request):
+
+
+	
+	return render(request, 'calendar.html',{})
+
+
 def home(request):
 
 

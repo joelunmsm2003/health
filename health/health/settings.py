@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'schedule',
+    'djangobower',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -69,9 +71,38 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_FINDERS = [
+
+    'djangobower.finders.BowerFinder',
+
+]
+
 STATICFILES_DIRS = (
     
     os.path.join(BASE_DIR, "static"),)
+
+PROJECT_ROOT = os.path.abspath(
+
+    os.path.join(os.path.dirname(__file__), ".."),
+)
+
+
+
+BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
+
+print 'BOWER_COMPONENTS_ROOT',BOWER_COMPONENTS_ROOT
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'underscore',
+)
 
 
 WSGI_APPLICATION = 'health.wsgi.application'
