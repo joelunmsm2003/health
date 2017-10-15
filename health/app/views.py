@@ -35,8 +35,14 @@ from datetime import datetime,timedelta
 from django.contrib.auth import authenticate
 
 from django.contrib.sites.shortcuts import get_current_site
+from django.core import serializers
 
 from .forms import *
+
+from app.serializer import CitasSerializer
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from django.http import HttpResponse, JsonResponse
 
 def get_name(request):
     # if this is a POST request we need to process the form data
@@ -63,7 +69,7 @@ def calendar(request):
 
 
 	
-	return render(request, 'calendar.html',{})
+	return render(request, 'calendar_1.html',{})
 
 
 def home(request):
@@ -77,6 +83,13 @@ def login(request):
 
 	
 	return render(request, 'login.html',{})
+
+def citasjson(request):
+
+
+    serializer = CitasSerializer(Citas.objects.all(), many=True)
+    return JsonResponse(serializer.data, safe=False)
+
 
 
 

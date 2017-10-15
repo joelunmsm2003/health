@@ -14,12 +14,14 @@ from django.utils import timezone
 
 @python_2_unicode_compatible
 class Citas(models.Model):
-    nombre = models.CharField(max_length=300)
+    title = models.CharField(max_length=300)
     direccion = models.CharField(max_length=300)
+    start = models.DateTimeField(blank=True, null=True)
+    end = models.DateTimeField(blank=True, null=True)
     
     def __str__(self):
         
-        return self.nombre
+        return self.title
 
 
 @python_2_unicode_compatible

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="calendarDemoApp" id="top">
 <head>
-
-
+    <title>AngularUI Calendar for AngularJS</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/static/ui-calendar-master/bower_components/bootstrap-css/css/bootstrap.css" />
     <link rel="stylesheet" href="/static/ui-calendar-master/bower_components/fullcalendar/dist/fullcalendar.css">
     <link rel="stylesheet" href="/static/ui-calendar-master/demo/calendarDemo.css" />
 
@@ -15,20 +16,84 @@
     <script src="/static/ui-calendar-master/bower_components/fullcalendar/dist/gcal.js"></script>
     <script src="/static/ui-calendar-master/src/calendar.js"></script>
     <script src="/static/ui-calendar-master/demo/calendarDemo.js"></script>
-
-
 </head>
 <body data-spy="scroll">
-
-
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="dropdown pull-left">
+                <a class="brand dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                    AngularUI
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li><a href="https://github.com/angular-ui/"><strong>Related Projects:</strong></a></li>
+                    <li class="divider"></li>
+                    <li><a href="http://angular-ui.github.com/bootstrap/">Bootstrap</a></li>
+                    <li><a href="http://angular-ui.github.com/ng-grid/">Grid</a></li>
+                    <li><a href="https://github.com/angular-ui/AngularJs.tmbundle">AngularJS.tmbundle</a></li>
+                    <li><a href="http://angular-ui.github.io/ui-router/sample/">Router <span
+                            class="label label-success">New!</span></a></li>
+                    <li><a href="http://angular-ui.github.com/Tips-n-Tricks/">Tips-n-Tricks <span
+                            class="label">WIP</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="hero-unit">
+            <div class="container">
+                <h1>UI Calendar</h1>
+                <p>A complete AngularJS directive for the <a href="http://arshaw.com/fullcalendar/">Arshaw FullCalendar</a>.</p>
+                <p class="btn-group">
+                    <a href="https://github.com/angular-ui/ui-calendar" class='btn'><i class='icon-github'></i> Code on Github</a>
+                    <a href="https://github.com/angular-ui/ui-calendar/archive/master.zip" class='btn btn-primary'><i class="icon-download-alt icon-white"></i> Download <small>(0.8.1)</small></a>
+                </p>
+            </div>
+            <div class="bs-docs-social">
+                <div class="container">
+                    <ul class="bs-docs-social-buttons">
+                        <li>
+                            <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-calendar&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                        </li>
+                        <li>
+                            <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-calendar&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                        </li>
+                        <li>
+                            <div class="g-plusone" data-size="medium"></div>        
+                            <!-- Place this tag after the last +1 button tag. -->
+                            <script type="text/javascript">
+                                (function () {
+                                    var po = document.createElement('script');
+                                    po.type = 'text/javascript';
+                                    po.async = true;
+                                    po.src = 'https://apis.google.com/js/plusone.js';
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(po, s);
+                                })();
+                            </script>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 <div role="main">
-    
+    <div class="container">
         <section id="directives-calendar" ng-controller="CalendarCtrl">
-            
+            <div class="page-header">
+                <h1>UI-Calendar</h1>
+            </div>
             <div class="well">
                 <div class="row-fluid">
                     <div class="span4">
-                  
+                        <h3>What?</h3>
+
+                        <p>Attach Angular objects to a calendar.</p>
+                        <p>Show the data binding between two different calendars using the same event sources.</p>
+
+                        <h3>Why?</h3>
+
+                        <p>Why Not?</p>
                         
                         <div class="btn-group calTools">
                           <button class="btn" ng-click="changeLang()">
@@ -117,7 +182,7 @@
             <h3>How?</h3>
 
         </section>
-
+    </div>
 </div>
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -134,13 +199,3 @@
         </script>
     </body>
 </html>
-
-
-<style type="text/css">
-    
-.fc-day-grid-container.fc-scroller {
-    height: auto!important;
-    overflow-y: auto;
-}
-    
-</style>

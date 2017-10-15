@@ -1,20 +1,14 @@
 /**
  * calendarDemoApp - 0.9.0
  */
-
 var calendarDemoApp = angular.module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap']);
 
-calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, uiCalendarConfig) {
-
-    console.log('Datos......')
-
-
+calendarDemoApp.controller('CalendarCtrl',
+   function($scope,$http, $compile, $timeout, uiCalendarConfig) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-
-
 
     $scope.changeTo = 'Hungarian';
     /* event source that pulls from google.com */
@@ -23,9 +17,6 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
             className: 'gcal-event',           // an option!
             currentTimezone: 'America/Chicago' // an option!
     };
-
-
-    
     /* event source that contains custom events on the scope */
     $scope.events = [
       {title: 'All Day Event',start: new Date(y, m, 1)},
@@ -56,21 +47,14 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
         $scope.alertMessage = (date.title + ' was clicked ');
-
-        console.log('click...',$scope.alertMessage)
     };
     /* alert on Drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
        $scope.alertMessage = ('Event Dropped to make dayDelta ' + delta);
-
-       console.log('drop...',$scope.alertMessage)
-
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
        $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
-
-
     };
     /* add and removes an event source of choice */
     $scope.addRemoveEventSource = function(sources,source) {
@@ -84,15 +68,13 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
       if(canAdd === 0){
         sources.push(source);
       }
-
-      
     };
     /* add custom event*/
     $scope.addEvent = function() {
       $scope.events.push({
         title: 'Open Sesame',
         start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
+        end: new Date(y, m, 31),
         className: ['openSesame']
       });
     };
@@ -149,5 +131,55 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+
+
+
+
+        $http.get("http://localhost:8000/citasjson")
+    .then(function(response) {
+
+ 
+
+        x=0
+        for( eve in response.data){
+
+
+
+          var d = new Date(response.data[eve]['start']);
+          var diastart = d.getDate();
+          var monthstart = date.getMonth()
+          var yearstart = date.getFullYear()
+
+          var d = new Date(response.data[eve]['end']);
+          var diaend = d.getDate();
+          var monthend = date.getMonth()
+          var yearend = date.getFullYear()
+
+
+
+      $scope.events.push({
+        title: response.data[eve]['title'],
+        start: new Date(yearstart, monthstart,  diastart),
+        end: new Date(yearend, monthend, diaend),
+        className: ['openSesame']
+      });
+
+        }
+
+
+
+
+
+  
+
+    });
+
+
+
+
+   
+
+
+
 });
 /* EOF */

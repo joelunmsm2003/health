@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^dashboard/', 'app.views.dashboard'),
     url(r'^login/', 'app.views.login'),
     url(r'^calendar/', 'app.views.calendar'),
+    url(r'^citasjson/', 'app.views.citasjson'),
 
   ]
 
