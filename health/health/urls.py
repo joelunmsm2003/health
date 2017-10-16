@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^login/', 'app.views.login'),
     url(r'^calendar/', 'app.views.calendar'),
     url(r'^citasjson/', 'app.views.citasjson'),
+    url(r'^citaspk/(\d+)', 'app.views.citaspk'),
 
   ]
 

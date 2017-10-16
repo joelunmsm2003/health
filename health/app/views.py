@@ -87,10 +87,35 @@ def login(request):
 def citasjson(request):
 
 
+
+
     serializer = CitasSerializer(Citas.objects.all(), many=True)
     return JsonResponse(serializer.data, safe=False)
 
 
+def citaspk(request,pk):
+
+	try:
+		c = Citas.objects.get(pk=pk)
+	except Citas.DoesNotExist:
+		return HttpResponse(status=404)
+
+	if request.method == 'GET':
+		serializer = CitasSerializer(c)
+		return JsonResponse(serializer.data)
+	
+
+	elif request.method == 'PUT':
+		data = JSONParser().parse(request)
+		serializer = CitasSerializer(c, data=data)
+		if serializer.is_valid():
+			serializer.save()
+			return JsonResponse(serializer.data)
+		return JsonResponse(serializer.errors, status=400)
+
+
+	serializer = CitasSerializer(Citas.objects.all(), many=True)
+	return JsonResponse(serializer.data, safe=False)
 
 
 def nuevacita(request):

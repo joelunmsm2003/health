@@ -18,7 +18,9 @@ calendarDemoApp.controller('CalendarCtrl',
             currentTimezone: 'America/Chicago' // an option!
     };
     /* event source that contains custom events on the scope */
-    $scope.events = [
+    $scope.events = [];
+
+        $scope.events1 = [
       {title: 'All Day Event',start: new Date(y, m, 1)},
       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
@@ -47,6 +49,31 @@ calendarDemoApp.controller('CalendarCtrl',
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
         $scope.alertMessage = (date.title + ' was clicked ');
+
+        $scope.titulo = date.title
+        $scope.descripcion=date.descripcion
+        $scope.inicio=date.start.toString().slice(0,10)
+        $scope.fin=date.end.toString().slice(0,10)
+
+        var todo={
+
+          'hdhd':'djdjd'
+        }
+
+
+          $http({
+
+            url:"http://localhost:8000/citaspk/5",
+            data: todo,
+            method: 'PUT'
+            }).
+            then(function(data) {
+
+             
+
+           })
+
+
     };
     /* alert on Drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
@@ -100,22 +127,7 @@ calendarDemoApp.controller('CalendarCtrl',
                       'tooltip-append-to-body': true});
         $compile(element)($scope);
     };
-    /* config object */
-    $scope.uiConfig = {
-      calendar:{
-        height: 450,
-        editable: true,
-        header:{
-          left: 'title',
-          center: '',
-          right: 'today prev,next'
-        },
-        eventClick: $scope.alertOnEventClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize,
-        eventRender: $scope.eventRender
-      }
-    };
+
 
     $scope.changeLang = function() {
       if($scope.changeTo === 'Hungarian'){
@@ -133,9 +145,10 @@ calendarDemoApp.controller('CalendarCtrl',
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
 
 
+    $scope.traeeventos=function(){
 
 
-        $http.get("http://localhost:8000/citasjson")
+              $http.get("http://localhost:8000/citasjson")
     .then(function(response) {
 
  
@@ -147,13 +160,13 @@ calendarDemoApp.controller('CalendarCtrl',
 
           var d = new Date(response.data[eve]['start']);
           var diastart = d.getDate();
-          var monthstart = date.getMonth()
-          var yearstart = date.getFullYear()
+          var monthstart = d.getMonth()
+          var yearstart = d.getFullYear()
 
           var d = new Date(response.data[eve]['end']);
           var diaend = d.getDate();
-          var monthend = date.getMonth()
-          var yearend = date.getFullYear()
+          var monthend = d.getMonth()
+          var yearend = d.getFullYear()
 
 
 
@@ -161,10 +174,17 @@ calendarDemoApp.controller('CalendarCtrl',
         title: response.data[eve]['title'],
         start: new Date(yearstart, monthstart,  diastart),
         end: new Date(yearend, monthend, diaend),
-        className: ['openSesame']
+        className: ['openSesame'],
+        descripcion:response.data[eve]['descripcion'],
+        stick: true
       });
 
         }
+
+
+        console.log('$scope.events',$scope.events)
+
+
 
 
 
@@ -175,6 +195,32 @@ calendarDemoApp.controller('CalendarCtrl',
     });
 
 
+    }
+
+
+    $scope.traeeventos()
+
+
+        /* config object */
+    $scope.uiConfig = {
+      calendar:{
+        height: 450,
+        editable: true,
+        header:{
+          left: 'title',
+          center: '',
+          right: 'today prev,next'
+        },
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
+
+
+
+
 
 
    
@@ -183,3 +229,10 @@ calendarDemoApp.controller('CalendarCtrl',
 
 });
 /* EOF */
+
+
+calendarDemoApp.filter('limit', function () {
+    return function (input, value) {
+        return input.substr(0, value);
+    };
+});

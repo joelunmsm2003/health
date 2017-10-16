@@ -14,8 +14,10 @@ from django.utils import timezone
 
 @python_2_unicode_compatible
 class Citas(models.Model):
+
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=300)
-    direccion = models.CharField(max_length=300)
+    descripcion = models.CharField(max_length=300)
     start = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
     
