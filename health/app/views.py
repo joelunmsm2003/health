@@ -142,6 +142,7 @@ def nuevacita(request):
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
+		
 		form = CitasForm()
 
 	return render(request, 'nuevacita.html',{'form': form})
