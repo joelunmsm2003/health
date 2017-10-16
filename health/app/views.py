@@ -29,6 +29,7 @@ import simplejson
 import xlwt
 import requests
 import os
+from django.contrib.auth import authenticate, login
 
 
 from datetime import datetime,timedelta
@@ -78,7 +79,7 @@ def home(request):
 	
 	return render(request, 'index.html',{})
 
-def login(request):
+def login2(request):
 
 
 	
@@ -142,7 +143,7 @@ def nuevacita(request):
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
-		
+
 		form = CitasForm()
 
 	return render(request, 'nuevacita.html',{'form': form})
@@ -193,3 +194,27 @@ def nuevopaciente(request):
 		form = PacientesForm()
 
 	return render(request, 'nuevopaciente.html',{'form': form})
+
+
+
+
+def ingresar(request):
+
+    username = request.POST['username']
+    password = request.POST['password']
+
+    print username,password
+    user = authenticate(username=username, password=password)
+    if user is not None:
+
+        login(request, user)
+
+
+        return HttpResponseRedirect('/dashboard/')
+
+    else:
+
+
+    	return render(request, 'login.html',{'error': 'No existe este usuario'})
+
+

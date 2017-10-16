@@ -10,10 +10,11 @@ urlpatterns = [
     url(r'^paciente/', 'app.views.paciente'),
     url(r'^nuevopaciente/', 'app.views.nuevopaciente'),
     url(r'^dashboard/', 'app.views.dashboard'),
-    url(r'^login/', 'app.views.login'),
+    url(r'^login/', 'app.views.login2'),
     url(r'^calendar/', 'app.views.calendar'),
     url(r'^citasjson/', 'app.views.citasjson'),
     url(r'^citaspk/(\d+)', 'app.views.citaspk'),
+    url(r'^ingresar/', 'app.views.ingresar'),
     
   ]
 

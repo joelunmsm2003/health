@@ -18,11 +18,11 @@ class Citas(models.Model):
 
     id = models.AutoField(primary_key=True)
     title = models.CharField('Titulo',max_length=300)
-    area = models.CharField('Area',max_length=300,blank=True)
+    area = models.ForeignKey('Area',max_length=300,blank=True)
     descripcion = models.CharField('Descripcion',max_length=300)
     start = models.DateTimeField('Inicio',blank=True, null=True)
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
-    medico = models.CharField(max_length=300,blank=True, null=True)
+    medico = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
     end = models.DateTimeField('Fin',blank=True, null=True)
 
 
@@ -57,11 +57,33 @@ class Pacientes(models.Model):
 
     def __str__(self):
         
-        return self.DNI
+        if self.user:
+            return self.user.username
+        else:
+            return 'No hay user'
 
 
 
 
+
+@python_2_unicode_compatible
+class Medicos(models.Model):
+
+    DNI = models.CharField(max_length=300,blank=True)
+    Domicilio = models.CharField(max_length=300)
+    Ciudad = models.CharField(max_length=300,blank=True)
+    Telefono = models.CharField(max_length=300,blank=True)
+    Celular = models.CharField(max_length=300,blank=True)
+    Email = models.CharField(max_length=300)
+    Referenciado = models.CharField(max_length=300,blank=True)
+    user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
+
+    def __str__(self):
+        
+        if self.user:
+            return self.user.username
+        else:
+            return 'No hay user' 
 
 @python_2_unicode_compatible
 class Habitos(models.Model):
@@ -98,9 +120,9 @@ class Tratamiento(models.Model):
 
 @python_2_unicode_compatible
 class Area(models.Model):
-    id= models.AutoField(primary_key=True)
+  
     nombre = models.CharField(max_length=300,blank=True)
 
     def __str__(self):
 
-        return self.id
+        return self.nombre
