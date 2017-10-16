@@ -49,6 +49,19 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='Medicos',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('DNI', models.CharField(blank=True, max_length=300)),
+                ('Domicilio', models.CharField(blank=True, max_length=300)),
+                ('Ciudad', models.CharField(blank=True, max_length=300)),
+                ('Telefono', models.CharField(blank=True, max_length=300)),
+                ('Celular', models.CharField(blank=True, max_length=300)),
+                ('Email', models.CharField(blank=True, max_length=300)),
+                ('Referenciado', models.CharField(blank=True, max_length=300)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Tratamiento',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

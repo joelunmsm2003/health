@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^citasjson/', 'app.views.citasjson'),
     url(r'^citaspk/(\d+)', 'app.views.citaspk'),
     url(r'^ingresar/', 'app.views.ingresar'),
-    
+    url(r'^nuevomedico/', 'app.views.nuevomedico'),
+
   ]
 
 

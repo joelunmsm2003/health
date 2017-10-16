@@ -158,6 +158,14 @@ def paciente(request):
 
 	return render(request, 'paciente.html',{'form': form})
 
+def medico(request):
+
+
+	form = MedicosForm()
+
+
+	return render(request, 'medico.html',{'form': form})
+ 
 
 def dashboard(request):
 
@@ -198,6 +206,7 @@ def nuevopaciente(request):
 
 
 
+
 def ingresar(request):
 
     username = request.POST['username']
@@ -217,4 +226,33 @@ def ingresar(request):
 
     	return render(request, 'login.html',{'error': 'No existe este usuario'})
 
+
+
+def nuevomedico(request):
+
+	if request.method == 'POST':
+	# create a form instance and populate it with data from the request:
+		form = MedicosForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
+	# check whether it's valid:
+		if form.is_valid():
+
+			a = Medicos()
+
+			f = MedicosForm(request.POST, instance=a).save()
+
+
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/nuevomedico/')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+		form = MedicosForm()
+
+	return render(request, 'nuevomedico.html',{'form': form})
 
