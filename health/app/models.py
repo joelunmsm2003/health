@@ -18,9 +18,11 @@ class Citas(models.Model):
 
     id = models.AutoField(primary_key=True)
     title = models.CharField('Titulo',max_length=300)
-    descripcion = models.CharField('Descripcion',max_length=300)
     area = models.CharField('Area',max_length=300,blank=True)
+    descripcion = models.CharField('Descripcion',max_length=300)
     start = models.DateTimeField('Inicio',blank=True, null=True)
+    paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
+    medico = models.CharField(max_length=300,blank=True, null=True)
     end = models.DateTimeField('Fin',blank=True, null=True)
 
 

@@ -50,6 +50,8 @@ class CitasForm(ModelForm):
             'area':TextInput(attrs={'class':'form-control'}),
             'descripcion':TextInput(attrs={'class':'form-control'}),
             'start':TextInput(attrs={'class':'form-control'}),
+            'paciente':TextInput(attrs={'class':'form-control'}),
+            'medico':TextInput(attrs={'class':'form-control'}),
             'end':TextInput(attrs={'class':'form-control'})
 
         }

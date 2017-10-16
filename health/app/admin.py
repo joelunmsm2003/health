@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy
 
 @admin.register(Citas)
 class CitasAdmin(admin.ModelAdmin):
-	list_display = ('id','title','area','descripcion','start','end')
+	list_display = ('id','title','area','descripcion','start','paciente','medico','end')
 
 
 @admin.register(Pacientes)
