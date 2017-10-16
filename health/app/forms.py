@@ -48,8 +48,8 @@ class CitasForm(ModelForm):
             'id':TextInput(attrs={'class':'form-control'}),
             'title':TextInput(attrs={'class':'form-control'}),
             'descripcion':TextInput(attrs={'class':'form-control'}),
-            'start':DateField(attrs={'class':'form-control'}),
-            'end':DateField(attrs={'class':'form-control'})
+            'start':TextInput(attrs={'class':'form-control'}),
+            'end':TextInput(attrs={'class':'form-control'})
             
         }
 
