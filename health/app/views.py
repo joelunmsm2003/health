@@ -169,9 +169,15 @@ def medico(request):
 
 def dashboard(request):
 
+	u = User.objects.get(id=request.user.id)
+
+	print u.username
+
+	grupo =u.groups.get()
+
 	
 	
-	return render(request, 'dashboard.html',{})
+	return render(request, 'dashboard.html',{'user':u,'grupo':grupo})
 
 
 
