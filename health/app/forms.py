@@ -40,5 +40,18 @@ class PacientesForm(ModelForm):
             'Domicilio':_('Ingrese su direccion de casa'),
         }
 
+class CitasForm(ModelForm):
+    class Meta:
+        model = Citas
+        fields = '__all__'
+        widgets = {
+            'id':TextInput(attrs={'class':'form-control'}),
+            'title':TextInput(attrs={'class':'form-control'}),
+            'descripcion':TextInput(attrs={'class':'form-control'}),
+            'start':DateField(attrs={'class':'form-control'}),
+            'end':DateField(attrs={'class':'form-control'})
+            
+        }
+
 
 

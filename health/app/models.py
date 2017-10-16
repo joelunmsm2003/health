@@ -16,10 +16,13 @@ from django.utils import timezone
 class Citas(models.Model):
 
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=300)
-    descripcion = models.CharField(max_length=300)
-    start = models.DateTimeField(blank=True, null=True)
-    end = models.DateTimeField(blank=True, null=True)
+    title = models.CharField('Titulo',max_length=300)
+    descripcion = models.CharField('Descripcion',max_length=300)
+    start = models.DateTimeField('Inicio',blank=True, null=True)
+    end = models.DateTimeField('Fin',blank=True, null=True)
+
+    class Meta:
+        ordering = ('-id',)
     
     def __str__(self):
         

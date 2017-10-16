@@ -122,20 +122,28 @@ def nuevacita(request):
 
 	if request.method == 'POST':
 	# create a form instance and populate it with data from the request:
-		form = ContactForm(request.POST)
+		form = CitasForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
 	# check whether it's valid:
 		if form.is_valid():
-			print form
+
+			a = Citas()
+
+			f = CitasForm(request.POST, instance=a).save()
+
 
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/thanks/')
+			return HttpResponseRedirect('/nuevopaciente/')
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
-		form = ConsultaForm()
-	
+		form = CitasForm()
+
 	return render(request, 'nuevacita.html',{'form': form})
 
 
