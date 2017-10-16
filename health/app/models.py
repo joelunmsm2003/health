@@ -60,6 +60,9 @@ class Pacientes(models.Model):
         return self.DNI
 
 
+
+
+
 @python_2_unicode_compatible
 class Habitos(models.Model):
 
