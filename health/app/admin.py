@@ -19,7 +19,7 @@ class CitasAdmin(admin.ModelAdmin):
 
 @admin.register(Pacientes)
 class PacientesAdmin(admin.ModelAdmin):
-	list_display = ('DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado')
+	list_display = ('DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','user')
 
 
 @admin.register(Habitos)

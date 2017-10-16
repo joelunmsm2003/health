@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.forms import ModelForm
 from django.db import models
 from django import forms
+from django.contrib.auth.models import User
 
 # Create your models here.
 # Create your models here.
@@ -18,9 +19,10 @@ class Citas(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField('Titulo',max_length=300)
     descripcion = models.CharField('Descripcion',max_length=300)
-    area = models.CharField('Area',max_length=300)
+    area = models.CharField('Area',max_length=300,blank=True)
     start = models.DateTimeField('Inicio',blank=True, null=True)
     end = models.DateTimeField('Fin',blank=True, null=True)
+
 
     class Meta:
         ordering = ('-id',)
@@ -49,6 +51,7 @@ class Pacientes(models.Model):
     Celular = models.CharField(max_length=300,blank=True)
     Email = models.CharField(max_length=300)
     Referenciado = models.CharField(max_length=300,blank=True)
+    user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
 
     def __str__(self):
         
@@ -91,7 +94,7 @@ class Tratamiento(models.Model):
 @python_2_unicode_compatible
 class Area(models.Model):
     id= models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=300)
+    nombre = models.CharField(max_length=300,blank=True)
 
     def __str__(self):
 
