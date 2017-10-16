@@ -39,4 +39,8 @@ class TratamientoAdmin(admin.ModelAdmin):
 
 @admin.register(Area)
 class AreaAdmin(admin.ModelAdmin):
-	list_display = ('id','nombre',)
+	list_display = ('nombre',)
+
+@admin.register(Medicos)
+class MedicoAdmin(admin.ModelAdmin):
+	list_display = ('DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','user')
