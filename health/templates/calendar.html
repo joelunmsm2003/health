@@ -15,7 +15,7 @@
                             {{changeTo}}
                           </button>              
                           <button class="btn" ng-click="addRemoveEventSource(eventSources,eventSource)">
-                            Toggle Source
+                            44Toggle Source
                           </button>
                           <button type="button" class="btn btn-primary" ng-click="addEvent()">
                             Add Event
@@ -26,8 +26,12 @@
                             <li ng-repeat="e in events">
                                 <div class="alert alert-info">
                                     <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
-                                    <b> <input ng-model="e.title"></b> 
-                                    {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+                                    <b> <input ng-model="e.title "></b> 
+                                    <b> <input ng-model="e.start "></b> 
+                                     <b> <input ng-model="e.end "></b>
+                                    
+
+                                    <b>{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}</b>
                                 </div>
                             </li>
                         </ul>
@@ -48,9 +52,10 @@
                                     <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
                                     <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
                                     <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+                                    <button ng-click='traeeventos()'>trae</button>
                                 </div>
                               
-                            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
+                            <div id='calendar' class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
                            </tab>
                  
                         </tabset>

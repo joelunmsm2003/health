@@ -1,20 +1,14 @@
 /**
  * calendarDemoApp - 0.9.0
  */
-
 var calendarDemoApp = angular.module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap']);
 
-calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, uiCalendarConfig) {
-
-    console.log('Datos......')
-
-
+calendarDemoApp.controller('CalendarCtrl',
+   function($scope,$http, $compile, $timeout, uiCalendarConfig) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-
-
 
     $scope.changeTo = 'Hungarian';
     /* event source that pulls from google.com */
@@ -23,11 +17,10 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
             className: 'gcal-event',           // an option!
             currentTimezone: 'America/Chicago' // an option!
     };
-
-
-    
     /* event source that contains custom events on the scope */
-    $scope.events = [
+    $scope.events = [];
+
+        $scope.events1 = [
       {title: 'All Day Event',start: new Date(y, m, 1)},
       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
@@ -57,20 +50,38 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
     $scope.alertOnEventClick = function( date, jsEvent, view){
         $scope.alertMessage = (date.title + ' was clicked ');
 
-        console.log('click...',$scope.alertMessage)
+        $scope.titulo = date.title
+        $scope.descripcion=date.descripcion
+        $scope.inicio=date.start.toString().slice(0,10)
+        $scope.fin=date.end.toString().slice(0,10)
+
+        var todo={
+
+          'hdhd':'djdjd'
+        }
+
+
+          $http({
+
+            url:"http://localhost:8000/citaspk/5",
+            data: todo,
+            method: 'PUT'
+            }).
+            then(function(data) {
+
+             
+
+           })
+
+
     };
     /* alert on Drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
        $scope.alertMessage = ('Event Dropped to make dayDelta ' + delta);
-
-       console.log('drop...',$scope.alertMessage)
-
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
        $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
-
-
     };
     /* add and removes an event source of choice */
     $scope.addRemoveEventSource = function(sources,source) {
@@ -84,15 +95,13 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
       if(canAdd === 0){
         sources.push(source);
       }
-
-      
     };
     /* add custom event*/
     $scope.addEvent = function() {
       $scope.events.push({
         title: 'Open Sesame',
         start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
+        end: new Date(y, m, 31),
         className: ['openSesame']
       });
     };
@@ -118,7 +127,81 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
                       'tooltip-append-to-body': true});
         $compile(element)($scope);
     };
-    /* config object */
+
+
+    $scope.changeLang = function() {
+      if($scope.changeTo === 'Hungarian'){
+        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
+        $scope.changeTo= 'English';
+      } else {
+        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        $scope.changeTo = 'Hungarian';
+      }
+    };
+    /* event sources array*/
+    $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+    $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+
+
+    $scope.traeeventos=function(){
+
+
+              $http.get("http://localhost:8000/citasjson")
+    .then(function(response) {
+
+ 
+
+        x=0
+        for( eve in response.data){
+
+
+
+          var d = new Date(response.data[eve]['start']);
+          var diastart = d.getDate();
+          var monthstart = d.getMonth()
+          var yearstart = d.getFullYear()
+
+          var d = new Date(response.data[eve]['end']);
+          var diaend = d.getDate();
+          var monthend = d.getMonth()
+          var yearend = d.getFullYear()
+
+
+
+      $scope.events.push({
+        title: response.data[eve]['title'],
+        start: new Date(yearstart, monthstart,  diastart),
+        end: new Date(yearend, monthend, diaend),
+        className: ['openSesame'],
+        descripcion:response.data[eve]['descripcion'],
+        stick: true
+      });
+
+        }
+
+
+        console.log('$scope.events',$scope.events)
+
+
+
+
+
+
+
+  
+
+    });
+
+
+    }
+
+
+    $scope.traeeventos()
+
+
+        /* config object */
     $scope.uiConfig = {
       calendar:{
         height: 450,
@@ -135,19 +218,21 @@ calendarDemoApp.controller('CalendarCtrl',function($scope, $compile, $timeout, u
       }
     };
 
-    $scope.changeLang = function() {
-      if($scope.changeTo === 'Hungarian'){
-        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
-        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
-        $scope.changeTo= 'English';
-      } else {
-        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        $scope.changeTo = 'Hungarian';
-      }
-    };
-    /* event sources array*/
-    $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
-    $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+
+
+
+
+
+   
+
+
+
 });
 /* EOF */
+
+
+calendarDemoApp.filter('limit', function () {
+    return function (input, value) {
+        return input.substr(0, value);
+    };
+});

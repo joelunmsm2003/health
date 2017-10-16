@@ -35,8 +35,14 @@ from datetime import datetime,timedelta
 from django.contrib.auth import authenticate
 
 from django.contrib.sites.shortcuts import get_current_site
+from django.core import serializers
 
 from .forms import *
+
+from app.serializer import CitasSerializer
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from django.http import HttpResponse, JsonResponse
 
 def get_name(request):
     # if this is a POST request we need to process the form data
@@ -63,7 +69,7 @@ def calendar(request):
 
 
 	
-	return render(request, 'calendar.html',{})
+	return render(request, 'calendar_1.html',{})
 
 
 def home(request):
@@ -78,26 +84,66 @@ def login(request):
 	
 	return render(request, 'login.html',{})
 
+def citasjson(request):
+
+
+
+
+    serializer = CitasSerializer(Citas.objects.all(), many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+
+def citaspk(request,pk):
+
+	try:
+		c = Citas.objects.get(pk=pk)
+	except Citas.DoesNotExist:
+		return HttpResponse(status=404)
+
+	if request.method == 'GET':
+		serializer = CitasSerializer(c)
+		return JsonResponse(serializer.data)
+	
+
+	elif request.method == 'PUT':
+		data = JSONParser().parse(request)
+		serializer = CitasSerializer(c, data=data)
+		if serializer.is_valid():
+			serializer.save()
+			return JsonResponse(serializer.data)
+		return JsonResponse(serializer.errors, status=400)
+
+
+	serializer = CitasSerializer(Citas.objects.all(), many=True)
+	return JsonResponse(serializer.data, safe=False)
 
 
 def nuevacita(request):
 
 	if request.method == 'POST':
 	# create a form instance and populate it with data from the request:
-		form = ContactForm(request.POST)
+		form = CitasForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
 	# check whether it's valid:
 		if form.is_valid():
-			print form
+
+			a = Citas()
+
+			f = CitasForm(request.POST, instance=a).save()
+
 
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/thanks/')
+			return HttpResponseRedirect('/nuevopaciente/')
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
-		form = ConsultaForm()
-	
+		form = CitasForm()
+
 	return render(request, 'nuevacita.html',{'form': form})
 
 
