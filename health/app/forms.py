@@ -47,10 +47,11 @@ class CitasForm(ModelForm):
         widgets = {
             'id':TextInput(attrs={'class':'form-control'}),
             'title':TextInput(attrs={'class':'form-control'}),
+            'area':TextInput(attrs={'class':'form-control'}),
             'descripcion':TextInput(attrs={'class':'form-control'}),
             'start':TextInput(attrs={'class':'form-control'}),
             'end':TextInput(attrs={'class':'form-control'})
-            
+
         }
 
 
