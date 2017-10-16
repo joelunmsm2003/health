@@ -56,5 +56,34 @@ class CitasForm(ModelForm):
 
         }
 
+class MedicosForm(ModelForm):
+    class Meta:
+        model = Medicos
+        fields = '__all__'
+        widgets = {
+            'DNI':TextInput(attrs={'class':'form-control'}),
+            'Domicilio':TextInput(attrs={'class':'form-control'}),
+            'Ciudad':TextInput(attrs={'class':'form-control'}),
+            'Telefono':TextInput(attrs={'class':'form-control'}),
+            'Celular':TextInput(attrs={'class':'form-control'}),
+            'Email':TextInput(attrs={'class':'form-control'}),
+            'Referenciado':TextInput(attrs={'class':'form-control'})
+        }
+        error_messages = {
+            'Email': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("Este campo es obligatorio"),
+            },
+            'Domicilio': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("El domicilio es obligatorio"),
+            },
+
+        }
+        help_texts = {
+            'Email': _('Correo valido.'),
+            'Domicilio':_('Ingrese su direccion de casa'),
+        }
+
 
 
