@@ -4,8 +4,8 @@
           <div class="sidebar-header d-flex align-items-center">
             <div class="avatar"><img src="/static/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
-              <h1 class="h4">Jenn Anniston</h1>
-              <p>Recepcion</p>
+              <h1 class="h4">{{user}}</h1>
+              <p>{{grupo}}</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -39,6 +39,28 @@
 
                 <li><a href="/medico">Lista de Medicos</a></li>
                 <li><a href="/nuevomedico">Nueva Medico</a></li>
+          
+              </ul>
+            </li>
+
+
+
+             <li><a href="#atencion" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-book" aria-hidden="true"></i>Atencion</a>
+              <ul id="atencion" class="collapse list-unstyled">
+
+                <li><a href="/atencion">nueva atencion</a></li>
+                
+          
+              </ul>
+            </li>
+
+
+
+             <li><a href="#pagos" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-usd" aria-hidden="true"></i>Pagos</a>
+              <ul id="pagos" class="collapse list-unstyled">
+
+                <li><a href="/pagos">nuevo Pago</a></li>
+                
           
               </ul>
             </li>

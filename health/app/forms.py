@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput,DateInput,Select
 from app.models import *
 from django.utils.translation import ugettext_lazy as _
 
@@ -22,7 +22,10 @@ class PacientesForm(ModelForm):
 			'Telefono':TextInput(attrs={'class':'form-control'}),
 			'Celular':TextInput(attrs={'class':'form-control'}),
 			'Email':TextInput(attrs={'class':'form-control'}),
-			'Referenciado':TextInput(attrs={'class':'form-control'})
+			'Referenciado':TextInput(attrs={'class':'form-control'}),
+            'nombre':TextInput(attrs={'class':'form-control'}),
+            'apellido':TextInput(attrs={'class':'form-control'}),
+            'user':Select(attrs={'class':'form-control'})
         }
         error_messages = {
             'Email': {
@@ -46,13 +49,14 @@ class CitasForm(ModelForm):
         fields = '__all__'
         widgets = {
             'id':TextInput(attrs={'class':'form-control'}),
+            'paciente':Select(attrs={'class':'form-control'}),
             'title':TextInput(attrs={'class':'form-control'}),
-            'area':TextInput(attrs={'class':'form-control'}),
             'descripcion':TextInput(attrs={'class':'form-control'}),
-            'start':TextInput(attrs={'class':'form-control'}),
-            'paciente':TextInput(attrs={'class':'form-control'}),
-            'medico':TextInput(attrs={'class':'form-control'}),
-            'end':TextInput(attrs={'class':'form-control'})
+            'area':Select(attrs={'class':'form-control'}),
+            'start':forms.widgets.DateTimeInput(format='%m/%d/%Y %H:%M'),
+            'end':DateInput(),
+            'medico':TextInput(attrs={'class':'form-control'})
+            
 
         }
 
@@ -67,7 +71,9 @@ class MedicosForm(ModelForm):
             'Telefono':TextInput(attrs={'class':'form-control'}),
             'Celular':TextInput(attrs={'class':'form-control'}),
             'Email':TextInput(attrs={'class':'form-control'}),
-            'Referenciado':TextInput(attrs={'class':'form-control'})
+            'Referenciado':TextInput(attrs={'class':'form-control'}),
+            'nombre':TextInput(attrs={'class':'form-control'}),
+            'apellido':TextInput(attrs={'class':'form-control'})
         }
         error_messages = {
             'Email': {
@@ -83,6 +89,63 @@ class MedicosForm(ModelForm):
         help_texts = {
             'Email': _('Correo valido.'),
             'Domicilio':_('Ingrese su direccion de casa'),
+        }
+
+
+class AtencionForm(ModelForm):
+    class Meta:
+        model = Atencion
+        fields = '__all__'
+        widgets = {
+            'Cita':TextInput(attrs={'class':'form-control'}),
+            'Consulta':TextInput(attrs={'class':'form-control'}),
+            'Evaluacion':TextInput(attrs={'class':'form-control'}),
+            'Control':TextInput(attrs={'class':'form-control'}),
+            'Tratamiento':TextInput(attrs={'class':'form-control'}),
+        }
+        error_messages = {
+            'Cita': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("Este campo es obligatorio"),
+            },
+            'Consulta': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("El domicilio es obligatorio"),
+            },
+
+        }
+        help_texts = {
+            'Cita': _('Correo valido.'),
+            'Consulta':_('Ingrese su direccion de casa'),
+        }
+
+
+class PagosForm(ModelForm):
+    class Meta:
+        model = Pagos
+        fields = '__all__'
+        widgets = {
+            'Pacientes':TextInput(attrs={'class':'form-control'}),
+            'Fecha':TextInput(attrs={'class':'form-control'}),
+            'Cita':TextInput(attrs={'class':'form-control'}),
+            'Monto':TextInput(attrs={'class':'form-control'}),
+            'Estado':TextInput(attrs={'class':'form-control'}),
+            'Tipo':TextInput(attrs={'class':'form-control'}),
+        }
+        error_messages = {
+            'Pacientes': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("Este campo es obligatorio"),
+            },
+            'Fecha': {
+                'max_length': _("This writer's name is too long."),
+                'required': _("El domicilio es obligatorio"),
+            },
+
+        }
+        help_texts = {
+            'Pacientes': _('Correo valido.'),
+            'Fecha':_('Ingrese su direccion de casa'),
         }
 
 

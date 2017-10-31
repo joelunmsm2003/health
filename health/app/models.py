@@ -17,14 +17,14 @@ from django.utils import timezone
 class Citas(models.Model):
 
     id = models.AutoField(primary_key=True)
-    title = models.CharField('Titulo',max_length=300)
-    area = models.ForeignKey('Area',max_length=300,blank=True)
-    descripcion = models.CharField('Descripcion',max_length=300)
-    start = models.DateTimeField('Inicio',blank=True, null=True)
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
-    medico = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
+    title = models.CharField('Titulo',max_length=300)
+    descripcion = models.CharField('Descripcion',max_length=300)
+    area = models.ForeignKey('Area',max_length=300,blank=True)
+    start = models.DateTimeField('Inicio',blank=True, null=True)
     end = models.DateTimeField('Fin',blank=True, null=True)
-
+    medico = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
+   
 
     class Meta:
         ordering = ('-id',)
@@ -45,7 +45,8 @@ class Consulta(models.Model):
 
 @python_2_unicode_compatible
 class Pacientes(models.Model):
-
+    nombre =models.CharField(max_length=300,blank=True)
+    apellido =models.CharField(max_length=300,blank=True)
     DNI = models.CharField(max_length=300,blank=True)
     Domicilio = models.CharField(max_length=300)
     Ciudad = models.CharField(max_length=300,blank=True)
@@ -53,12 +54,13 @@ class Pacientes(models.Model):
     Celular = models.CharField(max_length=300,blank=True)
     Email = models.CharField(max_length=300)
     Referenciado = models.CharField(max_length=300,blank=True)
+    foto = models.FileField(upload_to='static')
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
 
     def __str__(self):
         
         if self.user:
-            return self.user.username
+            return self.nombre
         else:
             return 'No hay user'
 
@@ -68,7 +70,8 @@ class Pacientes(models.Model):
 
 @python_2_unicode_compatible
 class Medicos(models.Model):
-
+    nombre = models.CharField(max_length=300,blank=True)
+    apellido = models.CharField(max_length=300,blank=True)
     DNI = models.CharField(max_length=300,blank=True)
     Domicilio = models.CharField(max_length=300)
     Ciudad = models.CharField(max_length=300,blank=True)
@@ -76,6 +79,7 @@ class Medicos(models.Model):
     Celular = models.CharField(max_length=300,blank=True)
     Email = models.CharField(max_length=300)
     Referenciado = models.CharField(max_length=300,blank=True)
+    foto = models.FileField(upload_to='static')
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
 
     def __str__(self):
@@ -126,3 +130,86 @@ class Area(models.Model):
     def __str__(self):
 
         return self.nombre
+
+@python_2_unicode_compatible
+class Control(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+@python_2_unicode_compatible
+class Evaluacion(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+@python_2_unicode_compatible
+class Atencion(models.Model):
+
+    citas = models.ForeignKey('Citas',max_length=300,blank=True, null=True)
+    consulta = models.ForeignKey('Consulta',max_length=300,blank=True, null=True)
+    evaluacion = models.ForeignKey('Evaluacion',max_length=300,blank=True, null=True)
+    control= models.ForeignKey('Control',max_length=300,blank=True, null=True)
+    tratamiento= models.ForeignKey('Tratamiento',max_length=300,blank=True, null=True)
+   
+    def __str__(self):
+
+        return self.citas
+
+@python_2_unicode_compatible
+class Estado(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+
+
+
+@python_2_unicode_compatible
+class Tipo(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+
+
+@python_2_unicode_compatible
+class Pagos(models.Model):
+
+    titulo = models.CharField(max_length=300,blank=True)
+    pacientes = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
+    fecha= models.DateTimeField(blank=True, null=True)
+    cita = models.ForeignKey('Citas',max_length=300,blank=True, null=True)
+    monto = models.CharField(max_length=300,blank=True)
+    estado = models.ForeignKey('Estado',max_length=300,blank=True, null=True)
+    tipo = models.ForeignKey('Tipo',max_length=300,blank=True, null=True)
+    
+    def __str__(self):
+
+        return self.titulo
+
+
+
+@python_2_unicode_compatible
+class Prospecto(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+
+

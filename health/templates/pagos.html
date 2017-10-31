@@ -25,14 +25,14 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Nuevo Medico</h2>
+              <h2 class="no-margin-bottom">Pagos</h2>
             </div>
           </header>
 
           <ul class="breadcrumb">
             <div class="container-fluid">
-              <li class="breadcrumb-item"><a href="/static/index.html">Pacientes</a></li>
-              <li class="breadcrumb-item active">Nuevo Medico</li>
+              <li class="breadcrumb-item"><a href="/static/index.html">Pagos</a></li>
+              <li class="breadcrumb-item active">Nuevo Pago</li>
             </div>
           </ul>
 
@@ -54,7 +54,7 @@
                       </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Datos del Medico</h3>
+                      <h3 class="h4">Pagos</h3>
                     </div>
                     <div class="card-body">
 
@@ -76,7 +76,7 @@
 
                               <div class="col-sm-3 form-control-label">{{ field.label_tag }}</div>
 
-                              <div class="col-sm-4">{{ field.errors }} {{ field }}
+                              <div class="col-sm-9">{{ field.errors }} {{ field }}
 
                               {% if field.help_text %}
                               <p class="help">{{ field.help_text|safe }}</p>

@@ -14,13 +14,18 @@ from django.utils.translation import ugettext_lazy
 
 @admin.register(Citas)
 class CitasAdmin(admin.ModelAdmin):
-	list_display = ('id','title','area','descripcion','start','paciente','medico','end')
+	list_display = ('id','paciente','title','descripcion','area','start','end','medico')
 
 
 @admin.register(Pacientes)
 class PacientesAdmin(admin.ModelAdmin):
-	list_display = ('DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','user')
+	list_display = ('nombre','apellido','DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','foto','user')
 
+
+
+@admin.register(Medicos)
+class MedicosAdmin(admin.ModelAdmin):
+	list_display = ('nombre','apellido','DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','foto','user')
 
 @admin.register(Habitos)
 class HabitosAdmin(admin.ModelAdmin):
@@ -41,6 +46,39 @@ class TratamientoAdmin(admin.ModelAdmin):
 class AreaAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
 
-@admin.register(Medicos)
-class MedicoAdmin(admin.ModelAdmin):
-	list_display = ('DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','user')
+
+@admin.register(Control)
+class ControlAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
+@admin.register(Evaluacion)
+class EvaluacionAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
+@admin.register(Atencion)
+class AtencionAdmin(admin.ModelAdmin):
+	list_display = ('citas','consulta','evaluacion','control','tratamiento')
+
+
+
+
+@admin.register(Estado)
+class EstadoAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
+
+@admin.register(Tipo)
+class TipoAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
+
+@admin.register(Pagos)
+class PagosAdmin(admin.ModelAdmin):
+	list_display = ('pacientes','fecha','cita','monto','estado','tipo')
+
+
+@admin.register(Prospecto)
+class ProspectoAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
+	

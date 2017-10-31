@@ -25,14 +25,14 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Nuevo Medico</h2>
+              <h2 class="no-margin-bottom">Atencion</h2>
             </div>
           </header>
 
           <ul class="breadcrumb">
             <div class="container-fluid">
-              <li class="breadcrumb-item"><a href="/static/index.html">Pacientes</a></li>
-              <li class="breadcrumb-item active">Nuevo Medico</li>
+              <li class="breadcrumb-item"><a href="/static/index.html">Atencion</a></li>
+              <li class="breadcrumb-item active">Nueva Atencion</li>
             </div>
           </ul>
 
@@ -54,13 +54,13 @@
                       </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Datos del Medico</h3>
+                      <h3 class="h4">ATENCION</h3>
                     </div>
                     <div class="card-body">
 
 
 
-                        <form class="form-horizontal" action="/nuevomedico/" method="post">
+                        <form class="form-horizontal" action="/nuevopaciente/" method="post">
 
 
                         {% csrf_token %}
@@ -76,7 +76,7 @@
 
                               <div class="col-sm-3 form-control-label">{{ field.label_tag }}</div>
 
-                              <div class="col-sm-4">{{ field.errors }} {{ field }}
+                              <div class="col-sm-9">{{ field.errors }} {{ field }}
 
                               {% if field.help_text %}
                               <p class="help">{{ field.help_text|safe }}</p>
@@ -97,20 +97,18 @@
                           <div class="col-sm-4 offset-sm-3">
                             
                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                             <button type="submit" class="btn btn-primary">Borrar</button>
-                              <button type="submit" class="btn btn-primary">Restaurar</button>
+                             <button type="submit" class="btn btn-primary">borrar</button>
+                            <button type="submit" class="btn btn-primary">Restaurar</button>
                           </div>
                         </div>
 
-
-                          
                         </form>
 
 
 
 
-                        <!--
-                      <form class="form-horizontal">
+                          <!--          
+                      7 <form class="form-horizontal">
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Normal</label>
                           <div class="col-sm-9">
@@ -406,7 +404,7 @@
             </div>
           </section>
           <!-- Page Footer-->
-         {% include "footer.html" %}
+       {% include "footer.html" %}
         </div>
       </div>
     </div>

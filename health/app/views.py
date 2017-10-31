@@ -45,6 +45,13 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
 
+
+
+
+
+
+
+
 def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -67,6 +74,10 @@ def get_name(request):
 
 
 def calendar(request):
+
+	r = requests.get('https://www.ccf.com.pe/webresources/reporte1/7/6')
+
+	print r.text
 
 
 	
@@ -149,30 +160,130 @@ def nuevacita(request):
 	return render(request, 'nuevacita.html',{'form': form})
 
 
+def editpaciente(request,id_paciente):
+
+	if request.method == 'POST':
+
+		a=Pacientes.objects.get(id=id_paciente)
+
+		form = PacientesForm(request.POST, instance=a)
+
+
+		if form.is_valid():
+
+			print 'validoooooo'
+
+			f = PacientesForm(request.POST, instance=a).save()
+
+
+			return HttpResponseRedirect('/paciente/')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+
+
+		p=Pacientes.objects.get(id=id_paciente)
+		
+		form = PacientesForm(instance=p)
+
+	return render(request, 'editpaciente.html',{'form': form,'id_paciente':id_paciente})
+
 
 def paciente(request):
 
 
-	form = PacienteForm()
+	form = PacientesForm()
+
+	_pacientes = Pacientes.objects.all()
 
 
-	return render(request, 'paciente.html',{'form': form})
+	return render(request, 'paciente.html',{'form': form,'pacientes':_pacientes})
+
+
+def editmedico(request,id_medico):
+
+	if request.method == 'POST':
+
+		a=Medicos.objects.get(id=id_medico)
+
+		form = MedicosForm(request.POST, instance=a)
+
+
+		if form.is_valid():
+
+			print 'validoooooo'
+
+			f = MedicosForm(request.POST, instance=a).save()
+
+
+			return HttpResponseRedirect('/medico/')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+
+
+		m=Medicos.objects.get(id=id_medico)
+		
+		form = MedicosForm(instance=m)
+
+	return render(request, 'editmedico.html',{'form': form,'id_medico':id_medico})
+
+
+
+
+
 
 def medico(request):
 
 
 	form = MedicosForm()
+	_medicos = Medicos.objects.all()
 
-
-	return render(request, 'medico.html',{'form': form})
+	return render(request, 'medico.html',{'form':  form,'medicos':_medicos})
  
 
 def dashboard(request):
 
-	
-	
-	return render(request, 'dashboard.html',{})
+	u = User.objects.get(id=request.user.id)
 
+	print u.username
+
+	grupo =u.groups.get()
+
+	
+	
+	return render(request, 'dashboard.html',{'user':u,'grupo':grupo})
+
+
+
+
+def editcita(request,id_paciente):
+
+	if request.method == 'POST':
+
+		a=Medicos.objects.get(id=id_cita)
+
+		form = CitasForm(request.POST, instance=a)
+
+
+		if form.is_valid():
+
+			print 'validoooooo'
+
+			f = CitasForm(request.POST, instance=a).save()
+
+
+			return HttpResponseRedirect('/cita')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+
+
+		m=Pacientes.objects.get(id=id_paciente)
+		
+		form = CitasForm()
+
+	return render(request, 'nuevacita.html',{'form': form,'paciente':m})
 
 
 def nuevopaciente(request):
@@ -256,3 +367,61 @@ def nuevomedico(request):
 
 	return render(request, 'nuevomedico.html',{'form': form})
 
+
+def atencion(request):
+
+	if request.method == 'POST':
+	# create a form instance and populate it with data from the request:
+		form = AtencionForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
+	# check whether it's valid:
+		if form.is_valid():
+
+			a = Atencion()
+
+			f = AtencionForm(request.POST, instance=a).save()
+
+
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/atencion/')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+		form = AtencionForm()
+
+	return render(request, 'atencion.html',{'form': form})
+
+
+
+def pagos(request):
+
+	if request.method == 'POST':
+	# create a form instance and populate it with data from the request:
+		form = AtencionForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
+	# check whether it's valid:
+		if form.is_valid():
+
+			a = Pagos()
+
+			f = PagosForm(request.POST, instance=a).save()
+
+
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/pagos/')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+		form = PagosForm()
+
+	return render(request, 'pagos.html',{'form': form})
