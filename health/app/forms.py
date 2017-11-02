@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, TextInput,DateInput,Select,DateTimeInput
+from django.forms import *
 from app.models import *
 from django.utils.translation import ugettext_lazy as _
 
@@ -53,12 +53,18 @@ class CitasForm(ModelForm):
             'title':TextInput(attrs={'class':'form-control'}),
             'descripcion':TextInput(attrs={'class':'form-control'}),
             'area':Select(attrs={'class':'form-control'}),
-            'start':DateTimeInput(format='%m/%d/%Y %H:%M'),
-            'end':DateInput(),
+            'start':TextInput(attrs={'type':'date','class':"form-control"}),
+            'starthora':TextInput(attrs={'type':'time','class':"form-control"}),
+            'end':TextInput(attrs={'type':'date','class':"form-control"}),
+            'endhora':TextInput(attrs={'type':'time','class':"form-control"}),
             'medico':TextInput(attrs={'class':'form-control'})
             
 
         }
+
+
+
+
 
 class MedicosForm(ModelForm):
     class Meta:
