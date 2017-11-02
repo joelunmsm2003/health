@@ -13,6 +13,7 @@ import datetime
 
 from django.utils import timezone
 
+
 @python_2_unicode_compatible
 class Citas(models.Model):
 
@@ -24,7 +25,7 @@ class Citas(models.Model):
     start = models.DateTimeField('Inicio',blank=True, null=True)
     end = models.DateTimeField('Fin',blank=True, null=True)
     medico = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
-   
+
 
     class Meta:
         ordering = ('-id',)
@@ -152,7 +153,7 @@ class Evaluacion(models.Model):
 @python_2_unicode_compatible
 class Atencion(models.Model):
 
-    citas = models.ForeignKey('Citas',max_length=300,blank=True, null=True)
+    medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
     consulta = models.ForeignKey('Consulta',max_length=300,blank=True, null=True)
     evaluacion = models.ForeignKey('Evaluacion',max_length=300,blank=True, null=True)
     control= models.ForeignKey('Control',max_length=300,blank=True, null=True)
@@ -160,7 +161,7 @@ class Atencion(models.Model):
    
     def __str__(self):
 
-        return self.citas
+        return self.medicos
 
 @python_2_unicode_compatible
 class Estado(models.Model):
