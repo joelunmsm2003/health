@@ -62,19 +62,12 @@ from django.contrib.auth import authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import serializers
 
-from .forms import *
+from forms import *
 
 from app.serializer import CitasSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
-
-
-
-
-
-
-
 
 def get_name(request):
     # if this is a POST request we need to process the form data
@@ -174,7 +167,7 @@ def nuevacita(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/nuevopaciente/')
+			return HttpResponseRedirect('/dashboard')
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
@@ -274,9 +267,20 @@ def dashboard(request):
 
 	grupo =u.groups.get()
 
+	npacientes = Pacientes.objects.all().count()
+
+	ncitas = Citas.objects.all().count()
+
+	natenciones= Atencion.objects.all().count()
+
+
+
+	ncitashoy = Citas.objects.filter(start__gte=datetime.datetime.today()).count()
+
+
 	
 	
-	return render(request, 'dashboard.html',{'user':u,'grupo':grupo})
+	return render(request, 'dashboard.html',{'user':u,'grupo':grupo,'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 
 

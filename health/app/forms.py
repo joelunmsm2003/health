@@ -1,15 +1,7 @@
 from django import forms
 from django.forms import *
 from app.models import *
-from django.utils.translation import ugettext_lazy as _
-
-class ContactForm(forms.Form):
-
-    subject = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    message = forms.CharField(label='Mensaje',widget=forms.TextInput(attrs={'class': 'form-control'}))
-    sender = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    cc_myself = forms.BooleanField(required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
-
+from django.utils.translation import ugettext_lazy as  _
 
 class PacientesForm(ModelForm):
     class Meta:
@@ -57,7 +49,7 @@ class CitasForm(ModelForm):
             'starthora':TextInput(attrs={'type':'time','class':"form-control"}),
             'end':TextInput(attrs={'type':'date','class':"form-control"}),
             'endhora':TextInput(attrs={'type':'time','class':"form-control"}),
-            'medico':TextInput(attrs={'class':'form-control'})
+            'medico':Select(attrs={'class':'form-control'})
             
 
         }
@@ -110,22 +102,7 @@ class AtencionForm(ModelForm):
             'Control':TextInput(attrs={'class':'form-control'}),
             'Tratamiento':TextInput(attrs={'class':'form-control'}),
         }
-        error_messages = {
-            'Cita': {
-                'max_length': _("This writer's name is too long."),
-                'required': _("Este campo es obligatorio"),
-            },
-            'Consulta': {
-                'max_length': _("This writer's name is too long."),
-                'required': _("El domicilio es obligatorio"),
-            },
-
-        }
-        help_texts = {
-            'Cita': _('Correo valido.'),
-            'Consulta':_('Ingrese su direccion de casa'),
-        }
-
+   
 
 class PagosForm(ModelForm):
     class Meta:
@@ -139,21 +116,6 @@ class PagosForm(ModelForm):
             'Estado':TextInput(attrs={'class':'form-control'}),
             'Tipo':TextInput(attrs={'class':'form-control'}),
         }
-        error_messages = {
-            'Pacientes': {
-                'max_length': _("This writer's name is too long."),
-                'required': _("Este campo es obligatorio"),
-            },
-            'Fecha': {
-                'max_length': _("This writer's name is too long."),
-                'required': _("El domicilio es obligatorio"),
-            },
-
-        }
-        help_texts = {
-            'Pacientes': _('Correo valido.'),
-            'Fecha':_('Ingrese su direccion de casa'),
-        }
-
-
+     
+ 
 

@@ -14,6 +14,8 @@ import datetime
 from django.utils import timezone
 
 
+from django.db import models
+
 @python_2_unicode_compatible
 class Citas(models.Model):
 
@@ -21,7 +23,7 @@ class Citas(models.Model):
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
     title = models.CharField('Titulo',max_length=300)
     descripcion = models.CharField('Descripcion',max_length=300)
-    area = models.ForeignKey('Area',max_length=300,blank=True)
+    area = models.ForeignKey('Area',max_length=300,blank=True,null=True)
     start = models.DateTimeField('Fecha de Inicio',blank=True, null=True)
     starthora = models.TimeField('Hora de Inicio',blank=True, null=True)
     end = models.DateTimeField('Fecha deFin',blank=True, null=True)
@@ -65,10 +67,7 @@ class Pacientes(models.Model):
         if self.user:
             return self.nombre
         else:
-            return 'No hay user'
-
-
-
+            return 'No hay use'
 
 
 @python_2_unicode_compatible
