@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^editpaciente/(\d+)', 'app.views.editpaciente'),
     url(r'^editmedico/(\d+)', 'app.views.editmedico'),
     url(r'^editcita/(\d+)', 'app.views.editcita'),
+    url(r'^citas/', 'app.views.citas'),
   ]
 
 

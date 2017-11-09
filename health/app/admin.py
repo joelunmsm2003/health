@@ -16,12 +16,15 @@ from django.utils.translation import ugettext_lazy
 
 @admin.register(Citas)
 class CitasAdmin(admin.ModelAdmin):
-	list_display = ('id',)
+	list_display = ('id','paciente','descripcion','start')
+
+	def paciente(self, obj):
+		return obj.paciente.nombre
 
 
 @admin.register(Pacientes)
 class PacientesAdmin(admin.ModelAdmin):
-	list_display = ('nombre','apellido','DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','foto','user')
+	list_display = ('id','nombre','apellido','dni','domicilio','ciudad','telefono','celular','email','referenciado','foto','user')
 
 
 
@@ -33,7 +36,9 @@ class MedicosAdmin(admin.ModelAdmin):
 class HabitosAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
 
-
+@admin.register(Ciudad)
+class CiudadAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
 
 @admin.register(Consulta)
 class ConsultaAdmin(admin.ModelAdmin):

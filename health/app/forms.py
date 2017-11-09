@@ -7,17 +7,19 @@ class PacientesForm(ModelForm):
     class Meta:
         model = Pacientes
         fields = '__all__'
+        exclude = ('user','foto') 
         widgets = {
-            'DNI':TextInput(attrs={'class':'form-control'}),
-			'Domicilio':TextInput(attrs={'class':'form-control'}),
-			'Ciudad':TextInput(attrs={'class':'form-control'}),
-			'Telefono':TextInput(attrs={'class':'form-control'}),
-			'Celular':TextInput(attrs={'class':'form-control'}),
-			'Email':TextInput(attrs={'class':'form-control'}),
-			'Referenciado':TextInput(attrs={'class':'form-control'}),
+            'dni':TextInput(attrs={'class':'form-control','type':'number'}),
+			'domicilio':TextInput(attrs={'class':'form-control'}),
+			'ciudad':Select(attrs={'class':'form-control'}),
+			'telefono':TextInput(attrs={'class':'form-control','type':'number'}),
+			'celular':TextInput(attrs={'class':'form-control','type':'number'}),
+			'email':TextInput(attrs={'class':'form-control'}),
+			'referenciado':TextInput(attrs={'class':'form-control'}),
             'nombre':TextInput(attrs={'class':'form-control'}),
             'apellido':TextInput(attrs={'class':'form-control'}),
-            'user':Select(attrs={'class':'form-control'})
+            'user':Select(attrs={'class':'form-control'}),
+            'nacimiento':TextInput(attrs={'type':'date','class':'form-control'})
         }
         error_messages = {
             'Email': {
@@ -39,9 +41,11 @@ class CitasForm(ModelForm):
     class Meta:
         model = Citas
         fields = '__all__'
+        exclude = ('title','area','end','endhora') 
         widgets = {
             'id':TextInput(attrs={'class':'form-control'}),
             'paciente':Select(attrs={'class':'form-control'}),
+            'tratamiento':Select(attrs={'class':'form-control'}),
             'title':TextInput(attrs={'class':'form-control'}),
             'descripcion':TextInput(attrs={'class':'form-control'}),
             'area':Select(attrs={'class':'form-control'}),
