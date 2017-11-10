@@ -23,9 +23,9 @@ class Citas(models.Model):
     descripcion = models.CharField('Descripcion',max_length=300)
     area = models.ForeignKey('Area',max_length=300,blank=True)
     start = models.DateTimeField('Fecha de Inicio',blank=True, null=True)
-    starthora = models.TimeField('Hora de Inicio',blank=True, null=True)
+
     end = models.DateTimeField('Fecha deFin',blank=True, null=True)
-    endhora = models.TimeField('Hora final',blank=True, null=True)
+
     medico = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
 
 

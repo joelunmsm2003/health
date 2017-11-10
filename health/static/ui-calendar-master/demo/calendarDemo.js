@@ -148,7 +148,7 @@ calendarDemoApp.controller('CalendarCtrl',
     $scope.traeeventos=function(){
 
 
-              $http.get("http://localhost:8000/citasjson")
+              $http.get("http://xiencias.com:5000/citasjson")
     .then(function(response) {
 
  
