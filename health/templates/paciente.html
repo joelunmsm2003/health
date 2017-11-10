@@ -74,20 +74,20 @@
 
               <!--Lista de Pacientes-->
               <div class="project">
-                <div class="row bg-white has-shadow">
+                <div class="row bg-white ">
                   <div class="left-col col-lg-7 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="http://localhost:8000/{{p.foto}}" alt="..." class="img-fluid"></div>
+                      <div class="image "><img src="/static/img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                       <div class="text">
-                       <small>NOMBRES</small> <h4 class=<"h4">
-                       {{p.nombre}} {{p.apellido}} <a href="/editpaciente/{{p.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
+                       <small>NOMBRES</small> <h5>
+                       {{p.nombre}} {{p.apellido}} <a href="/editpaciente/{{p.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h5>
                       </div>
 
                     </div>
                       <div class="project-title d-flex align-items-center">
                      
                       <div class="text">
-                        <small>DNI</small> <h4 class=<"h4">{{p.dni}} </h4>
+                        <small>DNI</small> <h5>{{p.dni}} </h5>
                       </div>
                       
                     </div>
@@ -96,7 +96,7 @@
                       <div class="project-title d-flex align-items-center">
                    
                       <div class="text">
-                        <small>TELEFONO</small> <h4 class=<"h4">{{p.telefono}}</h4>
+                        <small>TELEFONO</small> <h5>{{p.telefono}}</h5>
                       </div>
                       
                     </div>
@@ -104,7 +104,7 @@
                   <div class="project-title d-flex align-items-center">
                    
                       <div class="text">
-                        <small>EMAIL</small> <h4 class=<"h4">{{p.email}}</h4>
+                        <small>EMAIL</small> <h5>{{p.email}}</h5>
                       </div>
                       
                     </div>
@@ -129,17 +129,22 @@
 
                         <div class="form-group row">
                           <div class="col-sm-12 ">
-                            <a href="/editcita/{{p.id}}" class="btn btn-primary btn-sm"> <i class="icon-interface-windows"></i> Citas</a>
+                           
+
+
+                          </div>
+                          </div>
+
+
+                          <div class="btn-group">
+ <a href="/editcita/{{p.id}}" class="btn btn-primary btn-sm"> <i class="icon-interface-windows"></i> Citas</a>
                 
                           
                             <a href="/atencion" class="btn btn-primary btn-sm"><i class="fa fa-book" aria-hidden="true"></i> Atencion</a>
-                       
-                            
-                            <a href="/pagos"class="btn btn-primary btn-sm"><i class="fa fa-usd" aria-hidden="true"></i> Pagos</a>
 
-
-                          </div>
-                          </div>
+                   
+                            <a href="/pagos" class="btn btn-primary btn-sm"><i class="fa fa-usd" aria-hidden="true"></i> Pagos</a>
+</div>
 
                   </div>
                 </div>

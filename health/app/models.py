@@ -104,13 +104,13 @@ class Pacientes(models.Model):
 class Medicos(models.Model):
     nombre = models.CharField(max_length=300,blank=True)
     apellido = models.CharField(max_length=300,blank=True)
-    DNI = models.CharField(max_length=300,blank=True)
-    Domicilio = models.CharField(max_length=300)
-    Ciudad = models.CharField(max_length=300,blank=True)
-    Telefono = models.CharField(max_length=300,blank=True)
-    Celular = models.CharField(max_length=300,blank=True)
-    Email = models.CharField(max_length=300)
-    Referenciado = models.CharField(max_length=300,blank=True)
+    dni = models.CharField(max_length=300,blank=True)
+    domicilio = models.CharField(max_length=300)
+    ciudad = models.CharField(max_length=300,blank=True)
+    telefono = models.CharField(max_length=300,blank=True)
+    celular = models.CharField(max_length=300,blank=True)
+    email = models.CharField(max_length=300)
+    referenciado = models.CharField(max_length=300,blank=True)
     foto = models.FileField(upload_to='static')
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
 
@@ -164,11 +164,13 @@ class Evaluacion(models.Model):
 @python_2_unicode_compatible
 class Atencion(models.Model):
 
+    paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
     medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
     consulta = models.ForeignKey('Consulta',max_length=300,blank=True, null=True)
     evaluacion = models.ForeignKey('Evaluacion',max_length=300,blank=True, null=True)
     control= models.ForeignKey('Control',max_length=300,blank=True, null=True)
     tratamiento= models.ForeignKey('Tratamiento',max_length=300,blank=True, null=True)
+    descripcion = models.CharField(max_length=300,blank=True)
    
     def __str__(self):
 

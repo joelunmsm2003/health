@@ -294,7 +294,7 @@ def medico(request):
 
 
 
-	ncitashoy = Citas.objects.filter(start__gte=datetime.datetime.today()).count()
+	ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
 
 
 	return render(request, 'medico.html',{'form':  form,'medicos':_medicos})
@@ -371,13 +371,13 @@ def nuevopaciente(request):
 
 			p = PacientesForm(request.POST, instance=a).save()
 
-			ci = Citas(paciente_id=p.id).save()
+			Atencion(paciente_id=p.id).save()
 
-			id_c = Citas.objects.all().values('id').order_by('-id')[0]['id']
+			id_a = Atencion.objects.all().values('id').order_by('-id')[0]['id']
 
-			c = Citas.objects.get(id=id_c)
+			a = Atencion.objects.get(id=id_a)
 
-			form = CitasForm(instance=c)
+			form = AtencionForm(instance=a)
 
 
 
@@ -386,7 +386,7 @@ def nuevopaciente(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return render(request, 'nuevacita.html',{'msj': 'Paciente se guardaron con exito','form':form})
+			return render(request, 'atencion.html',{'msj': 'Paciente se guardaron con exito','form':form})
 
 
 
