@@ -62,18 +62,13 @@ from django.contrib.auth import authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import serializers
 
-from .forms import *
+from forms import *
 
 from app.serializer import CitasSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
-
-
-
-
-
-
+from datetime import *
 
 
 def get_name(request):
@@ -160,6 +155,15 @@ def nuevacita(request):
 	# create a form instance and populate it with data from the request:
 		form = CitasForm(request.POST)
 
+
+		fecha = str(request.POST['start'])+' '+str(request.POST['starthora'])
+
+
+
+		fecha = datetime.strptime(fecha, '%Y-%m-%d %H:%M')
+
+								
+
 		# Create and save the new author instance. There's no need to do anything else.
 
 
@@ -170,11 +174,20 @@ def nuevacita(request):
 
 			f = CitasForm(request.POST, instance=a).save()
 
+			id_c = Citas.objects.all().values('id').order_by('-id')[0]['id']
+
+			c = Citas.objects.get(id=id_c)
+
+			c.start = fecha
+	
+			c.save()
+
+
 
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/nuevopaciente/')
+			return HttpResponseRedirect('/dashboard')
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
@@ -224,6 +237,16 @@ def paciente(request):
 	return render(request, 'paciente.html',{'form': form,'pacientes':_pacientes})
 
 
+def citas(request):
+
+
+	form = CitasForm()
+
+	_citas = Citas.objects.all()
+
+
+	return render(request, 'index.html',{'form': form,'citas':_citas})
+
 def editmedico(request,id_medico):
 
 	if request.method == 'POST':
@@ -263,6 +286,17 @@ def medico(request):
 	form = MedicosForm()
 	_medicos = Medicos.objects.all()
 
+	npacientes = Pacientes.objects.all().count()
+
+	ncitas = Citas.objects.all().count()
+
+	natenciones= Atencion.objects.all().count()
+
+
+
+	ncitashoy = Citas.objects.filter(start__gte=datetime.datetime.today()).count()
+
+
 	return render(request, 'medico.html',{'form':  form,'medicos':_medicos})
  
 
@@ -274,9 +308,20 @@ def dashboard(request):
 
 	grupo =u.groups.get()
 
+	npacientes = Pacientes.objects.all().count()
+
+	ncitas = Citas.objects.all().count()
+
+	natenciones= Atencion.objects.all().count()
+
+
+
+	ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
+
+
 	
 	
-	return render(request, 'dashboard.html',{'user':u,'grupo':grupo})
+	return render(request, 'dashboard.html',{'user':u,'grupo':grupo,'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 
 
@@ -324,15 +369,27 @@ def nuevopaciente(request):
 
 			a = Pacientes()
 
-			f = PacientesForm(request.POST, instance=a).save()
+			p = PacientesForm(request.POST, instance=a).save()
+
+			ci = Citas(paciente_id=p.id).save()
+
+			id_c = Citas.objects.all().values('id').order_by('-id')[0]['id']
+
+			c = Citas.objects.get(id=id_c)
+
+			form = CitasForm(instance=c)
+
+
+
 
 
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/nuevopaciente/')
+			return render(request, 'nuevacita.html',{'msj': 'Paciente se guardaron con exito','form':form})
 
-	    # if a GET (or any other method) we'll create a blank form
+
+
 	else:
 		form = PacientesForm()
 
@@ -407,7 +464,16 @@ def atencion(request):
 			a = Atencion()
 
 			f = AtencionForm(request.POST, instance=a).save()
+			
+			npacientes = Pacientes.objects.all().count()
 
+			ncitas = Citas.objects.all().count()
+
+			natenciones= Atencion.objects.all().count()
+
+
+
+			ncitashoy = Citas.objects.filter(start__gte=datetime.datetime.today()).count()
 
 			# process the data in form.cleaned_data as required
 			# ...

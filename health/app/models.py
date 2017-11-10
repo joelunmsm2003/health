@@ -14,14 +14,38 @@ import datetime
 from django.utils import timezone
 
 
+from django.db import models
+
+
+@python_2_unicode_compatible
+class Tratamiento(models.Model):
+
+    Diagnostico = models.CharField(max_length=300)
+    Fecha_ini = models.DateTimeField(blank=True, null=True)
+    Frecuencia = models.CharField(max_length=300)
+    Apoyo = models.CharField(max_length=300)
+    Tipo = models.CharField(max_length=300)
+    Porcentaje = models.CharField(max_length=300)
+    Sesion = models.CharField(max_length=300)
+    Dolor_Fisico = models.CharField(max_length=300)
+    Malestar_Emocional = models.CharField(max_length=300)
+    Estudio_Medico = models.CharField(max_length=300)
+    Firma = models.CharField(max_length=300)
+
+    def __str__(self):
+        
+        return self.Tipo
+
+
 @python_2_unicode_compatible
 class Citas(models.Model):
 
     id = models.AutoField(primary_key=True)
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
+    tratamiento = models.ForeignKey('Tratamiento',max_length=300,blank=True, null=True)
     title = models.CharField('Titulo',max_length=300)
     descripcion = models.CharField('Descripcion',max_length=300)
-    area = models.ForeignKey('Area',max_length=300,blank=True)
+    area = models.ForeignKey('Area',max_length=300,blank=True,null=True)
     start = models.DateTimeField('Fecha de Inicio',blank=True, null=True)
 
     end = models.DateTimeField('Fecha deFin',blank=True, null=True)
@@ -47,27 +71,32 @@ class Consulta(models.Model):
 
 
 @python_2_unicode_compatible
+class Ciudad(models.Model):
+
+    nombre = models.CharField(max_length=300)
+    def __str__(self):
+
+        return self.nombre
+
+
+@python_2_unicode_compatible
 class Pacientes(models.Model):
     nombre =models.CharField(max_length=300,blank=True)
     apellido =models.CharField(max_length=300,blank=True)
-    DNI = models.CharField(max_length=300,blank=True)
-    Domicilio = models.CharField(max_length=300)
-    Ciudad = models.CharField(max_length=300,blank=True)
-    Telefono = models.CharField(max_length=300,blank=True)
-    Celular = models.CharField(max_length=300,blank=True)
-    Email = models.CharField(max_length=300)
-    Referenciado = models.CharField(max_length=300,blank=True)
+    dni = models.CharField(max_length=300,blank=True)
+    domicilio = models.CharField(max_length=300)
+    ciudad = models.ForeignKey('Ciudad',max_length=300,blank=True,null=True)
+    telefono = models.CharField(max_length=300,blank=True)
+    celular = models.CharField(max_length=300,blank=True)
+    email = models.CharField(max_length=300)
+    referenciado = models.CharField(max_length=300,blank=True)
     foto = models.FileField(upload_to='static')
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
+    nacimiento= models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        
-        if self.user:
-            return self.nombre
-        else:
-            return 'No hay user'
 
-
+        return self.nombre
 
 
 
@@ -87,10 +116,8 @@ class Medicos(models.Model):
 
     def __str__(self):
         
-        if self.user:
-            return self.user.username
-        else:
-            return 'No hay user' 
+        return self.nombre
+
 
 @python_2_unicode_compatible
 class Habitos(models.Model):
@@ -105,24 +132,6 @@ class Habitos(models.Model):
 
 
 
-@python_2_unicode_compatible
-class Tratamiento(models.Model):
-
-    Diagnostico = models.CharField(max_length=300)
-    Fecha_ini = models.DateTimeField(blank=True, null=True)
-    Frecuencia = models.CharField(max_length=300)
-    Apoyo = models.CharField(max_length=300)
-    Tipo = models.CharField(max_length=300)
-    Porcentaje = models.CharField(max_length=300)
-    Sesion = models.CharField(max_length=300)
-    Dolor_Fisico = models.CharField(max_length=300)
-    Malestar_Emocional = models.CharField(max_length=300)
-    Estudio_Medico = models.CharField(max_length=300)
-    Firma = models.CharField(max_length=300)
-
-    def __str__(self):
-        
-        return self.Diagnostico
 
 
 @python_2_unicode_compatible
