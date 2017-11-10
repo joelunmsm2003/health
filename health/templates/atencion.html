@@ -38,20 +38,23 @@
 
           <br>
 
+          <div class="alert alert-info">
+                 {{msj}}
+                </div>
 
           <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
+            <br>
               <div class="row">
 
 
-                 <div class="alert alert-info">
-                 {{msj}}
-                </div>
+
+                 
                        
-             
+           
                 <!-- Form Elements -->
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                   <div class="card">
                     <div class="card-close">
                       <div class="dropdown">
@@ -62,6 +65,7 @@
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">ATENCION</h3>
                     </div>
+                    <br>
                     <div class="card-body">
 
 
@@ -105,13 +109,157 @@
                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                            
                           </div>
+
                         </div>
 
                         </form>
 
                 </div>
+
               </div>
+                 <div class="col-lg-12">
+                              <div class="daily-feeds card"> 
+                                <div class="card-close">
+                                  <div class="dropdown">
+                                    <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                    <div aria-labelledby="closeCard" class="dropdown-menu has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                                  </div>
+                                </div>
+                                <div class="card-header">
+                                  <h3 class="h4">Historial de Citas de Gareca</h3>
+                                </div>
+                                <div class="card-body no-padding">
+                                  <!-- Item-->
+                                  <div class="item">
+                                    <div class="feed d-flex justify-content-between">
+                                      <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="/static/img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                        <div class="content">
+                                          <h5>Aria Smith</h5><span>Posted a new blog </span>
+                                          <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                      </div>
+                                      <div class="date text-right"><small>5min ago</small></div>
+                                    </div>
+                                  </div>
+                                  <!-- Item-->
+                                  <div class="item"> 
+                                    <div class="feed d-flex justify-content-between">
+                                      <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="/static/img/avatar-2.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                        <div class="content">
+                                          <h5>Frank Williams</h5><span>Posted a new blog </span>
+                                          <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                          <div class="CTAs"><a href="#" class="btn btn-xs btn-secondary"><i class="fa fa-thumbs-up"> </i>Like</a><a href="#" class="btn btn-xs btn-secondary"><i class="fa fa-heart"> </i>Love    </a></div>
+                                        </div>
+                                      </div>
+                                      <div class="date text-right"><small>5min ago</small></div>
+                                    </div>
+                                  </div>
+                                  <!-- Item-->
+                                  <div class="item clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                      <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="/static/img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                                        <div class="content">
+                                          <h5>Ashley Wood</h5><span>Posted a new blog </span>
+                                          <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                      </div>
+                                      <div class="date text-right"><small>5min ago</small></div>
+                                    </div>
+                                    <div class="quote has-shadow"> <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Over the years.</small></div>
+                                    <div class="CTAs pull-right"><a href="#" class="btn btn-xs btn-secondary"><i class="fa fa-thumbs-up"> </i>Like</a></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
             </div>
+
+            
+
+             <!-- Client Profile -->
+                <div class="col-lg-6">
+                  <div class="client card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard" class="dropdown-menu has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-body text-center">
+                      <div class="client-avatar"><img src="/static/img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle">
+                        <div class="status bg-green"></div>
+                      </div>
+                      <div class="client-title">
+                        <h3>Jason Doe</h3><span>Web Developer</span><a href="#">Follow</a>
+                      </div>
+                      <div class="client-info">
+                        <div class="row">
+                          <div class="col-4"><strong>20</strong><br><small>Photos</small></div>
+                          <div class="col-4"><strong>54</strong><br><small>Videos</small></div>
+                          <div class="col-4"><strong>235</strong><br><small>Tasks</small></div>
+                        </div>
+                      </div>
+                      <div class="client-social d-flex justify-content-between"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a><a href="#" target="_blank"><i class="fa fa-twitter"></i></a><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a><a href="#" target="_blank"><i class="fa fa-instagram"></i></a><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></div>
+                    </div>
+                  </div>
+
+                   <!-- Recent Activities -->
+                          <div class="col-lg-12 col-md-12">
+                            <div class="recent-activities card">
+                              <div class="card-close">
+                                <div class="dropdown">
+                                  <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                  <div aria-labelledby="closeCard" class="dropdown-menu has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                                </div>
+                              </div>
+                              <div class="card-header">
+                                <h3 class="h4">Historial de atenciones de Gareca</h3>
+                              </div>
+                              <div class="card-body no-padding">
+                                <div class="item">
+                                  <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                      <div class="icon"><i class="icon-clock"></i></div>
+                                      <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content">
+                                      <h5>Tratamiento Capilar 3</h5>
+                                      <p>El Paciente vino y fue atendido con exito, , .</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="item">
+                                  <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                      <div class="icon"><i class="icon-clock"></i></div>
+                                      <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content">
+                                      <h5>Tratamiento Capilar 2</h5>
+                                      <p>El Paciente vino y fue atendido con exito, ,.</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="item">
+                                  <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                      <div class="icon"><i class="icon-clock"></i></div>
+                                      <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content">
+                                      <h5>Tratamiento Capilar 1</h5>
+                                      <p>El Paciente vino y fue atendido con exito,,.</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                </div>
+        
+
+
+
           </section>
           <!-- Page Footer-->
        {% include "footer.html" %}
