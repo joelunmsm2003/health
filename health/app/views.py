@@ -294,7 +294,7 @@ def medico(request):
 
 
 
-	ncitashoy = Citas.objects.filter(start__gte=datetime.datetime.today()).count()
+	ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
 
 
 	return render(request, 'medico.html',{'form':  form,'medicos':_medicos})

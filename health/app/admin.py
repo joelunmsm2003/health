@@ -30,7 +30,7 @@ class PacientesAdmin(admin.ModelAdmin):
 
 @admin.register(Medicos)
 class MedicosAdmin(admin.ModelAdmin):
-	list_display = ('nombre','apellido','DNI','Domicilio','Ciudad','Telefono','Celular','Email','Referenciado','foto','user')
+	list_display = ('nombre','apellido','dni','domicilio','ciudad','telefono','celular','email','referenciado','foto','user')
 
 @admin.register(Habitos)
 class HabitosAdmin(admin.ModelAdmin):

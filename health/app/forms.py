@@ -66,16 +66,18 @@ class MedicosForm(ModelForm):
     class Meta:
         model = Medicos
         fields = '__all__'
+        exclude = ('user','foto') 
         widgets = {
-            'DNI':TextInput(attrs={'class':'form-control'}),
-            'Domicilio':TextInput(attrs={'class':'form-control'}),
-            'Ciudad':TextInput(attrs={'class':'form-control'}),
-            'Telefono':TextInput(attrs={'class':'form-control'}),
-            'Celular':TextInput(attrs={'class':'form-control'}),
-            'Email':TextInput(attrs={'class':'form-control'}),
-            'Referenciado':TextInput(attrs={'class':'form-control'}),
-            'nombre':TextInput(attrs={'class':'form-control'}),
-            'apellido':TextInput(attrs={'class':'form-control'})
+        'nombre':TextInput(attrs={'class':'form-control'}),
+            'apellido':TextInput(attrs={'class':'form-control'}),
+            'dni':TextInput(attrs={'class':'form-control','type':'number'}),
+            'domicilio':TextInput(attrs={'class':'form-control'}),
+            'ciudad':Select(attrs={'class':'form-control'}),
+            'telefono':TextInput(attrs={'class':'form-control','type':'number'}),
+            'Celular':TextInput(attrs={'class':'form-control','type':'number'}),
+            'email':TextInput(attrs={'class':'form-control'}),
+            'referenciado':TextInput(attrs={'class':'form-control'})
+            
         }
         error_messages = {
             'Email': {
@@ -116,7 +118,7 @@ class PagosForm(ModelForm):
             'Pacientes':TextInput(attrs={'class':'form-control'}),
             'Fecha':TextInput(attrs={'class':'form-control'}),
             'Cita':TextInput(attrs={'class':'form-control'}),
-            'Monto':TextInput(attrs={'class':'form-control'}),
+            'Monto':TextInput(attrs={'class':'form-control','type':'number'}),
             'Estado':TextInput(attrs={'class':'form-control'}),
             'Tipo':TextInput(attrs={'class':'form-control'}),
         }
