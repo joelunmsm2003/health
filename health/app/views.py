@@ -194,7 +194,13 @@ def nuevacita(request):
 
 		form = CitasForm()
 
-	return render(request, 'nuevacita.html',{'form': form})
+		u = User.objects.get(id=request.user.id)
+
+		grupo =u.groups.get()
+
+
+
+	return render(request, 'nuevacita.html',{'form': form,'grupo':grupo})
 
 
 def editpaciente(request,id_paciente):
@@ -303,8 +309,6 @@ def medico(request):
 def dashboard(request):
 
 	u = User.objects.get(id=request.user.id)
-
-	print u.username
 
 	grupo =u.groups.get()
 
