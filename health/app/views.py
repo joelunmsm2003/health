@@ -64,11 +64,13 @@ from django.core import serializers
 
 from forms import *
 
-from app.serializer import CitasSerializer
+from app.serializer import *
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
 from datetime import *
+
+
 
 
 def get_name(request):
@@ -92,15 +94,42 @@ def get_name(request):
 
 
 
-def calendar(request):
 
-	r = requests.get('https://www.ccf.com.pe/webresources/reporte1/7/6')
 
-	print r.text
+def busqueda(request):
 
+	nombre = request.GET['dato']
+
+	#p=Pacientes.objects.filter(dni__search=nombre)
+
+	p=Pacientes.objects.filter(nombre__contains=nombre)
 
 	
-	return render(request, 'calendar_1.html',{})
+	return render(request, 'paciente.html',{'pacientes':p})
+
+
+def busquedacita(request):
+
+	paciente = request.GET['dato']
+
+	#p=Pacientes.objects.filter(dni__search=nombre)
+
+	c=Citas.objects.filter(paciente__nombre__contains=paciente)
+
+	
+	return render(request, 'index.html',{'citas':c})
+
+
+def busquedamedico(request):
+
+	nombre= request.GET['dato']
+
+	#p=Pacientes.objects.filter(dni__search=nombre)
+
+	m=Medicos.objects.filter(nombre__contains=nombre)
+
+	
+	return render(request, 'medico.html',{'medicos':m})
 
 
 def home(request):
@@ -121,6 +150,12 @@ def citasjson(request):
 
 
     serializer = CitasSerializer(Citas.objects.all(), many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+@csrf_exempt
+def fotos(request):
+
+    serializer = FotosSerializer(Fotos.objects.all().order_by('id'), many=True)
     return JsonResponse(serializer.data, safe=False)
 
 

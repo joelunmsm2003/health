@@ -40,6 +40,11 @@ class HabitosAdmin(admin.ModelAdmin):
 class CiudadAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
 
+
+@admin.register(Fotos)
+class FotosAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
 @admin.register(Consulta)
 class ConsultaAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)

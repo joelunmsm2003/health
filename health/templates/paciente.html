@@ -65,6 +65,31 @@
           <section class="projects no-padding-top">
             <div class="container-fluid">
 
+     <!--     INICIO DEL BUSCADOR-->
+
+          <form class="form-inline my-2 my-sm-0" method="get" action="/busqueda/">
+
+
+    
+     <div class="input-group">
+      <input style='border:1px solid #37475a;' type="text" class="form-control" required name='dato' autofocus placeholder="¿Que estas buscando?">
+      <span class="input-group-btn">
+        <button style='border: 1px solid;' class="btn btn-secondary" type='submit'><i class="fa fa-search" aria-hidden="true"></i></button>
+      </span>
+      <span class="input-group-btn">
+      <a href="/paciente"class="btn btn-secondary" type='submit'><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</i></a>
+      </span>
+    </div>
+    <!--boton bolver-->
+
+
+      <!--FIN boton bolver-->
+
+    </form>
+
+    <BR>
+   <!-- FIN DEL BUSCADOR-->
+
 
               {% for p in pacientes %}
               
@@ -152,8 +177,7 @@
     
 
               {% endfor %}
-
-                
+      
             </div>
           </section>
      

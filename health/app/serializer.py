@@ -20,3 +20,11 @@ class CitasSerializer(serializers.Serializer):
 		instance.descripcion = validated_data.get('descripcion', instance.descripcion)
 		instance.save()
 		return instance
+
+
+class FotosSerializer(serializers.Serializer):
+
+	id=serializers.IntegerField()
+	nombre=serializers.CharField()
+	foto=serializers.FileField()
+

@@ -100,6 +100,18 @@ class Pacientes(models.Model):
 
 
 
+
+@python_2_unicode_compatible
+class Fotos(models.Model):
+    nombre = models.CharField(max_length=300,blank=True)
+    foto = models.FileField(upload_to='static')
+
+    def __str__(self):
+        
+        return self.nombre
+
+
+
 @python_2_unicode_compatible
 class Medicos(models.Model):
     nombre = models.CharField(max_length=300,blank=True)
