@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^busquedacita/', views.busquedacita),
     url(r'^busquedamedico/', views.busquedamedico),
     url(r'^fotos/', views.fotos),
+    url(r'^consulta/', views.traeconsulta),
+    url(r'^nuevaconsulta/', views.nuevaconsulta),
   ]
 
 

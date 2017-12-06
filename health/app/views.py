@@ -70,7 +70,30 @@ from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
 from datetime import *
 
+def traeconsulta(request):
 
+
+	form = ConsultaForm()
+
+	_consulta = Consulta.objects.all()
+	#para q apraseca los conteos  de los indicadore en consulta
+
+	u = User.objects.get(id=request.user.id)
+
+	grupo =u.groups.get()
+
+	npacientes = Pacientes.objects.all().count()
+
+	ncitas = Citas.objects.all().count()
+
+	natenciones= Atencion.objects.all().count()
+
+	ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
+
+
+
+
+	return render(request, 'consulta.html',{'form': form,'consulta':_consulta,'user':u,'grupo':grupo,'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 
 def get_name(request):
@@ -90,10 +113,6 @@ def get_name(request):
         form = NameForm()
 
     return render(request, 'dashboard.html', {'form': form})
-
-
-
-
 
 
 def busqueda(request):
@@ -584,3 +603,33 @@ def pagos(request):
 		form = PagosForm()
 
 	return render(request, 'pagos.html',{'form': form})
+
+
+def nuevaconsulta(request):
+
+	if request.method == 'POST':
+	# create a form instance and populate it with data from the request:
+		form = ConsultaForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
+	# check whether it's valid:
+		if form.is_valid():
+
+			a = Consulta()
+
+			f = ConsultaForm(request.POST, instance=a).save()
+
+
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/nuevaconsulta/')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+		form = ConsultaForm()
+
+	return render(request, 'nuevaconsulta.html',{'form': form})
+

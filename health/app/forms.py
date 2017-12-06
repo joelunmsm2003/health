@@ -104,7 +104,6 @@ class AtencionForm(ModelForm):
         widgets = {
             'paciente':Select(attrs={'class':'form-control'}),
             'medicos':Select(attrs={'class':'form-control'}),
-            'consulta':Select(attrs={'class':'form-control'}),
             'evaluacion':Select(attrs={'class':'form-control'}),
             'control':Select(attrs={'class':'form-control'}),
             'tratamiento':Select(attrs={'class':'form-control'}),
@@ -123,6 +122,19 @@ class PagosForm(ModelForm):
             'Monto':TextInput(attrs={'class':'form-control','type':'number'}),
             'Estado':TextInput(attrs={'class':'form-control'}),
             'Tipo':TextInput(attrs={'class':'form-control'}),
+        }
+
+class ConsultaForm(ModelForm):
+    class Meta:
+        model = Consulta
+        fields = '__all__'
+        widgets = {
+            'Pacientes':TextInput(attrs={'class':'form-control'}),
+            
+            'medico':TextInput(attrs={'class':'form-control'}),
+            'Tipo':TextInput(attrs={'class':'form-control'}),
+           
+            'fecha_ini':TextInput(attrs={'class':'form-control'}),
         }
      
  
