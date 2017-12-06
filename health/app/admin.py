@@ -69,7 +69,7 @@ class EvaluacionAdmin(admin.ModelAdmin):
 
 @admin.register(Atencion)
 class AtencionAdmin(admin.ModelAdmin):
-	list_display = ('medicos','consulta','evaluacion','control','tratamiento')
+	list_display = ('paciente','medicos','consulta','evaluacion','control','tratamiento','descripcion')
 
 
 

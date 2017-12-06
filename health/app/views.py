@@ -274,8 +274,20 @@ def paciente(request):
 
 	_pacientes = Pacientes.objects.all()
 
+	u = User.objects.get(id=request.user.id)
 
-	return render(request, 'paciente.html',{'form': form,'pacientes':_pacientes})
+	grupo =u.groups.get()
+
+	npacientes = Pacientes.objects.all().count()
+
+	ncitas = Citas.objects.all().count()
+
+	natenciones= Atencion.objects.all().count()
+
+	ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
+
+
+	return render(request, 'paciente.html',{'form': form,'pacientes':_pacientes,'user':u,'grupo':grupo,'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 
 def citas(request):
@@ -284,9 +296,23 @@ def citas(request):
 	form = CitasForm()
 
 	_citas = Citas.objects.all()
+	#para q apraseca los conteos  de los indicadore en citas
+
+	u = User.objects.get(id=request.user.id)
+
+	grupo =u.groups.get()
+
+	npacientes = Pacientes.objects.all().count()
+
+	ncitas = Citas.objects.all().count()
+
+	natenciones= Atencion.objects.all().count()
+
+	ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
 
 
-	return render(request, 'index.html',{'form': form,'citas':_citas})
+
+	return render(request, 'index.html',{'form': form,'citas':_citas,'user':u,'grupo':grupo,'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 def editmedico(request,id_medico):
 
@@ -346,30 +372,33 @@ def dashboard(request):
 	u = User.objects.get(id=request.user.id)
 
 	grupo =u.groups.get()
+	print "nnnnnn",datetime
 
-	npacientes = Pacientes.objects.all().count()
+	npacientes = Pacientes.objects.filter(fecha_ini=date.today()).count()
 
 	ncitas = Citas.objects.all().count()
 
 	natenciones= Atencion.objects.all().count()
 
 
+	print "TIGREZHITO",date.today()
+	#ncitashoy = Citas.objects.annotate(Count('start')).count()
+	ncitashoy = Citas.objects.filter(start__gte=date.today()).count()
 
-	ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
-
+	print "ttttttttttttttttttt",ncitashoy
 
 	
 	
-	return render(request, 'dashboard.html',{'user':u,'grupo':grupo,'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
+	return render(request,'dashboard.html',{'user':u,'grupo':grupo,'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 
 
 
-def editcita(request,id_paciente):
+def editcita(request,id_cita):
 
 	if request.method == 'POST':
 
-		a=Medicos.objects.get(id=id_cita)
+		a=Citas.objects.get(id=id_cita)
 
 		form = CitasForm(request.POST, instance=a)
 
@@ -387,11 +416,11 @@ def editcita(request,id_paciente):
 	else:
 
 
-		m=Pacientes.objects.get(id=id_paciente)
+		m=Citas.objects.get(id=id_cita)
 		
-		form = CitasForm()
+		form = CitasForm(instance=m)
 
-	return render(request, 'nuevacita.html',{'form': form,'paciente':m})
+	return render(request, 'nuevacita.html',{'form': form,'cita':m,'id_cita':id_cita})
 
 
 def nuevopaciente(request):
@@ -407,6 +436,7 @@ def nuevopaciente(request):
 		if form.is_valid():
 
 			a = Pacientes()
+
 
 			p = PacientesForm(request.POST, instance=a).save()
 
@@ -425,7 +455,7 @@ def nuevopaciente(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return render(request, 'atencion.html',{'msj': 'Paciente se guardaron con exito','form':form})
+			return render(request, 'atencion.html',{'msj': 'Paciente se guardaron con exito  ;)  ','form':form})
 
 
 

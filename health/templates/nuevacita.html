@@ -28,7 +28,7 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Nueva Cita</h2>
+              <h2 class="no-margin-bottom">Nueva Cita........</h2>
             </div>
           </header>
           <ul class="breadcrumb">
@@ -125,8 +125,13 @@
 
                             
 
-                        {{paciente.nombre}}
+         
+                       
+                        {{cita.descripcion}}
+                        {{cita.paciente}}
 
+
+                      
 
 
 
@@ -209,7 +214,7 @@
                                   <div class="status bg-green"></div>
                                 </div>
                                 <div class="client-title">
-                                  <h3>Gareca</h3><span>Entrenador</span><a href="#">Follow</a>
+                                  <h3> {{cita.paciente}}</h3><span> {{paciente.apellido}}</span><a href="#">Follow</a>
                                 </div>
                                 <div class="client-info">
                                   <div class="row">

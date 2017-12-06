@@ -93,6 +93,7 @@ class Pacientes(models.Model):
     foto = models.FileField(upload_to='static')
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
     nacimiento= models.DateTimeField(blank=True, null=True)
+    fecha_ini= models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
 
@@ -118,7 +119,7 @@ class Medicos(models.Model):
     apellido = models.CharField(max_length=300,blank=True)
     dni = models.CharField(max_length=300,blank=True)
     domicilio = models.CharField(max_length=300)
-    ciudad = models.CharField(max_length=300,blank=True)
+    ciudad = models.ForeignKey('Ciudad',max_length=300,blank=True,null=True)
     telefono = models.CharField(max_length=300,blank=True)
     celular = models.CharField(max_length=300,blank=True)
     email = models.CharField(max_length=300)

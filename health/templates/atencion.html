@@ -39,7 +39,8 @@
           <br>
 
           <div class="alert alert-info">
-                 {{msj}}
+                 {{msj}}<i class="fa fa-check" aria-hidden="true"></i>
+                 
                 </div>
 
           <!-- Forms Section-->
@@ -70,7 +71,7 @@
 
 
 
-                        <form class="form-horizontal" action="/nuevopaciente/" method="post">
+                        <form class="form-horizontal" action="/dashboard/" method="post">
 
 
                         {% csrf_token %}
@@ -190,7 +191,7 @@
                         <div class="status bg-green"></div>
                       </div>
                       <div class="client-title">
-                        <h3>Jason Doe</h3><span>Web Developer</span><a href="#">Follow</a>
+                        <h3>. {{paciente.nombre}}</h3>. {{paciente.apellido}}<span></span>
                       </div>
                       <div class="client-info">
                         <div class="row">
