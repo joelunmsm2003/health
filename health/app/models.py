@@ -61,14 +61,6 @@ class Citas(models.Model):
         return self.title
 
 
-@python_2_unicode_compatible
-class Consulta(models.Model):
-
-    nombre = models.CharField(max_length=300)
-    def __str__(self):
-
-        return self.nombre
-
 
 @python_2_unicode_compatible
 class Ciudad(models.Model):
@@ -90,15 +82,50 @@ class Pacientes(models.Model):
     celular = models.CharField(max_length=300,blank=True)
     email = models.CharField(max_length=300)
     referenciado = models.CharField(max_length=300,blank=True)
-    foto = models.FileField(upload_to='static')
+    foto = models.TextField(db_column='foto',blank=True)
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
     nacimiento= models.DateTimeField(blank=True, null=True)
+    fecha_ini= models.DateTimeField('Fecha de Ingreso',blank=True, null=True)
 
     def __str__(self):
 
         return self.nombre
 
+@python_2_unicode_compatible
+class Enfermeros(models.Model):
+    nombre = models.CharField(max_length=300,blank=True)
+    apellido = models.CharField(max_length=300,blank=True)
+    dni = models.CharField(max_length=300,blank=True)
+    domicilio = models.CharField(max_length=300)
+    ciudad = models.ForeignKey('Ciudad',max_length=300,blank=True,null=True)
+    telefono = models.CharField(max_length=300,blank=True)
+    celular = models.CharField(max_length=300,blank=True)
+    email = models.CharField(max_length=300)
+    referenciado = models.CharField(max_length=300,blank=True)
+    foto = models.FileField(upload_to='static')
+    user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
 
+    def __str__(self):
+        
+        return self.nombre
+
+@python_2_unicode_compatible
+class Recepcion(models.Model):
+    nombre = models.CharField(max_length=300,blank=True)
+    apellido = models.CharField(max_length=300,blank=True)
+    dni = models.CharField(max_length=300,blank=True)
+    domicilio = models.CharField(max_length=300)
+    ciudad = models.ForeignKey('Ciudad',max_length=300,blank=True,null=True)
+    telefono = models.CharField(max_length=300,blank=True)
+    celular = models.CharField(max_length=300,blank=True)
+    email = models.CharField(max_length=300)
+    referenciado = models.CharField(max_length=300,blank=True)
+    foto = models.FileField(upload_to='static')
+    user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
+
+    def __str__(self):
+        
+        return self.nombre
 
 
 @python_2_unicode_compatible
@@ -118,7 +145,7 @@ class Medicos(models.Model):
     apellido = models.CharField(max_length=300,blank=True)
     dni = models.CharField(max_length=300,blank=True)
     domicilio = models.CharField(max_length=300)
-    ciudad = models.CharField(max_length=300,blank=True)
+    ciudad = models.ForeignKey('Ciudad',max_length=300,blank=True,null=True)
     telefono = models.CharField(max_length=300,blank=True)
     celular = models.CharField(max_length=300,blank=True)
     email = models.CharField(max_length=300)
@@ -173,16 +200,20 @@ class Evaluacion(models.Model):
 
         return self.nombre
 
+
+
+
 @python_2_unicode_compatible
+
 class Atencion(models.Model):
 
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
     medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
-    consulta = models.ForeignKey('Consulta',max_length=300,blank=True, null=True)
     evaluacion = models.ForeignKey('Evaluacion',max_length=300,blank=True, null=True)
     control= models.ForeignKey('Control',max_length=300,blank=True, null=True)
     tratamiento= models.ForeignKey('Tratamiento',max_length=300,blank=True, null=True)
     descripcion = models.CharField(max_length=300,blank=True)
+    fecha = models.DateTimeField('Fecha de Atencion',blank=True, null=True)
    
     def __str__(self):
 
@@ -210,6 +241,19 @@ class Tipo(models.Model):
         return self.nombre
 
 
+@python_2_unicode_compatible
+class Consulta(models.Model):
+
+    paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
+    medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
+    #consulta = models.ForeignKey('Consulta',max_length=300,blank=True, null=True)
+    tipo = models.ForeignKey('Tipo',max_length=300,blank=True, null=True)
+   
+    fecha_ini= models.DateTimeField(blank=True, null=True)
+   
+    def __str__(self):
+
+        return 'self.medicos.nombre'
 
 @python_2_unicode_compatible
 class Pagos(models.Model):
@@ -245,4 +289,5 @@ class Notificacion(models.Model):
     def __str__(self):
 
         return self.nombre
+
 

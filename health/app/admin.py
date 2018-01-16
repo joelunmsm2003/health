@@ -27,6 +27,15 @@ class PacientesAdmin(admin.ModelAdmin):
 	list_display = ('id','nombre','apellido','dni','domicilio','ciudad','telefono','celular','email','referenciado','foto','user')
 
 
+@admin.register(Enfermeros)
+class EnfermerosAdmin(admin.ModelAdmin):
+	list_display = ('nombre','apellido','dni','domicilio','ciudad','telefono','celular','email','referenciado','foto','user')
+
+@admin.register(Recepcion)
+class RecepcionAdmin(admin.ModelAdmin):
+	list_display = ('nombre','apellido','dni','domicilio','ciudad','telefono','celular','email','referenciado','foto','user')
+
+
 
 @admin.register(Medicos)
 class MedicosAdmin(admin.ModelAdmin):
@@ -45,9 +54,6 @@ class CiudadAdmin(admin.ModelAdmin):
 class FotosAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
 
-@admin.register(Consulta)
-class ConsultaAdmin(admin.ModelAdmin):
-	list_display = ('nombre',)
 
 
 @admin.register(Tratamiento)
@@ -69,7 +75,7 @@ class EvaluacionAdmin(admin.ModelAdmin):
 
 @admin.register(Atencion)
 class AtencionAdmin(admin.ModelAdmin):
-	list_display = ('medicos','consulta','evaluacion','control','tratamiento')
+	list_display = ('paciente','medicos','evaluacion','control','tratamiento','descripcion')
 
 
 
@@ -93,4 +99,15 @@ class PagosAdmin(admin.ModelAdmin):
 class ProspectoAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
 
-	
+@admin.register(Consulta)
+class ConsultaAdmin(admin.ModelAdmin):
+	list_display = ('paciente','medicos','tipo','fecha_ini')
+
+	def paciente(self, obj):
+		return obj.paciente.nombre
+
+	def medicos(self, obj):
+		return obj.medicos.nombre
+
+	def tipo(self, obj):
+		return obj.tipo.nombre

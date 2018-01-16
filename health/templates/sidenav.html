@@ -2,23 +2,23 @@
         <nav class="side-navbar">
           <!-- Sidebar Header-->
           <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar"><img src="/static/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="avatar"><img src="https://xiencias.com/{{user.foto}}" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
-              <h1 class="h4">{{user.first_name}}</h1>
+              <h1 class="h4">{{user.nombre}}</h1>
               <p>{{grupo}}</p>
             </div>
           </div>
-          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <!-- Sidebar Navidation Menus--><span class="heading"></span>
           <ul class="list-unstyled">
 
 
 
-            <li> <a href="/dashboard"> <img src="/static/img/computer.png"  class='iconosidebar'></i>Dashboard </a></li>
+            <li> <a href="/dashboard"> <img src="/static/img/computer.png"  class='iconosidebar'></i>Inicio</a></li>
             
            <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <img src="/static/img/medical-history.png" class='iconosidebar'>Citas </a>
               <ul id="dashvariants" class="collapse list-unstyled">
 
-                <li><a href="/citas">Listas</a></li>
+                <li><a href="/citas">Lista de Citas</a></li>
                 <li><a href="/nuevacita">Nueva Cita</a></li>
             
               </ul>
@@ -28,7 +28,7 @@
               <ul id="paciente" class="collapse list-unstyled">
 
                 <li><a href="/paciente">Lista de Pacientes</a></li>
-                <li><a href="/nuevopaciente">Nueva Paciente</a></li>
+                <li><a href="/nuevopaciente">Nuevo Paciente</a></li>
           
               </ul>
             </li>
@@ -47,7 +47,7 @@
              <li><a href="#atencion" aria-expanded="false" data-toggle="collapse"> <img src="/static/img/atencion.png" class='iconosidebar'>Atencion</a>
               <ul id="atencion" class="collapse list-unstyled">
 
-                <li><a href="/atencion">nueva atencion</a></li>
+                <li><a href="/atencion">Nueva Atencion</a></li>
                 
           
               </ul>
@@ -64,14 +64,23 @@
               </ul>
             </li>
 
+              <li><a href="#consulta" aria-expanded="false" data-toggle="collapse"> <img src="/static/img/medical-history.png" class='iconosidebar'>Consulta</a>
+              <ul id="consulta" class="collapse list-unstyled">
+
+                <li><a href="/consulta">Listas</a></li>
+                <li><a href="/nuevaconsulta">Nueva consulta</a></li>
+            
+              </ul>
+            </li>
 
 
 
 
 
-            <li> <a href="tables.html"> <i class="icon-grid"></i>Areas Medicas </a></li>
+
+        <!--     <li> <a href="tables.html"> <i class="icon-grid"></i>Areas Medicas </a></li>
             <li> <a href="charts.html"> <i class="fa fa-bar-chart"></i>Reportes </a></li>
-
+ -->
 
             <div id='fecha'></div>
 

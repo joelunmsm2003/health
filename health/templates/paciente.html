@@ -7,6 +7,12 @@
 
 
   <body>
+
+
+        
+
+
+
     <div class="page home-page">
 
 
@@ -15,12 +21,7 @@
       <div class="page-content d-flex align-items-stretch">
       
 
-
-
-
           {% include "sidenav.html" %}
-
-
 
 
         <div class="content-inner">
@@ -67,7 +68,7 @@
 
      <!--     INICIO DEL BUSCADOR-->
 
-          <form class="form-inline my-2 my-sm-0" method="get" action="/busqueda/">
+<!--           <form class="form-inline my-2 my-sm-0" method="get" action="/busqueda/">
 
 
     
@@ -80,14 +81,11 @@
       <a href="/paciente"class="btn btn-secondary" type='submit'><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</i></a>
       </span>
     </div>
-    <!--boton bolver-->
 
-
-      <!--FIN boton bolver-->
 
     </form>
 
-    <BR>
+    <BR> -->
    <!-- FIN DEL BUSCADOR-->
 
 
@@ -102,26 +100,20 @@
                 <div class="row bg-white ">
                   <div class="left-col col-lg-7 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                      <div class="image "><img src="/static/img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                      <div class="image "><img src="{{p.foto}}" alt="..." class="img-fluid"></div>
                       <div class="text">
-                       <small>NOMBRES</small> <h5>
-                       {{p.nombre}} {{p.apellido}} <a href="/editpaciente/{{p.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h5>
+                       <small>Nombre</small > <h5 id="myBtn" >
+                       <a href="/editpaciente/{{p.id}}" class='lapiz'>{{p.nombre}}  </a></h5>
                       </div>
 
                     </div>
-                      <div class="project-title d-flex align-items-center">
-                     
-                      <div class="text">
-                        <small>DNI</small> <h5>{{p.dni}} </h5>
-                      </div>
-                      
-                    </div>
+                   
 
 
                       <div class="project-title d-flex align-items-center">
                    
                       <div class="text">
-                        <small>TELEFONO</small> <h5>{{p.telefono}}</h5>
+                        <small>Telefono</small> <h5>{{p.telefono}}</h5>
                       </div>
                       
                     </div>
@@ -129,7 +121,7 @@
                   <div class="project-title d-flex align-items-center">
                    
                       <div class="text">
-                        <small>EMAIL</small> <h5>{{p.email}}</h5>
+                        <small>Dni</small> <h5>{{p.dni}}</h5>
                       </div>
                       
                     </div>
@@ -162,13 +154,13 @@
 
 
                           <div class="btn-group">
- <a href="/editcita/{{p.id}}" class="btn btn-primary btn-sm"> <i class="icon-interface-windows"></i> Citas</a>
+ <a href="/creacita/{{p.id}}" class="btn btn-primary btn-sm"> Citas</a>
                 
                           
-                            <a href="/atencion" class="btn btn-primary btn-sm"><i class="fa fa-book" aria-hidden="true"></i> Atencion</a>
+                            <a href="/createncion/{{p.id}}" class="btn btn-primary btn-sm"> Atencion</a>
 
                    
-                            <a href="/pagos" class="btn btn-primary btn-sm"><i class="fa fa-usd" aria-hidden="true"></i> Pagos</a>
+                            <a href="/pagos/{{p.id}}" class="btn btn-primary btn-sm">Pagos</a>
 </div>
 
                   </div>
@@ -177,14 +169,9 @@
     
 
               {% endfor %}
-      
+        
             </div>
           </section>
-     
-
-          <!-- modal-->
-        
-                
 
 
           <!-- Page Footer-->
@@ -206,12 +193,40 @@
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
     <!---->
     <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+
+
+
+
+
+
     </script>
+
+
+
+
+  <main>
+    <p>Welcome to the push messaging codelab. The button below needs to be
+    fixed to support subscribing to push.</p>
+    <p>
+      <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Enable Push Messaging
+      </button>
+    </p>
+    <section class="subscription-details js-subscription-details is-invisible">
+      <p>Once you've subscribed your user, you'd send their subscription to your
+      server to store in a database so that when you want to send a message
+      you can lookup the subscription and send a message to it.</p>
+      <p>To simplify things for this code lab copy the following details
+      into the <a href="https://web-push-codelab.glitch.me//">Push Companion
+      Site</a> and it'll send a push message for you, using the application
+      server keys on the site - so make sure they match.</p>
+      <pre><code class="js-subscription-json"></code></pre>
+    </section>
+  </main>
+
+  <script src="/static/js/mainservice.js"></script>
+
+
+
   </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "short_name": "PyyyW Flap",
+  "name": "Progressive Web Flap",
+  "icons": [
+    {
+      "src":"/static/Logo.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/paciente",
+  "background_color": "#4EC0CA",
+  "theme_color": "#4EC0CA",
+  "display": "standalone"
+}

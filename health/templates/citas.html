@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+
+   {% include "head.html" %}
+
+
+
+  <body>
+
+
+        
+
+<script src="/static/js/mainservice.js"></script>
+
+
+
+    <div class="page home-page">
+
+
+    {% include "header.html" %}
+
+      <div class="page-content d-flex align-items-stretch">
+      
+
+          {% include "sidenav.html" %}
+
+
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+                        <div class="container-fluid">
+
+
+                            <div class="row">
+                                
+                                <div class="col-md-1" style='padding-top: 26px;'>
+
+                                <h2 class="no-margin-bottom">Citas
+                    
+                                </h2>
+                                
+                                </div>
+
+                                <div class="col-md-11">
+                                  
+
+                    <!-- Dashboard Counts Section-->
+
+
+                    {% include "indicadores.html" %}
+
+
+                                </div>
+                                
+
+                            </div>  
+
+                        </div>
+                    </header>
+
+
+
+
+          
+          <br>
+          <!-- Projects Section-->
+          <section class="projects no-padding-top">
+            <div class="container-fluid">
+
+     <!--     INICIO DEL BUSCADOR-->
+
+<!--           <form class="form-inline my-2 my-sm-0" method="get" action="/busqueda/">
+
+
+    
+     <div class="input-group">
+      <input style='border:1px solid #37475a;' type="text" class="form-control" required name='dato' autofocus placeholder="¿Que estas buscando?">
+      <span class="input-group-btn">
+        <button style='border: 1px solid;' class="btn btn-secondary" type='submit'><i class="fa fa-search" aria-hidden="true"></i></button>
+      </span>
+      <span class="input-group-btn">
+      <a href="/paciente"class="btn btn-secondary" type='submit'><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</i></a>
+      </span>
+    </div>
+
+
+    </form>
+
+    <BR> -->
+   <!-- FIN DEL BUSCADOR-->
+
+
+              {% for p in citas %}
+              
+
+                 
+
+
+              <!--Lista de Pacientes-->
+              <div class="project">
+                <div class="row bg-white ">
+                  <div class="left-col col-lg-10 d-flex align-items-center justify-content-between">
+                    <div class="project-title d-flex align-items-center">
+                      <div class="image "><img src="{{p.paciente.foto}}" alt="..." class="img-fluid"></div>
+                      <div class="text">
+                       <small>Paciente</small > <h5 id="myBtn" >
+                       <a href="/editpaciente/{{p.paciente.id}}" class='lapiz'>{{p.paciente.nombre}}  </a></h5>
+                      </div>
+
+                    </div>
+                      <div class="project-title d-flex align-items-center">
+                     
+                      <div class="text">
+                        <small>Fecha</small> <h5>{{p.start}} </h5>
+                      </div>
+                      
+                    </div>
+
+
+                      <div class="project-title d-flex align-items-center">
+                   
+                      <div class="text">
+                        <small>Medico</small> <h5>{{p.medico.nombre}}</h5>
+                      </div>
+                      
+                    </div>
+                 
+                 
+                 
+                  </div>
+                  <div class="right-col col-lg-2 d-flex align-items-center">
+                  
+                
+
+                    <div class="project-progress">
+                      <div class="progress">
+                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                      </div>
+                        <br>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-blue"></div>
+                      </div>
+                      
+                    </div>
+
+
+
+                       
+
+
+
+
+                  </div>
+                </div>
+              </div>
+    
+
+              {% endfor %}
+        
+            </div>
+          </section>
+
+
+          <!-- Page Footer-->
+          <br>
+
+         {% include "footer.html" %}
+        </div>
+      </div>
+    </div>
+    <!-- Javascript files-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/static/js/tether.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"> </script>
+    <script src="/static/js/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="/static/js/charts-home.js"></script>
+    <script src="/static/js/front.js"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
+    <!---->
+    <script>
+
+
+
+
+
+
+    </script>
+
+    
+
+
+  <main>
+    <p>Welcome to the push messaging codelab. The button below needs to be
+    fixed to support subscribing to push.</p>
+    <p>
+      <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Enable Push Messaging
+      </button>
+    </p>
+    <section class="subscription-details js-subscription-details is-invisible">
+      <p>Once you've subscribed your user, you'd send their subscription to your
+      server to store in a database so that when you want to send a message
+      you can lookup the subscription and send a message to it.</p>
+      <p>To simplify things for this code lab copy the following details
+      into the <a href="https://web-push-codelab.glitch.me//">Push Companion
+      Site</a> and it'll send a push message for you, using the application
+      server keys on the site - so make sure they match.</p>
+      <pre><code class="js-subscription-json"></code></pre>
+    </section>
+  </main>
+
+  </body>
+</html>

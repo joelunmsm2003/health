@@ -995,10 +995,12 @@ section.dashboard-counts div[class*='col-']:last-of-type .item {
 }
 
 .project .image {
-  max-width: 50px;
-  min-width: 50px;
-  height: 50px;
-  margin-right: 15px;
+    max-width: 97px;
+    height: 60px;
+    margin-right: 16px;
+    margin-top: -11px;
+    margin-left: -11px;
+    margin-bottom: 2px;
 }
 
 .project .time, .project .comments, .project .project-progress {
@@ -1086,10 +1088,10 @@ section.dashboard-counts div[class*='col-']:last-of-type .item {
 
 /*====== Client Profile Box ======*/
 .client .client-avatar {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  position: relative;
+width: 269px;
+    height: 231px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .client .client-avatar .status {

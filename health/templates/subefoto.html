@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+     {% include "head.html" %}
+
+
+
+
+  <body>
+    <div class="page form-page">
+
+
+
+     {% include "header.html" %}
+
+
+
+
+
+      <div class="page-content d-flex align-items-stretch"> 
+ 
+
+       {% include "sidenav.html" %}
+
+
+
+
+
+
+
+        <div class="content-inner">
+          <!-- Page Header-->
+      <!--     <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Nueva Paciente</h2>
+            </div>
+          </header> -->
+
+
+
+          <ul class="breadcrumb">
+            <div class="container-fluid">
+              <li class="breadcrumb-item"><a href="/static/index.html">Fotografia</a></li>
+              <li class="breadcrumb-item active">Toma una foto</li>
+            </div>
+          </ul>
+
+            <br>
+          <!-- Forms Section-->
+          <section class="forms"> 
+            <div class="container-fluid">
+              <div class="row">
+
+       
+             
+                <!-- Form Elements -->
+                <div class="col-lg-8">
+                  <div class="card">
+                    <div class="card-close">
+                      
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Fotografia</h3>
+
+                    </div>
+
+                    <div class="card-body">
+
+                       <button class='btn btn-primary' id="startbutton">Toma la foto</button>
+
+                       <br>
+
+                     
+                      
+                      <div class="row">
+
+
+                        
+                        <div class="col-md-6"><video id="video"></video></div>
+                        <div class="col-md-6"><canvas id="canvas"></canvas></div>
+
+ 
+
+                      </div>
+
+                   
+                      
+                      
+                      <script type="text/javascript">
+                        
+                        (function() {
+
+                            var streaming = false,
+                                video        = document.querySelector('#video'),
+                                canvas       = document.querySelector('#canvas'),
+                                photo        = document.querySelector('#photo'),
+                                startbutton  = document.querySelector('#startbutton'),
+                                width = 320,
+                                height = 0;
+
+                            navigator.getMedia = ( navigator.getUserMedia ||
+                                                   navigator.webkitGetUserMedia ||
+                                                   navigator.mozGetUserMedia ||
+                                                   navigator.msGetUserMedia);
+
+                            navigator.getMedia(
+                              {
+                                video: true,
+                                audio: false
+                              },
+                              function(stream) {
+                                if (navigator.mozGetUserMedia) {
+                                  video.mozSrcObject = stream;
+                                } else {
+                                  var vendorURL = window.URL || window.webkitURL;
+                                  video.src = vendorURL.createObjectURL(stream);
+                                }
+                                video.play();
+                              },
+                              function(err) {
+                                console.log("An error occured! " + err);
+                              }
+                            );
+
+                            video.addEventListener('canplay', function(ev){
+                              if (!streaming) {
+                                height = video.videoHeight / (video.videoWidth/width);
+                                video.setAttribute('width', width);
+                                video.setAttribute('height', height);
+                                canvas.setAttribute('width', width);
+                                canvas.setAttribute('height', height);
+                                streaming = true;
+                              }
+                            }, false);
+
+                            function takepicture() {
+                              canvas.width = width;
+                              canvas.height = height;
+                              canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+                              var data = canvas.toDataURL('image/png');
+
+
+                             
+                            var todo={
+
+                                'archivo':data
+                              }
+
+
+                                  var fd = new FormData();
+
+                                  fd.append('file', data);
+
+                            
+
+                                $.ajax({
+                                  url: '/uploadfoto',
+                                  data: fd,
+                                  type: 'POST',
+                                  contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                                  processData: false, // NEEDED, DON'T OMIT THIS
+                                  // ... Other options like success and etc
+                              });
+
+                            }
+
+                            
+
+
+                           
+
+                            startbutton.addEventListener('click', function(ev){
+                                takepicture();
+                              ev.preventDefault();
+                            }, false);
+
+                          })();
+
+                      </script>
+
+
+
+               
+                      </div>
+
+              </div>
+               
+
+            </div>
+
+            
+
+
+        
+
+
+
+          </section>
+          <!-- Page Footer-->
+       {% include "footer.html" %}
+        </div>
+      </div>
+    </div>
+    <!-- Javascript files-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/static/js/tether.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"> </script>
+    <script src="/static/js/jquery.validate.min.js"></script>
+    <script src="/static/js/front.js"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
+    <!---->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
+</html>
