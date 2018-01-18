@@ -253,11 +253,13 @@ def nuevacita(request):
 		form = CitasForm(request.POST)
 
 
-		fecha = str(request.POST['start'])+' '+str(request.POST['starthora'])
+		fecha = str(request.POST['start'])
+
+		#+' '+str(request.POST['starthora'])
 
 
 
-		fecha = datetime.strptime(fecha, '%Y-%m-%d %H:%M')
+		fecha = datetime.strptime(fecha, '%Y-%m-%d')
 
 								
 
@@ -266,6 +268,8 @@ def nuevacita(request):
 
 	# check whether it's valid:
 		if form.is_valid():
+
+			print 'Entre a guardar'
 
 			a = Citas()
 
@@ -284,7 +288,7 @@ def nuevacita(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/dashboard')
+			return HttpResponseRedirect('/citas')
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
@@ -366,7 +370,7 @@ def paciente(request):
 
 	form = PacientesForm()
 
-	_pacientes = Pacientes.objects.all()
+	_pacientes = Pacientes.objects.all().order_by('-id')
 
 	npacientes = Pacientes.objects.all().count()
 
@@ -478,7 +482,8 @@ def createncion(request,paciente):
 
 		Atencion(paciente_id=paciente,descripcion=descripcion,fecha=start,medicos_id=medico).save()
 
-		return render(request, 'creacita.html',{'paciente':p})
+		return HttpResponseRedirect('/createncion/'+paciente)
+		#return render(request, 'creacita.html',{'paciente':p})
 
 
 @login_required(login_url="/login")
@@ -526,7 +531,8 @@ def creacita(request,paciente):
 
 		Citas(paciente_id=paciente,descripcion=descripcion,start=start,medico_id=medico).save()
 
-		return render(request, 'creacita.html',{'paciente':p})
+		return HttpResponseRedirect('/creacita/'+paciente)
+		#return render(request, 'creacita.html',{'paciente':p})
 
 @login_required(login_url="/login")
 def medico(request):
@@ -623,19 +629,22 @@ def nuevopaciente(request):
 
 			p = PacientesForm(request.POST, instance=a).save()
 
-			Atencion(paciente_id=p.id).save()
+			# Atencion(paciente_id=p.id).save()
 
-			id_a = Atencion.objects.all().values('id').order_by('-id')[0]['id']
+			# id_a = Atencion.objects.all().values('id').order_by('-id')[0]['id']
 
-			a = Atencion.objects.get(id=id_a)
+			# a = Atencion.objects.get(id=id_a)
 
-			form = AtencionForm(instance=a)
+			# form = AtencionForm(instance=a)
 
 
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return render(request, 'atencion.html',{'msj': 'El paciente se guardo con exito ','form':form})
+
+			return HttpResponseRedirect('/paciente/')
+
+			#return render(request, 'atencion.html',{'msj': 'El paciente se guardo con exito ','form':form})
 
 	else:
 		form = PacientesForm()
