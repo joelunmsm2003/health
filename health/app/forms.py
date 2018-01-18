@@ -46,7 +46,6 @@ class CitasForm(ModelForm):
         widgets = {
             'id':TextInput(attrs={'class':'form-control'}),
             'paciente':Select(attrs={'class':'form-control'}),
-            'tratamiento':Select(attrs={'class':'form-control'}),
             'title':TextInput(attrs={'class':'form-control'}),
             'descripcion':TextInput(attrs={'class':'form-control'}),
             'area':Select(attrs={'class':'form-control'}),
@@ -60,6 +59,25 @@ class CitasForm(ModelForm):
         }
 
 
+class TratamientoForm(ModelForm):
+    class Meta:
+        model = Tratamiento
+        fields = '__all__'
+        widgets = {
+            'Diagnostico':TextInput(attrs={'class':'form-control'}),
+            'paciente':Select(attrs={'class':'form-control'}),
+            'medico':Select(attrs={'class':'form-control'}),
+            'Fecha_ini':TextInput(attrs={'type':'date','class':'form-control'}),
+            'Frecuencia':TextInput(attrs={'class':'form-control'}),
+            'Apoyo':TextInput(attrs={'class':'form-control'}),
+            'Tipo':TextInput(attrs={'class':'form-control'}),
+            'Porcentaje':TextInput(attrs={'class':'form-control'}),
+            'Sesion':TextInput(attrs={'class':"form-control"}),
+            'Dolor_Fisico':TextInput(attrs={'class':"form-control"}),
+            'Malestar_Emocional':TextInput(attrs={'class':"form-control"}),
+            'Estudio_Medico':TextInput(attrs={'class':"form-control"}),
+            'Firma':TextInput(attrs={'class':'form-control'})
+        }
 
 
 

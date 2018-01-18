@@ -19,18 +19,21 @@ from django.db import models
 
 @python_2_unicode_compatible
 class Tratamiento(models.Model):
+    paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
+    medico = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
 
-    Diagnostico = models.CharField(max_length=300)
+    Diagnostico = models.CharField(max_length=300,blank=True,null=True)
     Fecha_ini = models.DateTimeField(blank=True, null=True)
-    Frecuencia = models.CharField(max_length=300)
-    Apoyo = models.CharField(max_length=300)
-    Tipo = models.CharField(max_length=300)
-    Porcentaje = models.CharField(max_length=300)
-    Sesion = models.CharField(max_length=300)
-    Dolor_Fisico = models.CharField(max_length=300)
-    Malestar_Emocional = models.CharField(max_length=300)
-    Estudio_Medico = models.CharField(max_length=300)
-    Firma = models.CharField(max_length=300)
+    Frecuencia = models.CharField(max_length=300,blank=True,null=True)
+    Apoyo = models.CharField(max_length=300,blank=True,null=True)
+    Tipo = models.CharField(max_length=300,blank=True,null=True)
+    Porcentaje = models.CharField(max_length=300,blank=True,null=True)
+    Sesion = models.CharField(max_length=300,blank=True,null=True)
+    Dolor_Fisico = models.CharField(max_length=300,blank=True,null=True)
+    Malestar_Emocional = models.CharField(max_length=300,blank=True,null=True)
+    Estudio_Medico = models.CharField(max_length=300,blank=True,null=True)
+    Firma = models.CharField(max_length=300,blank=True,null=True)
+
 
     def __str__(self):
         
@@ -42,7 +45,6 @@ class Citas(models.Model):
 
     id = models.AutoField(primary_key=True)
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
-    tratamiento = models.ForeignKey('Tratamiento',max_length=300,blank=True, null=True)
     title = models.CharField('Titulo',max_length=300)
     descripcion = models.CharField('Descripcion',max_length=300)
     area = models.ForeignKey('Area',max_length=300,blank=True,null=True)

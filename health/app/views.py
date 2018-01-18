@@ -301,7 +301,7 @@ def nuevacita(request):
 
 
 
-	return render(request, 'nuevacita.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'grupo':grupo})
+	return render(request, 'nuevacita.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
 
 
 def editpaciente(request,id_paciente):
@@ -329,10 +329,12 @@ def editpaciente(request,id_paciente):
 		p = Pacientes.objects.get(id=id_paciente)
 
 		c = Citas.objects.filter(paciente_id=id_paciente)
+
+		t = Tratamiento.objects.filter(paciente_id=id_paciente)
 		
 		form = PacientesForm(instance=p)
 
-	return render(request, 'editpaciente.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'id_paciente':id_paciente,'paciente':p,'citas':c})
+	return render(request, 'editpaciente.html',{'t':t,'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'id_paciente':id_paciente,'paciente':p,'citas':c})
 
 
 def traeeluser(request):
@@ -452,6 +454,8 @@ def createncion(request,paciente):
 
 		a = Atencion.objects.filter(paciente_id=paciente)
 
+		t = Tratamiento.objects.filter(paciente_id=paciente)
+
 
 		# form = MedicosForm()
 		# _medicos = Medicos.objects.all()
@@ -467,7 +471,7 @@ def createncion(request,paciente):
 		# ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
 
 
-		return render(request, 'atencion.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'paciente':paciente,'medicos':medicos,'citas':c,'atencion':a})
+		return render(request, 'atencion.html',{'t':t,'user':traeeluser(request),'grupo':traeelgrupo(request),'paciente':paciente,'medicos':medicos,'citas':c,'atencion':a})
 
 	if request.method == 'POST':
 
@@ -501,6 +505,8 @@ def creacita(request,paciente):
 
 		a = Atencion.objects.filter(paciente_id=paciente)
 
+		t = Tratamiento.objects.filter(paciente_id=paciente)
+
 
 		# form = MedicosForm()
 		# _medicos = Medicos.objects.all()
@@ -516,7 +522,7 @@ def creacita(request,paciente):
 		# ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
 
 
-		return render(request, 'creacita.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'paciente':paciente,'medicos':medicos,'citas':c,'atencion':a})
+		return render(request, 'creacita.html',{'t':t,'user':traeeluser(request),'grupo':traeelgrupo(request),'paciente':paciente,'medicos':medicos,'citas':c,'atencion':a})
 
 	if request.method == 'POST':
 
@@ -561,7 +567,6 @@ def dashboard(request):
 	u = User.objects.get(id=request.user.id)
 
 	grupo =u.groups.get()
-	print "nnnnnn",datetime
 
 	npacientes = Pacientes.objects.filter(fecha_ini=date.today()).count()
 
@@ -569,18 +574,31 @@ def dashboard(request):
 
 	natenciones= Atencion.objects.all().count()
 
-
-	print "TIGREZHITO",date.today()
 	#ncitashoy = Citas.objects.annotate(Count('start')).count()
 	ncitashoy = Citas.objects.filter(start__gte=date.today()).count()
 
-	print "ttttttttttttttttttt",ncitashoy
-
-	
-	
 	return render(request,'dashboard.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 
+@login_required(login_url="/login")
+
+def dashboard(request):
+
+	u = User.objects.get(id=request.user.id)
+
+	grupo =u.groups.get()
+
+	npacientes = Pacientes.objects.filter(fecha_ini=date.today()).count()
+
+	ncitas = Citas.objects.all().count()
+
+	natenciones= Atencion.objects.all().count()
+
+	#ncitashoy = Citas.objects.annotate(Count('start')).count()
+
+	ncitashoy = Citas.objects.filter(start__gte=date.today()).count()
+
+	return render(request,'dashboard.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'natenciones':natenciones,'npacientes':npacientes,'ncitashoy':ncitashoy,'ncitas':ncitas})
 
 
 def editcita(request,id_cita):
@@ -801,3 +819,59 @@ def nuevaconsulta(request):
 
 	return render(request, 'nuevaconsulta.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
 
+
+@login_required(login_url="/login")
+def creatratamiento(request,paciente):
+
+
+	if request.method == 'GET':
+		
+		paciente = Pacientes.objects.get(id=paciente)
+
+
+		medicos = Medicos.objects.all()
+
+		c = Citas.objects.filter(paciente_id=paciente)
+
+		a = Atencion.objects.filter(paciente_id=paciente)
+
+		t = Tratamiento.objects.filter(paciente_id=paciente)
+
+
+		form = TratamientoForm()
+		# _medicos = Medicos.objects.all()
+
+		# npacientes = Pacientes.objects.all().count()
+
+		# ncitas = Citas.objects.all().count()
+
+		# natenciones= Atencion.objects.all().count()
+
+
+
+		# ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
+
+
+		return render(request, 'creatratamiento.html',{'t':t,'form':form,'user':traeeluser(request),'grupo':traeelgrupo(request),'paciente':paciente,'medicos':medicos,'citas':c,'atencion':a})
+
+	if request.method == 'POST':
+
+		form = ConsultaForm(request.POST)
+
+		# Create and save the new author instance. There's no need to do anything else.
+
+
+	# check whether it's valid:
+		if form.is_valid():
+
+			a = Tratamiento()
+
+			f = TratamientoForm(request.POST, instance=a).save()
+
+
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/creatratamiento/'+paciente)
+		
+		#return render(request, 'creacita.html',{'paciente':p})

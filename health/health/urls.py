@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^uploadfoto/(\d+)', views.uploadfoto),
     url(r'^creacita/(\d+)', views.creacita),
 
+    url(r'^creatratamiento/(\d+)', views.creatratamiento),
   ]
 
 
