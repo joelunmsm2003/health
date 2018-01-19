@@ -49,6 +49,10 @@ class HabitosAdmin(admin.ModelAdmin):
 class CiudadAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
 
+@admin.register(Departamento)
+class DepartamentoAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
 
 @admin.register(Fotos)
 class FotosAdmin(admin.ModelAdmin):
@@ -101,7 +105,7 @@ class ProspectoAdmin(admin.ModelAdmin):
 
 @admin.register(Consulta)
 class ConsultaAdmin(admin.ModelAdmin):
-	list_display = ('paciente','medicos','tipo','fecha_ini')
+	list_display = ('departamento','paciente','medicos','tipo','fecha_ini')
 
 	def paciente(self, obj):
 		return obj.paciente.nombre

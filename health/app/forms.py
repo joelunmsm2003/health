@@ -148,6 +148,7 @@ class ConsultaForm(ModelForm):
         model = Consulta
         fields = '__all__'
         widgets = {
+            'Departamento':TextInput(attrs={'class':'form-control'}),
             'Pacientes':TextInput(attrs={'class':'form-control'}),
             
             'medico':TextInput(attrs={'class':'form-control'}),

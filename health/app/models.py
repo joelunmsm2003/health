@@ -74,6 +74,14 @@ class Ciudad(models.Model):
 
 
 @python_2_unicode_compatible
+class Departamento(models.Model):
+
+    nombre = models.CharField(max_length=300)
+    def __str__(self):
+
+        return self.nombre    
+
+@python_2_unicode_compatible
 class Pacientes(models.Model):
     nombre =models.CharField(max_length=300,blank=True)
     apellido =models.CharField(max_length=300,blank=True)
@@ -245,6 +253,8 @@ class Tipo(models.Model):
 
 @python_2_unicode_compatible
 class Consulta(models.Model):
+
+    departamento=  models.ForeignKey('Departamento',max_length=300,blank=True, null=True)
 
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
     medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
