@@ -14,6 +14,12 @@ from django.utils.translation import ugettext_lazy
 
 
 
+@admin.register(Reporte)
+class ReporteAdmin(admin.ModelAdmin):
+
+	list_display = ('Fecha_ini','tipos')
+
+
 @admin.register(Citas)
 class CitasAdmin(admin.ModelAdmin):
 
