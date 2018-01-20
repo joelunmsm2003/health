@@ -118,6 +118,21 @@ def get_name(request):
     return render(request, 'dashboard.html', {'form': form})
 
 
+
+def reportes(request):
+
+
+	c = Consulta.objects.all()
+
+	#nombre = request.GET['dato']
+
+	#p=Pacientes.objects.filter(dni__search=nombre)
+
+	#p=Pacientes.objects.filter(nombre__contains=nombre)
+
+	
+	return render(request, 'reportes.html',{'c':c})
+
 def busqueda(request):
 
 	nombre = request.GET['dato']
@@ -179,7 +194,7 @@ def busquedacita(request):
 	c=Citas.objects.filter(paciente__nombre__contains=paciente)
 
 	
-	return render(request, 'index.html',{'citas':c})
+	return render(request, 'citas.html',{'citas':c})
 
 
 def busquedamedico(request):
@@ -192,6 +207,31 @@ def busquedamedico(request):
 
 	
 	return render(request, 'medico.html',{'medicos':m})
+
+
+
+def busquedaconsulta(request):
+
+	tipo= request.POST['tipo']
+
+	print 'traendo los tipossss',tipo
+
+	fecha= request.POST['fecha']
+
+	print 'fechasss',fecha
+
+	c = Consulta.objects.filter(fecha_ini=fecha)
+
+	print 'cccccc',c
+
+	#p=Pacientes.objects.filter(dni__search=nombre)
+
+	
+	
+	return render(request, 'reportes.html',{'c':c})
+
+
+
 
 
 def home(request):
@@ -628,6 +668,39 @@ def editcita(request,id_cita):
 		form = CitasForm(instance=m)
 
 	return render(request, 'nuevacita.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'cita':m,'id_cita':id_cita})
+
+
+
+def editconsulta(request,id_consulta):
+
+	if request.method == 'POST':
+
+		a=Consulta.objects.get(id=id_cita)
+
+		form = ConsultaForm(request.POST, instance=a)
+
+
+		if form.is_valid():
+
+			print 'validoooooo'
+
+			f = ConsultaForm(request.POST, instance=a).save()
+
+
+			return HttpResponseRedirect('/consulta')
+
+	    # if a GET (or any other method) we'll create a blank form
+	else:
+
+
+		m=Consulta.objects.get(id=id_consulta)
+		
+		form = ConsultaForm(instance=m)
+
+	return render(request, 'nuevaconsulta.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'consulta':m,'id_consulta':id_consulta})
+
+
+
 
 
 def nuevopaciente(request):

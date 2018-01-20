@@ -68,7 +68,7 @@
 
      <!--     INICIO DEL BUSCADOR-->
 
-<!--           <form class="form-inline my-2 my-sm-0" method="get" action="/busqueda/">
+         <form class="form-inline my-2 my-sm-0" method="get" action="/busqueda/">
 
 
     
@@ -85,8 +85,10 @@
 
     </form>
 
-    <BR> -->
-   <!-- FIN DEL BUSCADOR-->
+    <BR>
+   <!-- FIN DEL BUSCADOR
+
+
 
 
               {% for p in pacientes %}
@@ -163,6 +165,9 @@
                           <!--   <a href="/pagos/{{p.id}}" class="btn btn-primary btn-sm">Pagos</a> -->
 
                             <a href="/creatratamiento/{{p.id}}" class="btn btn-primary btn-sm">Tratamiento</a>
+
+
+                            <a href="/nuevaconsulta/{{p.id}}" class="btn btn-primary btn-sm">C</a>
 </div>
 
                   </div>
@@ -231,4 +236,5 @@
 
 
   </body>
+
 </html>

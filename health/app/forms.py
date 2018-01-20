@@ -148,13 +148,24 @@ class ConsultaForm(ModelForm):
         model = Consulta
         fields = '__all__'
         widgets = {
+            'Departamento':TextInput(attrs={'class':'form-control'}),
             'Pacientes':TextInput(attrs={'class':'form-control'}),
             
             'medico':TextInput(attrs={'class':'form-control'}),
             'Tipo':TextInput(attrs={'class':'form-control'}),
            
-            'fecha_ini':TextInput(attrs={'class':'form-control'}),
+            'fecha_ini':TextInput(attrs={'type':'date','class':'form-control'})
         }
      
  
 
+class ReporteForm(ModelForm):
+    class Meta:
+        model = Reporte
+        fields = '__all__'
+        widgets = {
+           
+            'fecha_ini':TextInput(attrs={'type':'date','class':'form-control'}),
+               'Tipo':TextInput(attrs={'class':'form-control'}),
+        }
+     

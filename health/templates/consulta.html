@@ -92,7 +92,7 @@
 
  <!--     INICIO DEL BUSCADOR-->
 
-          <form class="form-inline my-2 my-sm-0" method="get" action="/busquedacita/">
+          <form class="form-inline my-2 my-sm-0" method="get" action="/busquedaconsulta/">
 
 
     
@@ -102,7 +102,7 @@
         <button style='border: 1px solid;' class="btn btn-secondary" type='submit'><i class="fa fa-search" aria-hidden="true"></i></button>
       </span>
       <span class="input-group-btn">
-      <a href="/paciente"class="btn btn-secondary" type='submit'><i class="fa fa-arrow-left" aria-hidden="true"></i> volver</i></a>
+      <a href="/consulta"class="btn btn-secondary" type='submit'><i class="fa fa-arrow-left" aria-hidden="true"></i> volver</i></a>
       </span>
     </div>
 
@@ -124,7 +124,7 @@
                       <div class="image has-shadow"><img src="http://localhost:8000/{{p.foto}}" alt="..." class="img-fluid"></div>
                       <div class="text">
                        <small>PACIENTE</small> <h4 class=<"h4">
-                       {{c.paciente}}<a href="/editcita/{{c.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
+                       {{c.paciente}}<a href="/editconsulta/{{c.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
                       </div>
 
                     </div>
@@ -142,6 +142,7 @@
                    
                       <div class="text">
                         <small>TIPO</small> <h4 class=<"h4">{{c.tipo}}</h4>
+                        
                       </div>
                       
                     </div>
