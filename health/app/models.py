@@ -17,6 +17,23 @@ from django.utils import timezone
 from django.db import models
 
 @python_2_unicode_compatible
+class Asistencia(models.Model):
+    nombre = models.CharField(max_length=300,blank=True,null=True)
+  
+    def __str__(self):
+        
+        return self.nombre
+
+@python_2_unicode_compatible
+class Origen(models.Model):
+    nombre = models.CharField(max_length=300,blank=True,null=True)
+  
+    def __str__(self):
+        
+        return self.nombre
+
+@python_2_unicode_compatible
+
 class Reporte(models.Model):
     Fecha_ini = models.DateTimeField(blank=True, null=True)
     tipos = models.CharField(max_length=300,blank=True,null=True)
@@ -219,9 +236,6 @@ class Evaluacion(models.Model):
 
         return self.nombre
 
-
-
-
 @python_2_unicode_compatible
 
 class Atencion(models.Model):
@@ -264,14 +278,16 @@ class Tipo(models.Model):
 class Consulta(models.Model):
 
     departamento=  models.ForeignKey('Departamento',max_length=300,blank=True, null=True)
+    hora = models.TimeField(blank=True, null=True)
 
+    fecha_ini= models.DateTimeField(blank=True, null=True)
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
-    medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
+    #medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
     #consulta = models.ForeignKey('Consulta',max_length=300,blank=True, null=True)
     tipo = models.ForeignKey('Tipo',max_length=300,blank=True, null=True)
-   
-    fecha_ini= models.DateTimeField(blank=True, null=True)
-   
+    origen = models.ForeignKey('Origen',max_length=300,blank=True, null=True)
+    asistencia = models.ForeignKey('Asistencia',max_length=300,blank=True, null=True)
+    
     def __str__(self):
 
         return 'self.medicos.nombre'

@@ -12,6 +12,16 @@ from django.contrib.admin.filters import RelatedOnlyFieldListFilter
 from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
 
+@admin.register(Asistencia)
+class AsistenciaAdmin(admin.ModelAdmin):
+
+	list_display = ('nombre',)
+
+
+@admin.register(Origen)
+class OrigenAdmin(admin.ModelAdmin):
+
+	list_display = ('nombre',)
 
 
 @admin.register(Reporte)
@@ -111,13 +121,5 @@ class ProspectoAdmin(admin.ModelAdmin):
 
 @admin.register(Consulta)
 class ConsultaAdmin(admin.ModelAdmin):
-	list_display = ('departamento','paciente','medicos','tipo','fecha_ini')
+	list_display = ('departamento','hora','fecha_ini','tipo','origen','asistencia')
 
-	def paciente(self, obj):
-		return obj.paciente.nombre
-
-	def medicos(self, obj):
-		return obj.medicos.nombre
-
-	def tipo(self, obj):
-		return obj.tipo.nombre

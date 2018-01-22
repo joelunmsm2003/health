@@ -71,14 +71,12 @@ from django.http import HttpResponse, JsonResponse
 from datetime import *
 
 
-
-
 def traeconsulta(request):
 
 
 	form = ConsultaForm()
 
-	_consulta = Consulta.objects.all()
+	_consulta = Consulta.objects.all().order_by('-id')
 	#para q apraseca los conteos  de los indicadore en consulta
 
 	u = User.objects.get(id=request.user.id)
@@ -580,6 +578,11 @@ def creacita(request,paciente):
 		return HttpResponseRedirect('/creacita/'+paciente)
 		#return render(request, 'creacita.html',{'paciente':p})
 
+
+
+
+
+
 @login_required(login_url="/login")
 def medico(request):
 
@@ -864,33 +867,53 @@ def pagos(request):
 	return render(request, 'pagos.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
 
 
-def nuevaconsulta(request):
+def nuevaconsulta(request,id_paciente):
 
 	if request.method == 'POST':
 	# create a form instance and populate it with data from the request:
-		form = ConsultaForm(request.POST)
 
-		# Create and save the new author instance. There's no need to do anything else.
+		paciente = Pacientes.objects.get(id=id_paciente)
+		departamento =request.POST['departamento']
+
+		print 'departamente',departamento
+		tipo=request.POST['tipo']
+		hora=request.POST['hora']
+		origen=request.POST['origen']
+		asistencia=request.POST['asistencia']
+		fecha = request.POST['fecha']
+
+		p =Pacientes.objects.get(id=id_paciente)
 
 
-	# check whether it's valid:
-		if form.is_valid():
+		Consulta(paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,).save()
 
-			a = Consulta()
+		return HttpResponseRedirect('/consulta/')
 
-			f = ConsultaForm(request.POST, instance=a).save()
+	# 	form = ConsultaForm(request.POST)
+
+	# 	# Create and save the new author instance. There's no need to do anything else.
 
 
-			# process the data in form.cleaned_data as required
-			# ...
-			# redirect to a new URL:
-			return HttpResponseRedirect('/nuevaconsulta/')
+	# # check whether it's valid:
+	# 	if form.is_valid():
 
-	    # if a GET (or any other method) we'll create a blank form
+	# 		a = Consulta()
+
+	# 		f = ConsultaForm(request.POST, instance=a).save()
+
+
+	# 		# process the data in form.cleaned_data as required
+	# 		# ...
+	# 		# redirect to a new URL:
+	# 		return HttpResponseRedirect('/consulta/')
+
+	#     # if a GET (or any other method) we'll create a blank form
 	else:
 		form = ConsultaForm()
 
-	return render(request, 'nuevaconsulta.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
+		p =Pacientes.objects.get(id=id_paciente)
+
+		return render(request, 'nuevaconsulta.html',{'paciente':p,'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
 
 
 @login_required(login_url="/login")

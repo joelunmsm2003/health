@@ -33,13 +33,15 @@ urlpatterns = [
     url(r'^busquedaconsulta/', views.busquedaconsulta),
     url(r'^fotos/', views.fotos),
     url(r'^consulta/', views.traeconsulta),
-    url(r'^nuevaconsulta/', views.nuevaconsulta),
+    url(r'^nuevaconsulta/(\d+)', views.nuevaconsulta),
     url(r'^tomafoto/', views.tomafoto),
     url(r'^uploadfoto/(\d+)', views.uploadfoto),
     url(r'^creacita/(\d+)', views.creacita),
 
     url(r'^creatratamiento/(\d+)', views.creatratamiento),
     url(r'^reportes/', views.reportes),
+
+   
   ]
 
 

@@ -102,7 +102,7 @@
         <button style='border: 1px solid;' class="btn btn-secondary" type='submit'><i class="fa fa-search" aria-hidden="true"></i></button>
       </span>
       <span class="input-group-btn">
-      <a href="/consulta"class="btn btn-secondary" type='submit'><i class="fa fa-arrow-left" aria-hidden="true"></i> volver</i></a>
+      <a href="/consulta" class="btn btn-secondary" type='submit'><i class="fa fa-arrow-left" aria-hidden="true"></i> volver</i></a>
       </span>
     </div>
 
@@ -119,19 +119,19 @@
              
               <div class="project">
                 <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-7 d-flex align-items-center justify-content-between">
+                  <div class="left-col col-lg-8 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="http://localhost:8000/{{p.foto}}" alt="..." class="img-fluid"></div>
+                      <div class="image has-shadow"><img src="http://localhost:8000/{{c.paciente.foto}}" alt="..." class="img-fluid"></div>
                       <div class="text">
-                       <small>PACIENTE</small> <h4 class=<"h4">
-                       {{c.paciente}}<a href="/editconsulta/{{c.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
+                       <small>PACIENTE {{c.paciente.foto}}</small> <h4>
+                       {{c.paciente_id}} {{c.paciente}}<a href="/editconsulta/{{c.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
                       </div>
 
                     </div>
-                      <div class="project-title d-flex align-items-center">
+                      <div class="right-col col-lg-6 d-flex align-items-center">
                      
                       <div class="text">
-                        <small>MEDICO</small> <h4 class=<"h4">{{c.medicos}} </h4>
+                        <small>CONSULTA </small> <h4>{{c.tipo}} </h4>
                       </div>
                       
                     </div>
@@ -141,29 +141,36 @@
                       <div class="project-title d-flex align-items-center">
                    
                       <div class="text">
-                        <small>TIPO</small> <h4 class=<"h4">{{c.tipo}}</h4>
+                        <small>ORIGEN</small> <h4 >{{c.origen}}</h4>
                         
                       </div>
                       
                     </div>
                  
-                  </div>
-                  <div class="right-col col-lg-5 d-flex align-items-center">
-                  
-                
+                    
 
-                    <div class="project-progress">
-                      <div class="progress">
-                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
-                      </div>
-                        <br>
-                      <div class="progress">
-                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-blue"></div>
+                  </div>
+                  <div class="right-col col-lg-1 d-flex align-items-center">
+                  
+                   <div class="text">
+                        <small>ASISTENCIA</small> <h4 >{{c.asistencia}}</h4>
+                        
                       </div>
                       
                     </div>
 
+                     <div class="project-title d-flex align-items-center">
+                   
+                   
 
+                        <div class="project-title d-flex align-items-center">
+                   
+                      <div class="text">
+                        <small>HORA</small> <h4 >{{c.hora}}</h4>
+                        
+                      </div>
+                      
+                    </div>
                   </div>
                 </div>
                             

@@ -149,10 +149,12 @@ class ConsultaForm(ModelForm):
         fields = '__all__'
         widgets = {
             'Departamento':TextInput(attrs={'class':'form-control'}),
+            'hora':TextInput(attrs={'type':'time','class':'form-control'}),
+
             'Pacientes':TextInput(attrs={'class':'form-control'}),
             
             'medico':TextInput(attrs={'class':'form-control'}),
-            'Tipo':TextInput(attrs={'class':'form-control'}),
+            'Tipo ':TextInput(attrs={'class':'form-control'}),
            
             'fecha_ini':TextInput(attrs={'type':'date','class':'form-control'})
         }
