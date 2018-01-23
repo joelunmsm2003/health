@@ -79,62 +79,67 @@
 
 
               <!--Lista de Pacientes-->
-              <div class="project">
-                <div class="row bg-white ">
-                  <div class="left-col col-lg-10 d-flex align-items-center justify-content-between">
+                <div class="project">
+                <div class="row bg-white has-shadow">
+                  <div class="left-col col-lg-9 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                      <div class="image "><img src="{{p.paciente.foto}}" alt="..." class="img-fluid"></div>
+                      <div class="image has-shadow"><img src="http://localhost:8000/{{c.paciente.foto}}" alt="..." class="img-fluid"></div>
                       <div class="text">
-                       <small>Paciente</small > <h5 id="myBtn" >
-                       <a href="/editpaciente/{{p.paciente.id}}" class='lapiz'>{{p.paciente.nombre}}  </a></h5>
+                       <small>PACIENTE {{p.paciente.foto}}</small> <h4>
+                       {{p.paciente_id}}_ {{p.paciente}}<a href="/editconsulta/{{p.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
                       </div>
 
                     </div>
-                      <div class="project-title d-flex align-items-center">
+                      <div class="right-col col-lg-3 d-flex align-items-center">
                      
                       <div class="text">
-                        <small>Medico</small> <h5>{{p.medico.nombre}} </h5>
+                        <small>CONSULTA </small> <h4>{{p.tipo}} </h4>
                       </div>
                       
                     </div>
+                    
 
 
                       <div class="project-title d-flex align-items-center">
                    
                       <div class="text">
-                        <small>Medico</small> <h5>{{p}}</h5>
+                        <small>ORIGEN</small> <h4 >{{p.origen}}</h4>
+                        
                       </div>
                       
                     </div>
                  
-                 
-                 
+                    
+
                   </div>
-                  <div class="right-col col-lg-2 d-flex align-items-center">
+                  <div class="right-col col-lg-1 d-flex align-items-center">
                   
-                
-
-                    <div class="project-progress">
-                      <div class="progress">
-                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
-                      </div>
-                        <br>
-                      <div class="progress">
-                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-blue"></div>
+                   <div class="text">
+                        <small>ASISTENCIA</small> <h4 >{{p.asistencia}}</h4>
+                        
                       </div>
                       
                     </div>
 
+                     <div class="project-title d-flex align-items-center">
+                   
+                   
 
-
-                       
-
-
-
-
+                        <div class="project-title d-flex align-items-center">
+                   
+                      <div class="text">
+                        <small>HORA</small> <h4 >{{p.hora}}</h4>
+                        
+                      </div>
+                      
+                    </div>
                   </div>
                 </div>
+                            
+
               </div>
+    
+
     
 
               {% endfor %}

@@ -151,7 +151,7 @@ class ConsultaForm(ModelForm):
             'Departamento':TextInput(attrs={'class':'form-control'}),
             'hora':TextInput(attrs={'type':'time','class':'form-control'}),
 
-            'paciente':Select(attrs={'class':'form-control','disabled':True}),
+            'paciente':Select(attrs={'class':'form-control'}),
             
             'medico':TextInput(attrs={'class':'form-control'}),
             'Tipo ':TextInput(attrs={'class':'form-control'}),
