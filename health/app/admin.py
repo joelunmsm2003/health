@@ -121,5 +121,5 @@ class ProspectoAdmin(admin.ModelAdmin):
 
 @admin.register(Consulta)
 class ConsultaAdmin(admin.ModelAdmin):
-	list_display = ('departamento','hora','fecha_ini','tipo','origen','asistencia')
+	list_display = ('hora','fecha_ini','tipo','origen','asistencia')
 

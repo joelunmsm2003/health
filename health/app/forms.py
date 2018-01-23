@@ -7,7 +7,7 @@ class PacientesForm(ModelForm):
     class Meta:
         model = Pacientes
         fields = '__all__'
-        exclude = ('user','foto') 
+        exclude = ('user','foto','apellido','telefono','referenciado','ciudad') 
         widgets = {
             'dni':TextInput(attrs={'class':'form-control','type':'number'}),
 			'domicilio':TextInput(attrs={'class':'form-control'}),
@@ -151,7 +151,7 @@ class ConsultaForm(ModelForm):
             'Departamento':TextInput(attrs={'class':'form-control'}),
             'hora':TextInput(attrs={'type':'time','class':'form-control'}),
 
-            'Pacientes':TextInput(attrs={'class':'form-control'}),
+            'paciente':Select(attrs={'class':'form-control','disabled':True}),
             
             'medico':TextInput(attrs={'class':'form-control'}),
             'Tipo ':TextInput(attrs={'class':'form-control'}),

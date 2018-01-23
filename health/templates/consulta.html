@@ -92,7 +92,7 @@
 
  <!--     INICIO DEL BUSCADOR-->
 
-          <form class="form-inline my-2 my-sm-0" method="get" action="/busquedaconsulta/">
+          <form class="form-inline my-2 my-sm-0" method="get" action="/buscaconsulta/">
 
 
     
@@ -119,16 +119,16 @@
              
               <div class="project">
                 <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-8 d-flex align-items-center justify-content-between">
+                  <div class="left-col col-lg-9 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
                       <div class="image has-shadow"><img src="http://localhost:8000/{{c.paciente.foto}}" alt="..." class="img-fluid"></div>
                       <div class="text">
                        <small>PACIENTE {{c.paciente.foto}}</small> <h4>
-                       {{c.paciente_id}} {{c.paciente}}<a href="/editconsulta/{{c.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
+                       {{c.paciente_id}}_ {{c.paciente}}<a href="/editconsulta/{{c.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
                       </div>
 
                     </div>
-                      <div class="right-col col-lg-6 d-flex align-items-center">
+                      <div class="right-col col-lg-3 d-flex align-items-center">
                      
                       <div class="text">
                         <small>CONSULTA </small> <h4>{{c.tipo}} </h4>

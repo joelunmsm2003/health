@@ -207,8 +207,21 @@ def busquedamedico(request):
 	return render(request, 'medico.html',{'medicos':m})
 
 
+def buscaconsulta(request):
+
+	paciente= request.GET['dato']
+
+	#p=Pacientes.objects.filter(dni__search=nombre)
+
+	m=Consulta.objects.filter(paciente__nombre__contains=paciente)
+
+	return render(request,'consulta.html',{'consulta':m})
+	
+#.............................esto lo de arriaba lo agrege yo ........
+
 
 def busquedaconsulta(request):
+
 
 	tipo= request.POST['tipo']
 
@@ -226,9 +239,7 @@ def busquedaconsulta(request):
 
 	
 	
-	return render(request, 'reportes.html',{'c':c})
-
-
+	return render(request,'reportes.html',{'c':c})
 
 
 
@@ -678,7 +689,9 @@ def editconsulta(request,id_consulta):
 
 	if request.method == 'POST':
 
-		a=Consulta.objects.get(id=id_cita)
+		print 'id_consulta',id_consulta
+
+		a=Consulta.objects.get(id=id_consulta)
 
 		form = ConsultaForm(request.POST, instance=a)
 
@@ -690,7 +703,7 @@ def editconsulta(request,id_consulta):
 			f = ConsultaForm(request.POST, instance=a).save()
 
 
-			return HttpResponseRedirect('/consulta')
+			return HttpResponseRedirect('/consulta/'+id_consulta)
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
@@ -700,7 +713,7 @@ def editconsulta(request,id_consulta):
 		
 		form = ConsultaForm(instance=m)
 
-	return render(request, 'nuevaconsulta.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'consulta':m,'id_consulta':id_consulta})
+	return render(request, 'editconsulta.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'consulta':m,'id_consulta':id_consulta})
 
 
 
@@ -885,7 +898,7 @@ def nuevaconsulta(request,id_paciente):
 		p =Pacientes.objects.get(id=id_paciente)
 
 
-		Consulta(paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,).save()
+		Consulta(paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,).save()
 
 		return HttpResponseRedirect('/consulta/')
 

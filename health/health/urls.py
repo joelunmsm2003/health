@@ -30,7 +30,10 @@ urlpatterns = [
     url(r'^busqueda/', views.busqueda),
     url(r'^busquedacita/', views.busquedacita),
     url(r'^busquedamedico/', views.busquedamedico),
+
     url(r'^busquedaconsulta/', views.busquedaconsulta),
+    
+
     url(r'^fotos/', views.fotos),
     url(r'^consulta/', views.traeconsulta),
     url(r'^nuevaconsulta/(\d+)', views.nuevaconsulta),
@@ -40,6 +43,7 @@ urlpatterns = [
 
     url(r'^creatratamiento/(\d+)', views.creatratamiento),
     url(r'^reportes/', views.reportes),
+    url(r'^buscaconsulta/', views.buscaconsulta),
 
    
   ]

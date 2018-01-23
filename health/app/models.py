@@ -276,12 +276,12 @@ class Tipo(models.Model):
 
 @python_2_unicode_compatible
 class Consulta(models.Model):
-
+    paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
     departamento=  models.ForeignKey('Departamento',max_length=300,blank=True, null=True)
     hora = models.TimeField(blank=True, null=True)
 
     fecha_ini= models.DateTimeField(blank=True, null=True)
-    paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
+    
     #medicos = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
     #consulta = models.ForeignKey('Consulta',max_length=300,blank=True, null=True)
     tipo = models.ForeignKey('Tipo',max_length=300,blank=True, null=True)
