@@ -183,7 +183,7 @@ class Medicos(models.Model):
     domicilio = models.CharField(max_length=300)
     ciudad = models.ForeignKey('Ciudad',max_length=300,blank=True,null=True)
     telefono = models.CharField(max_length=300,blank=True)
-    celular = models.CharField(max_length=300,blank=True)
+    celular = models.CharField('Celular',max_length=300,blank=True)
     email = models.CharField(max_length=300)
     referenciado = models.CharField(max_length=300,blank=True)
     foto = models.FileField(upload_to='static')

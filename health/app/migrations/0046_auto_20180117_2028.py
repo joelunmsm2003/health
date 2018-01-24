@@ -68,19 +68,19 @@ class Migration(migrations.Migration):
             old_name='tipo',
             new_name='Tipo',
         ),
-        migrations.AddField(
-            model_name='tratamiento',
-            name='medico',
-            field=models.ForeignKey(blank=True, max_length=300, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.Medicos'),
-        ),
-        migrations.AddField(
-            model_name='tratamiento',
-            name='paciente',
-            field=models.ForeignKey(blank=True, max_length=300, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.Pacientes'),
-        ),
-        migrations.AlterField(
-            model_name='atencion',
-            name='descripcion',
-            field=models.CharField(blank=True, max_length=300),
-        ),
+        # migrations.AddField(
+        #     model_name='tratamiento',
+        #     name='medico',
+        #     field=models.ForeignKey(blank=True, max_length=300, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.Medicos'),
+        # ),
+        # migrations.AddField(
+        #     model_name='tratamiento',
+        #     name='paciente',
+        #     field=models.ForeignKey(blank=True, max_length=300, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.Pacientes'),
+        # ),
+        # migrations.AlterField(
+        #     model_name='atencion',
+        #     name='descripcion',
+        #     field=models.CharField(blank=True, max_length=300),
+        # ),
     ]

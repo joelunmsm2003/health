@@ -12,58 +12,58 @@ class Migration(migrations.Migration):
         ('app', '0031_citas_tratamiento'),
     ]
 
-    operations = [
-        migrations.RenameField(
-            model_name='medicos',
-            old_name='Celular',
-            new_name='celular',
-        ),
-        migrations.RenameField(
-            model_name='medicos',
-            old_name='Ciudad',
-            new_name='ciudad',
-        ),
-        migrations.RenameField(
-            model_name='medicos',
-            old_name='DNI',
-            new_name='dni',
-        ),
-        migrations.RenameField(
-            model_name='medicos',
-            old_name='Domicilio',
-            new_name='domicilio',
-        ),
-        migrations.RenameField(
-            model_name='medicos',
-            old_name='Email',
-            new_name='email',
-        ),
-        migrations.RenameField(
-            model_name='medicos',
-            old_name='Referenciado',
-            new_name='referenciado',
-        ),
-        migrations.RenameField(
-            model_name='medicos',
-            old_name='Telefono',
-            new_name='telefono',
-        ),
-        migrations.RemoveField(
-            model_name='citas',
-            name='endhora',
-        ),
-        migrations.RemoveField(
-            model_name='citas',
-            name='starthora',
-        ),
-        migrations.AddField(
-            model_name='atencion',
-            name='descripcion',
-            field=models.CharField(blank=True, max_length=300),
-        ),
-        migrations.AddField(
-            model_name='atencion',
-            name='paciente',
-            field=models.ForeignKey(blank=True, max_length=300, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.Pacientes'),
-        ),
-    ]
+    # operations = [
+    #     migrations.RenameField(
+    #         model_name='medicos',
+    #         old_name='Celular',
+    #         new_name='celular',
+    #     ),
+    #     migrations.RenameField(
+    #         model_name='medicos',
+    #         old_name='Ciudad',
+    #         new_name='ciudad',
+    #     ),
+    #     migrations.RenameField(
+    #         model_name='medicos',
+    #         old_name='DNI',
+    #         new_name='dni',
+    #     ),
+    #     migrations.RenameField(
+    #         model_name='medicos',
+    #         old_name='Domicilio',
+    #         new_name='domicilio',
+    #     ),
+    #     migrations.RenameField(
+    #         model_name='medicos',
+    #         old_name='Email',
+    #         new_name='email',
+    #     ),
+    #     migrations.RenameField(
+    #         model_name='medicos',
+    #         old_name='Referenciado',
+    #         new_name='referenciado',
+    #     ),
+    #     migrations.RenameField(
+    #         model_name='medicos',
+    #         old_name='Telefono',
+    #         new_name='telefono',
+    #     ),
+    #     migrations.RemoveField(
+    #         model_name='citas',
+    #         name='endhora',
+    #     ),
+    #     migrations.RemoveField(
+    #         model_name='citas',
+    #         name='starthora',
+    #     ),
+    #     migrations.AddField(
+    #         model_name='atencion',
+    #         name='descripcion',
+    #         field=models.CharField(blank=True, max_length=300),
+    #     ),
+    #     migrations.AddField(
+    #         model_name='atencion',
+    #         name='paciente',
+    #         field=models.ForeignKey(blank=True, max_length=300, null=True, on_delete=django.db.models.deletion.CASCADE, to='app.Pacientes'),
+    #     ),
+    # ]

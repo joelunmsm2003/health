@@ -14,19 +14,19 @@ class Migration(migrations.Migration):
         ('app', '0008_auto_20171016_2017'),
     ]
 
-    operations = [
-        migrations.CreateModel(
-            name='Medicos',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('DNI', models.CharField(blank=True, max_length=300)),
-                ('Domicilio', models.CharField(max_length=300)),
-                ('Ciudad', models.CharField(blank=True, max_length=300)),
-                ('Telefono', models.CharField(blank=True, max_length=300)),
-                ('Celular', models.CharField(blank=True, max_length=300)),
-                ('Email', models.CharField(max_length=300)),
-                ('Referenciado', models.CharField(blank=True, max_length=300)),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
-    ]
+    # operations = [
+    #     migrations.CreateModel(
+    #         name='Medicos',
+    #         fields=[
+    #             ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+    #             ('DNI', models.CharField(blank=True, max_length=300)),
+    #             ('Domicilio', models.CharField(max_length=300)),
+    #             ('Ciudad', models.CharField(blank=True, max_length=300)),
+    #             ('Telefono', models.CharField(blank=True, max_length=300)),
+    #             ('Celular', models.CharField(blank=True, max_length=300)),
+    #             ('Email', models.CharField(max_length=300)),
+    #             ('Referenciado', models.CharField(blank=True, max_length=300)),
+    #             ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
+    #         ],
+    #     ),
+    # ]

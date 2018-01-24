@@ -107,11 +107,11 @@ class Migration(migrations.Migration):
             name='tipo',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
-        migrations.AlterField(
-            model_name='atencion',
-            name='descripcion',
-            field=models.CharField(blank=True, max_length=300, null=True),
-        ),
+        # migrations.AlterField(
+        #     model_name='atencion',
+        #     name='descripcion',
+        #     field=models.CharField(blank=True, max_length=300, null=True),
+        # ),
         migrations.AlterField(
             model_name='pacientes',
             name='domicilio',
