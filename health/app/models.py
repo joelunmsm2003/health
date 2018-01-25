@@ -44,6 +44,17 @@ class Reporte(models.Model):
 
 
 @python_2_unicode_compatible
+
+class tiposventa(models.Model):
+   
+    nombre = models.CharField(max_length=300,blank=True,null=True)
+  
+    def __str__(self):
+        
+        return self.nombre
+
+
+@python_2_unicode_compatible
 class Tratamiento(models.Model):
     paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
     medico = models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
@@ -295,7 +306,7 @@ class Consulta(models.Model):
 @python_2_unicode_compatible
 class Pagos(models.Model):
 
-    titulo = models.CharField(max_length=300,blank=True)
+    venta = models.ForeignKey('Tiposventa',max_length=300,blank=True)
     pacientes = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
     fecha= models.DateTimeField(blank=True, null=True)
     cita = models.ForeignKey('Citas',max_length=300,blank=True, null=True)
@@ -305,7 +316,7 @@ class Pagos(models.Model):
     
     def __str__(self):
 
-        return self.titulo
+        return self.venta
 
 
 
