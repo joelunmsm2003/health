@@ -43,16 +43,6 @@ class Reporte(models.Model):
         return self.tipos
 
 
-@python_2_unicode_compatible
-
-class tiposventa(models.Model):
-   
-    nombre = models.CharField(max_length=300,blank=True,null=True)
-  
-    def __str__(self):
-        
-        return self.nombre
-
 
 @python_2_unicode_compatible
 class Tratamiento(models.Model):
@@ -129,7 +119,7 @@ class Pacientes(models.Model):
     celular = models.CharField(max_length=300,blank=True)
     email = models.CharField(max_length=300,blank=True,null=True)
     referenciado = models.CharField(max_length=300,blank=True)
-    foto = models.TextField(db_column='foto',blank=True)
+    foto = models.TextField(db_column='foto',blank=True,)
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
     nacimiento= models.DateTimeField(blank=True, null=True)
     fecha_ini= models.DateTimeField('Fecha de Ingreso',blank=True, null=True)
@@ -167,7 +157,7 @@ class Recepcion(models.Model):
     celular = models.CharField(max_length=300,blank=True)
     email = models.CharField(max_length=300)
     referenciado = models.CharField(max_length=300,blank=True)
-    foto = models.FileField(upload_to='static')
+    foto = models.FileField(upload_to='static',blank=True,null=True)
     user = models.ForeignKey(User, models.DO_NOTHING,blank=True,null=True)
 
     def __str__(self):
@@ -344,11 +334,22 @@ class Productos(models.Model):
 
         return self.nombre
 
+
+
+@python_2_unicode_compatible
+class Tiposventa(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+        
 @python_2_unicode_compatible
 class Pagos(models.Model):
 
     pacientes = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
-    venta = models.ForeignKey('Tiposventa',max_length=300,blank=True,null=True)
+    venta = models.ForeignKey('ventas',max_length=300,blank=True,null=True)
     clasificacion=models.ForeignKey('Clasificacion',max_length=300,blank=True, null=True)
     estado = models.ForeignKey('Estado',max_length=300,blank=True, null=True)
     medico=models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
