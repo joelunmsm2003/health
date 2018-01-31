@@ -144,3 +144,8 @@ class VentasAdmin(admin.ModelAdmin):
 @admin.register(Productos)
 class ProductosAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
+
+@admin.register(Clasificacion)
+class ClasificacionAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
+
