@@ -850,12 +850,133 @@ def atencion(request):
 	return render(request, 'atencion.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
 
 
+def guardapagos(request):
 
-def pagos(request):
+	if request.method == 'POST':
+
+		#paciente = Pacientes.objects.get(id=id_paciente)
+
+
+		print request.POST
+
+
+		id_pac=request.POST['pacientes']
+
+
+		cantidad = request.POST ['cantidad']
+
+		precio = request.POST['precio']
+
+		descuento =request.POST['descuento']
+		pago = request.POST['pago']
+
+		print request.POST['venta']
+
+
+
+		
+		print 'cantidades del producto',cantidad
+
+		print'precios', precio
+		
+		print 'descuentosssss',descuento
+
+		print 'pagosssssssss', pago
+
+	
+		total =int(cantidad)*int(precio)
+
+
+		print 'totalllllllllllllllllllllllllllllllllllllllllllllllllll',total
+		saldo=int(pago)-int(total)
+		
+		print 'saldooooooooooooooooooooooooooo',saldo
+
+
+
+
+		p= Pagos(venta_id=1)
+		
+
+
+	
+	
+		p.pacientes_id=request.POST['pacientes']
+		p.medico_id= request.POST['medico']
+		p.cantidad= float(request.POST['cantidad'])
+		p.clasificacion_id=request.POST['clasificacion']
+		p.venta_id=request.POST['venta']
+
+		print 'hdhdhhdhdhdhdhdhd'
+
+		
+		p.productos_id=request.POST['productos']
+		p.descuento=float(request.POST['descuento'])
+		p.cobro_id=request.POST['cobro']
+		p.pago=float(request.POST['pago'])
+		p.precio=float(request.POST['precio'])
+		p.estado_id=request.POST['estado']
+		p.total = total
+		p.saldo=saldo
+		#request.POST['productos_id']= productos_id
+		#request.POST['precio']= precio
+	
+		#request.POST['estado_id']= productos_id
+		#request.POST['descuento']= descuento
+		#request.POST['saldo']= saldo
+		#request.POST['total']= total
+
+		p.save()
+
+
+
+
+
+
+
+		#print 'skksks',p
+
+
+		
+		#f = PagosForm(request.POST, instance=p).save()
+
+			
+
+		#venta =request.POST['venta']
+		# print 'venta',venta
+		# clasificacion=request.POST['clasificacion']
+		# estado=request.POST['estado']
+		# medico=request.POST['medico']
+		# cobro=request.POST['cobro']
+		# paciente = request.POST['paciente']
+
+
+		# Pagos(paciente_id=paciente.id,venta_id=venta.id,clasificacion_id=clasificacion.id,estado_id=estado.id,medico_id=medico.id,cobro_id=cobro.id,).save()
+		
+
+
+		return HttpResponseRedirect('/pagos/'+id_pac)
+
+def pagos(request,id_paciente):
+
+
+	p = Pacientes.objects.get(id=id_paciente)
+
+	pagote = Pagos(pacientes_id=id_paciente)
+
+	form = PagosForm(instance=pagote)
+
+	pagitos = Pagos.objects.filter(pacientes_id=id_paciente).order_by('-id')
+
+	print 'Cantidad...',pagitos.count()
+
+	return render(request, 'pagos.html',{'pagitos':pagitos,'p':p,'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
+
+def ventasxxx(request):
 
 	if request.method == 'POST':
 	# create a form instance and populate it with data from the request:
-		form = AtencionForm(request.POST)
+		form = ventasForm(request.POST)
 
 		# Create and save the new author instance. There's no need to do anything else.
 
@@ -863,21 +984,23 @@ def pagos(request):
 	# check whether it's valid:
 		if form.is_valid():
 
-			a = Pagos()
+			a = ventas()
 
-			f = PagosForm(request.POST, instance=a).save()
+			f = ventasForm(request.POST, instance=a).save()
 
 
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
-			return HttpResponseRedirect('/pagos/')
+			return HttpResponseRedirect('/ventas/')
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
-		form = PagosForm()
+		form = ventasForm()
 
-	return render(request, 'pagos.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
+	return render(request, 'ventas.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
+
+
 
 
 def nuevaconsulta(request,id_paciente):
@@ -984,3 +1107,54 @@ def creatratamiento(request,paciente):
 			return HttpResponseRedirect('/creatratamiento/'+paciente)
 		
 		#return render(request, 'creacita.html',{'paciente':p})
+@login_required(login_url="/login")
+def creatuventa(request,paciente):
+
+
+	if request.method == 'GET':
+		
+		paciente = Pacientes.objects.get(id=paciente)
+
+
+		medicos = Medicos.objects.all()
+
+		c = Citas.objects.filter(paciente_id=paciente)
+
+		a = Atencion.objects.filter(paciente_id=paciente)
+
+		t = Tratamiento.objects.filter(paciente_id=paciente)
+
+
+		# form = MedicosForm()
+		# _medicos = Medicos.objects.all()
+
+		# npacientes = Pacientes.objects.all().count()
+
+		# ncitas = Citas.objects.all().count()
+
+		# natenciones= Atencion.objects.all().count()
+
+
+
+		# ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
+
+
+		return render(request, 'creatuventa.html',{'t':t,'user':traeeluser(request),'grupo':traeelgrupo(request),'paciente':paciente,'medicos':medicos,'citas':c,'atencion':a})
+
+	if request.method == 'POST':
+
+		p = Pacientes.objects.get(id=paciente)
+
+
+		data = request.POST
+		cantidad = data['cantidad']
+		
+		start = data['start']
+		descuento = data['descuento']
+
+
+
+		Atencion(paciente_id=paciente,descripcion=descripcion,fecha=start,medicos_id=medico).save()
+
+		return HttpResponseRedirect('/creatuventa/'+paciente)
+		#return render(request, 'creacita.html',{'paciente':p})	

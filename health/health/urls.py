@@ -19,7 +19,9 @@ urlpatterns = [
     url(r'^nuevomedico/',views.nuevomedico),
     url(r'^atencion/', views.atencion),
     url(r'^createncion/(\d+)', views.createncion),
-    url(r'^pagos/', views.pagos),
+    url(r'^ventas/', views.ventasxxx),
+    url(r'^pagos/(\d+)', views.pagos),
+    url(r'^guardapagos/', views.guardapagos),
     url(r'^medico/', views.medico),
     url(r'^editpaciente/(\d+)', views.editpaciente),
     url(r'^editmedico/(\d+)', views.editmedico),
@@ -41,11 +43,11 @@ urlpatterns = [
     url(r'^uploadfoto/(\d+)', views.uploadfoto),
     url(r'^creacita/(\d+)', views.creacita),
 
+
     url(r'^creatratamiento/(\d+)', views.creatratamiento),
     url(r'^reportes/', views.reportes),
     url(r'^buscaconsulta/', views.buscaconsulta),
-
-   
+    url(r'^creatuventa/(\d+)', views.creatuventa),
   ]
 
 

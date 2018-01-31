@@ -304,19 +304,67 @@ class Consulta(models.Model):
         return 'self.medicos.nombre'
 
 @python_2_unicode_compatible
+class Clasificacion(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+
+
+
+@python_2_unicode_compatible
+class Cobro(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+@python_2_unicode_compatible
+class ventas(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+
+
+@python_2_unicode_compatible
+class Productos(models.Model):
+  
+    nombre = models.CharField(max_length=300,blank=True)
+
+    def __str__(self):
+
+        return self.nombre
+
+@python_2_unicode_compatible
 class Pagos(models.Model):
 
-    venta = models.ForeignKey('Tiposventa',max_length=300,blank=True)
     pacientes = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
-    fecha= models.DateTimeField(blank=True, null=True)
-    cita = models.ForeignKey('Citas',max_length=300,blank=True, null=True)
-    monto = models.CharField(max_length=300,blank=True)
+    venta = models.ForeignKey('Tiposventa',max_length=300,blank=True,null=True)
+    clasificacion=models.ForeignKey('Clasificacion',max_length=300,blank=True, null=True)
     estado = models.ForeignKey('Estado',max_length=300,blank=True, null=True)
-    tipo = models.ForeignKey('Tipo',max_length=300,blank=True, null=True)
+    medico=models.ForeignKey('Medicos',max_length=300,blank=True, null=True)
+    cobro= models.ForeignKey('Cobro',max_length=300,blank=True, null=True)  
+    productos= models.ForeignKey('Productos',max_length=300,blank=True,null=True)
+    cantidad = models.FloatField(max_length=300,blank=True,null=True)
+    precio = models.FloatField(max_length=300,blank=True,null=True)
+    descuento = models.FloatField(max_length=300,blank=True,null=True)
+    
+    pago = models.FloatField(max_length=300,blank=True,null=True)
+    total = models.FloatField(max_length=300,blank=True,null=True)
+    saldo = models.FloatField(max_length=300,blank=True,null=True)
     
     def __str__(self):
 
-        return self.venta
+        return self.venta.nombre
 
 
 
@@ -337,5 +385,4 @@ class Notificacion(models.Model):
     def __str__(self):
 
         return self.nombre
-
 

@@ -85,7 +85,7 @@ class MedicosForm(ModelForm):
     class Meta:
         model = Medicos
         fields = '__all__'
-        exclude = ('user','foto') 
+        
         widgets = {
         'nombre':TextInput(attrs={'class':'form-control'}),
             'apellido':TextInput(attrs={'class':'form-control'}),
@@ -132,16 +132,30 @@ class AtencionForm(ModelForm):
 
 class PagosForm(ModelForm):
     class Meta:
+
         model = Pagos
         fields = '__all__'
+
+        
         widgets = {
             'Pacientes':TextInput(attrs={'class':'form-control'}),
-            'Fecha':TextInput(attrs={'class':'form-control'}),
-            'Cita':TextInput(attrs={'class':'form-control'}),
+            'Venta':TextInput(attrs={'class':'form-control'}),
+
             'Monto':TextInput(attrs={'class':'form-control','type':'number'}),
-            'Estado':TextInput(attrs={'class':'form-control'}),
-            'Tipo':TextInput(attrs={'class':'form-control'}),
+            'total':TextInput(attrs={'class':'form-control','type':'hidden'}),
+            'saldo':TextInput(attrs={'class':'form-control','type':'hidden'}),
         }
+
+
+class ventasForm(ModelForm):
+    class Meta:
+        model = ventas
+        fields = '__all__'
+        widgets = {
+      
+             'nombre':TextInput(attrs={'class':'form-control'}),
+        }
+
 
 class ConsultaForm(ModelForm):
     class Meta:

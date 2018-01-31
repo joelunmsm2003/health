@@ -1,0 +1,22 @@
+
+
+Teniendo esto:
+models.py
+class Thing(models.Model):
+	money = models.DecimalField(max_digits=8, decimal_places=2)
+	people = models.IntegerField(help_text='Texto de ayuda') 
+
+views.py
+def showthings(request):
+	things = Thing.objects.all()
+	return render_to_response('showthings.html', {'things':things})
+
+showthings.html
+	{% for thingitem in things %}
+	<li>
+		{{thingitem.money}}
+		{{thingitem.people}}
+	</li>
+	{% empty %}
+		<li>Aún no hay nada</li>
+	{% endfor %}
