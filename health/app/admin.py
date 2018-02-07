@@ -13,6 +13,9 @@ from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
 
 
+@admin.register(Log_pc)
+class Log_rAdmin(admin.ModelAdmin):
+	list_display = ('action','user','nombre')
 
 @admin.register(Log_r)
 class Log_rAdmin(admin.ModelAdmin):

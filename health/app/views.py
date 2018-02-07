@@ -676,7 +676,6 @@ def editcita(request,id_cita):
 	    # if a GET (or any other method) we'll create a blank form
 	else:
 
-
 		m=Citas.objects.get(id=id_cita)
 		
 		form = CitasForm(instance=m)
@@ -748,6 +747,7 @@ def nuevopaciente(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
+
 
 			return HttpResponseRedirect('/paciente/')
 
