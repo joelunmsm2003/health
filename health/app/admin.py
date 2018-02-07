@@ -13,9 +13,19 @@ from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
 
 
+@admin.register(Log_pc)
+class Log_rAdmin(admin.ModelAdmin):
+	list_display = ('action','user','nombre')
+
+@admin.register(Log_r)
+class Log_rAdmin(admin.ModelAdmin):
+	list_display = ('action','user','paciente','departamento','hora','fecha_ini')
 
 
+@admin.register(Pestados)
+class PestadosAdmin(admin.ModelAdmin):
 
+	list_display = ('nombre',)
 @admin.register(Asistencia)
 class AsistenciaAdmin(admin.ModelAdmin):
 
@@ -44,7 +54,7 @@ class CitasAdmin(admin.ModelAdmin):
 
 @admin.register(Pacientes)
 class PacientesAdmin(admin.ModelAdmin):
-	list_display = ('id','nombre','apellido','dni','domicilio','ciudad','telefono','celular','email','referenciado','foto','user')
+	list_display = ('id','nombre','apellido','dni','domicilio','ciudad','telefono','celular','email','referenciado','foto','user','estados')
 
 
 @admin.register(Enfermeros)

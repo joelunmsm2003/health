@@ -676,7 +676,6 @@ def editcita(request,id_cita):
 	    # if a GET (or any other method) we'll create a blank form
 	else:
 
-
 		m=Citas.objects.get(id=id_cita)
 		
 		form = CitasForm(instance=m)
@@ -748,6 +747,7 @@ def nuevopaciente(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
+
 
 			return HttpResponseRedirect('/paciente/')
 
@@ -1020,9 +1020,11 @@ def nuevaconsulta(request,id_paciente):
 
 		p =Pacientes.objects.get(id=id_paciente)
 
+			
 
 		Consulta(paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,).save()
-
+		Log_r(user=request.user,paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,action='se creo una nueva consulta').save()
+		 	
 		return HttpResponseRedirect('/consulta/')
 
 	# 	form = ConsultaForm(request.POST)
