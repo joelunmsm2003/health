@@ -14,12 +14,12 @@ from django.utils.translation import ugettext_lazy
 
 
 @admin.register(Log_pc)
-class Log_rAdmin(admin.ModelAdmin):
-	list_display = ('action','user','nombre')
+class Log_pcAdmin(admin.ModelAdmin):
+	list_display = ('action','user','cambios',)
 
 @admin.register(Log_r)
 class Log_rAdmin(admin.ModelAdmin):
-	list_display = ('action','user','paciente','departamento','hora','fecha_ini')
+	list_display = ('action','user','paciente','departamento','hora','fecha_ini','tipo','origen','asistencia')
 
 
 @admin.register(Pestados)
