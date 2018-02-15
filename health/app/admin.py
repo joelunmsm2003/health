@@ -12,10 +12,13 @@ from django.contrib.admin.filters import RelatedOnlyFieldListFilter
 from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
 
+@admin.register(Log_usuario)
+class Log_usuarioAdmin(admin.ModelAdmin):
+	list_display = ('action','user','fecha',)
 
 @admin.register(Log_pc)
 class Log_pcAdmin(admin.ModelAdmin):
-	list_display = ('action','user','cambios',)
+	list_display = ('action','user','cambios','fecha',)
 
 @admin.register(Log_r)
 class Log_rAdmin(admin.ModelAdmin):
