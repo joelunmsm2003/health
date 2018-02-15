@@ -150,7 +150,9 @@ class Pacientes(models.Model):
         return self.nombre
 
     def save(self, *args,**kwargs):
-        Log_pc(user=self.user, action='ingrese', nombre=self.nombre).save()
+
+        print 'Estoy fregando....', self.user
+
         super(Pacientes, self) .save(*args, **kwargs)
 
 @python_2_unicode_compatible
@@ -303,7 +305,10 @@ class Tipo(models.Model):
 class Log_pc(models.Model):
         action =models.CharField(max_length=300,blank=True)
         user = models.ForeignKey(User,max_length=300,blank=True, null=True)
-        nombre =models.CharField(max_length=300,blank=True)
+        cambios =models.CharField(max_length=300,blank=True)
+        
+
+
         # paciente = models.ForeignKey('Pacientes',max_length=300,blank=True, null=True)
 
         # departamento=  models.ForeignKey('Departamento',max_length=300,blank=True, null=True)

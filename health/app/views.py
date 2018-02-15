@@ -368,7 +368,7 @@ def editpaciente(request,id_paciente):
 
 			f = PacientesForm(request.POST, instance=a).save()
 
-
+			Log_pc(user=request.user, action='Edite un  Pacientes', cambios=request.POST,).save()
 			return HttpResponseRedirect('/paciente/')
 
 	    # if a GET (or any other method) we'll create a blank form
@@ -534,7 +534,7 @@ def createncion(request,paciente):
 		medico = data['medico']
 
 		Atencion(paciente_id=paciente,descripcion=descripcion,fecha=start,medicos_id=medico).save()
-
+		Log_pc(user=request.user, action='CREE UNA  NUEVA ATENCION', cambios=request.POST,).save()
 		return HttpResponseRedirect('/createncion/'+paciente)
 		#return render(request, 'creacita.html',{'paciente':p})
 
@@ -701,7 +701,7 @@ def editconsulta(request,id_consulta):
 
 			f = ConsultaForm(request.POST, instance=a).save()
 
-
+			Log_pc(user=request.user, action='EDITE -CONSULTA ', cambios=request.POST,).save()
 			return HttpResponseRedirect('/consulta/'+id_consulta)
 
 	    # if a GET (or any other method) we'll create a blank form
@@ -712,6 +712,7 @@ def editconsulta(request,id_consulta):
 		
 		form = ConsultaForm(instance=m)
 
+	
 	return render(request, 'editconsulta.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form,'consulta':m,'id_consulta':id_consulta})
 
 
@@ -735,6 +736,11 @@ def nuevopaciente(request):
 
 			p = PacientesForm(request.POST, instance=a).save()
 
+			print 'jdjdjjd',request.POST['dni']
+
+			# <QueryDict: {u'estados': [u'3'], u'dni': [u'75417613'], u'nacimiento': [u'2018-01-01'], u'celular': [u'444444'], u'nombre': [u'tigre'], u'csrfmiddlewaretoken': [u'jKi66xbDhPOSrkU6rjKpjBb5zFDt1t9hOLA5a8QUdgjISpT9CJ9ID7pGmocJ5mIK'], u'email': [u'44444'], u'domicilio': [u'2158']}>
+
+
 			# Atencion(paciente_id=p.id).save()
 
 			# id_a = Atencion.objects.all().values('id').order_by('-id')[0]['id']
@@ -747,6 +753,9 @@ def nuevopaciente(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
+
+			Log_pc(user=request.user, action='Crese un nuevo Pacientes', cambios=request.POST,).save()
+        
 
 
 			return HttpResponseRedirect('/paciente/')
@@ -773,7 +782,7 @@ def ingresar(request):
 
         login(request, user)
 
-
+        Log_pc(user=request.user, action='ingrese al sistema ', cambios=request.POST,).save()
         return HttpResponseRedirect('/dashboard/')
 
     else:
@@ -841,12 +850,13 @@ def atencion(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
+			Log_pc(user=request.user, action='Cree una nueva atencion', cambios=request.POST,).save()
 			return HttpResponseRedirect('/atencion/')
 
 	    # if a GET (or any other method) we'll create a blank form
 	else:
 		form = AtencionForm()
-
+	Log_pc(user=request.user, action='Cree una nueva atencion', cambios=request.POST,).save()
 	return render(request, 'atencion.html',{'user':traeeluser(request),'grupo':traeelgrupo(request),'form': form})
 
 
@@ -954,7 +964,7 @@ def guardapagos(request):
 		# Pagos(paciente_id=paciente.id,venta_id=venta.id,clasificacion_id=clasificacion.id,estado_id=estado.id,medico_id=medico.id,cobro_id=cobro.id,).save()
 		
 
-
+		Log_pc(user=request.user, action='Cree una ventasssssssssss', cambios=request.POST,).save()
 		return HttpResponseRedirect('/pagos/'+id_pac)
 
 def pagos(request,id_paciente):
@@ -992,6 +1002,7 @@ def ventasxxx(request):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
+			Log_pc(user=request.user, action='CREE VENTAS', cambios=request.POST,).save()
 			return HttpResponseRedirect('/ventas/')
 
 	    # if a GET (or any other method) we'll create a blank form
@@ -1020,11 +1031,10 @@ def nuevaconsulta(request,id_paciente):
 
 		p =Pacientes.objects.get(id=id_paciente)
 
-			
 
 		Consulta(paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,).save()
-		Log_r(user=request.user,paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,action='se creo una nueva consulta').save()
-		 	
+		Log_r(user=request.user,paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,action='CREE NUEVA CONSULTA').save()
+		Log_pc(user=request.user, action='CrREE UNA NUEVA CONSULTA', cambios=request.POST,).save()	
 		return HttpResponseRedirect('/consulta/')
 
 	# 	form = ConsultaForm(request.POST)
@@ -1106,6 +1116,7 @@ def creatratamiento(request,paciente):
 			# process the data in form.cleaned_data as required
 			# ...
 			# redirect to a new URL:
+			Log_pc(user=request.user, action='CREE NUEVO TRATAMIENTO', cambios=request.POST,).save()
 			return HttpResponseRedirect('/creatratamiento/'+paciente)
 		
 		#return render(request, 'creacita.html',{'paciente':p})
@@ -1140,7 +1151,7 @@ def creatuventa(request,paciente):
 
 		# ncitashoy = Citas.objects.filter(start__gte=datetime.today()).count()
 
-
+		Log_pc(user=request.user, action='CREE VENTAS', cambios=request.POST,).save()
 		return render(request, 'creatuventa.html',{'t':t,'user':traeeluser(request),'grupo':traeelgrupo(request),'paciente':paciente,'medicos':medicos,'citas':c,'atencion':a})
 
 	if request.method == 'POST':
