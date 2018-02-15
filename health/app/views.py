@@ -1034,7 +1034,7 @@ def nuevaconsulta(request,id_paciente):
 
 
 		Consulta(paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,).save()
-		Log_r(user=request.user,paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,action='CREE NUEVA CONSULTA').save()
+		Log_r(user=request.user,paciente_id=paciente.id,departamento_id=departamento,tipo_id=tipo,fecha_ini=fecha,origen_id=origen,asistencia_id=asistencia,hora=hora,action='CREE NUEVA CONSULTA', fecha=datetime.now()).save()
 		Log_pc(user=request.user, action='CrREE UNA NUEVA CONSULTA', cambios=request.POST,fecha=datetime.now()).save()	
 		return HttpResponseRedirect('/consulta/')
 

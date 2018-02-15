@@ -22,7 +22,7 @@ class Log_pcAdmin(admin.ModelAdmin):
 
 @admin.register(Log_r)
 class Log_rAdmin(admin.ModelAdmin):
-	list_display = ('action','user','paciente','departamento','hora','fecha_ini','tipo','origen','asistencia')
+	list_display = ('action','user','paciente','departamento','hora','fecha_ini','tipo','origen','asistencia','fecha')
 
 
 @admin.register(Pestados)

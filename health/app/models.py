@@ -352,6 +352,7 @@ class Log_r(models.Model):
         tipo = models.ForeignKey('Tipo',max_length=300,blank=True, null=True)
         origen = models.ForeignKey('Origen',max_length=300,blank=True,  null=True)
         asistencia = models.ForeignKey('Asistencia',max_length=300,blank=True,  null=True)
+        fecha =models.CharField(max_length=300,blank=True)
 
         def __str__(self):
 
